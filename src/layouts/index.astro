@@ -1,0 +1,24 @@
+---
+import '@fontsource/inter';
+import { ViewTransitions } from 'astro:transitions';
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>casper</title>
+    <ViewTransitions />
+  </head>
+  <body class="flex min-h-screen flex-col overscroll-none bg text">
+    <header class="border-b text-xs">
+      <div class="mx-auto flex h-12 max-w-screen-xl items-center justify-between">
+        <a href="/" class="flex-1 uppercase tracking-wider">casper.</a>
+      </div>
+    </header>
+    <main class="flex-1"><slot /></main>
+    <footer></footer>
+  </body>
+</html>
