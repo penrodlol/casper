@@ -11,11 +11,12 @@ const { class: className, ...props } = Astro.props;
   {...props}
   type="checkbox"
   class={twMerge(
-    'peer relative m-0 h-[1.1em] w-[1.1em] shrink-0 appearance-none rounded border border-primary',
+    'peer relative m-0 h-[1.1em] w-[1.1em] shrink-0 cursor-pointer appearance-none rounded border border-primary',
     'before:absolute before:inset-0 before:rounded disabled:cursor-not-allowed disabled:opacity-50',
     'before:bg-[hsl(var(--primary-foreground))] checked:bg-primary motion-safe:transition-colors',
     'before:[mask-position:center] before:[mask-repeat:no-repeat] before:[mask-size:0.8em_0.8em] motion-safe:before:transition-colors',
     'before:[mask-image:url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIzIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiIGNsYXNzPSJsdWNpZGUgbHVjaWRlLWNoZWNrIj48cG9seWxpbmUgcG9pbnRzPSIyMCA2IDkgMTcgNCAxMiIvPjwvc3ZnPg==")]',
+    'focus-visible:outline-none focus-visible:ring-2',
     className,
   )}
 />

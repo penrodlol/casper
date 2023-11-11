@@ -1,0 +1,20 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+import { twMerge } from 'tailwind-merge';
+
+type Props = Omit<HTMLAttributes<'input'>, 'type'>;
+
+const { class: className, ...props } = Astro.props;
+---
+
+<input
+  {...props}
+  type="radio"
+  class={twMerge(
+    'peer relative h-[1.1em] w-[1.1em] shrink-0 cursor-pointer appearance-none',
+    'rounded-full border border-primary before:absolute before:inset-[3px]',
+    'before:rounded-full checked:before:bg-primary motion-safe:before:transition-colors',
+    'focus-visible:outline-none focus-visible:ring-2',
+    className,
+  )}
+/>
