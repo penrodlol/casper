@@ -32,7 +32,7 @@ export default {
   future: { hoverOnlyWhenSupported: true },
   plugins: [
     require('tailwindcss-fluid-type'),
-    plugin(({ addBase, theme }) => {
+    plugin(({ addBase }) => {
       addBase({
         ':root': {
           '--background': '0 0% 4%',
@@ -41,14 +41,14 @@ export default {
           '--muted-foreground': '0 0% 64%',
           '--primary': '0 0% 90%',
           '--primary-foreground': '0 0% 4%',
-          '--secondary': '',
-          '--secondary-foreground': '',
+          '--secondary': '0 0% 25%',
+          '--secondary-foreground': '0 0% 83%',
           '--accent': '',
           '--accent-foreground': '',
-          '--destructive': '',
-          '--destructive-foreground': '',
+          '--destructive': '0 74% 42%',
+          '--destructive-foreground': '0 0% 83%',
           '--border': '0 0% 32%',
-          '--ring': '',
+          '--ring': '0 0% 96%',
         },
       });
     }),
