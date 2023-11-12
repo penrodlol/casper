@@ -1,0 +1,22 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+import { twMerge } from 'tailwind-merge';
+
+type Props = Omit<HTMLAttributes<'div'>, 'role'> & { value: string; selected?: boolean };
+
+const { class: className, value, selected, ...props } = Astro.props;
+---
+
+<div
+  {...props}
+  role="tabpanel"
+  tabindex="0"
+  data-selected={(selected ?? false).toString()}
+  class={twMerge(
+    'block overflow-auto rounded p-6 data-[selected=false]:hidden',
+    'focus-visible:outline-none focus-visible:ring-2',
+    className,
+  )}
+>
+  <slot />
+</div>

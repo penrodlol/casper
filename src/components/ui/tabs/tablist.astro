@@ -1,0 +1,16 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+import { twMerge } from 'tailwind-merge';
+
+type Props = Omit<HTMLAttributes<'div'>, 'role'>;
+
+const { class: className, ...props } = Astro.props;
+---
+
+<div
+  {...props}
+  role="tablist"
+  class={twMerge('[box-shadow:0_-1px_0_hsl(var(--border))_inset]', className)}
+>
+  <slot />
+</div>

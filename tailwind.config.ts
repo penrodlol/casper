@@ -32,6 +32,7 @@ export default {
   future: { hoverOnlyWhenSupported: true },
   plugins: [
     require('tailwindcss-fluid-type'),
+    require('tailwindcss-animate'),
     plugin(({ addBase }) => {
       addBase({
         ':root': {

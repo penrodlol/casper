@@ -1,0 +1,23 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+import { twMerge } from 'tailwind-merge';
+
+type Props = Omit<HTMLAttributes<'button'>, 'role'> & { value: string; selected?: boolean };
+
+const { class: className, value, selected, ...props } = Astro.props;
+---
+
+<button
+  {...props}
+  role="tab"
+  aria-selected={selected}
+  class={twMerge(
+    'peer relative px-3 py-2 text-xs text-muted hover:text motion-safe:transition-colors',
+    'after:absolute after:inset-x-0 after:bottom-0 after:h-px',
+    'aria-selected:after:animate-in aria-selected:text aria-selected:after:bg-primary',
+    'focus-visible:outline-none focus-visible:ring-2',
+    className,
+  )}
+>
+  <slot />
+</button>
