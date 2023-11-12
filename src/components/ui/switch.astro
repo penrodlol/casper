@@ -1,0 +1,20 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+import { twJoin, twMerge } from 'tailwind-merge';
+
+type Props = Omit<HTMLAttributes<'input'>, 'type' | 'role'>;
+
+const { class: className, ...props } = Astro.props;
+---
+
+<label class={twMerge('w-10 cursor-pointer rounded-full border border-primary p-0.5', className)}>
+  <input {...props} type="checkbox" role="switch" class="peer sr-only" />
+  <div
+    class={twJoin(
+      'flex items-center rounded-full',
+      'before:h-3.5 before:w-3.5 before:rounded-full before:bg-primary',
+      'peer-checked:before:translate-x-full motion-safe:before:transition-transform',
+    )}
+  >
+  </div>
+</label>
