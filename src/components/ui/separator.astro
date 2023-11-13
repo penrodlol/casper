@@ -1,0 +1,20 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+import { twMerge } from 'tailwind-merge';
+
+type Orientation = 'horizontal' | 'vertical';
+type Props = Omit<HTMLAttributes<'div'>, 'role'> & { orientation?: Orientation };
+
+const { class: className, orientation = 'horizontal', ...props } = Astro.props;
+---
+
+<div
+  {...props}
+  role="none"
+  class={twMerge(
+    'bg-border shrink-0 rounded',
+    orientation === 'horizontal' ? 'h-[1px] w-full' : 'h-full w-[1px]',
+    className,
+  )}
+>
+</div>
