@@ -12,7 +12,7 @@ const { class: className, orientation = 'horizontal', ...props } = Astro.props;
   {...props}
   role="none"
   class={twMerge(
-    'bg-border shrink-0 rounded',
+    'shrink-0 rounded bg-[hsl(var(--border))]',
     orientation === 'horizontal' ? 'h-[1px] w-full' : 'h-full w-[1px]',
     className,
   )}

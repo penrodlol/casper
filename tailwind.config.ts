@@ -16,7 +16,6 @@ export default {
         muted: 'hsl(var(--muted))',
         accent: 'hsl(var(--accent))',
         destructive: 'hsl(var(--destructive))',
-        border: 'hsl(var(--border))',
       },
       textColor: {
         DEFAULT: 'hsl(var(--foreground))',
