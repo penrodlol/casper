@@ -51,6 +51,7 @@ export default {
           '--border': '0 0% 32%',
           '--ring': '0 0% 96%',
         },
+        '::backdrop': { '--background': '0 0% 4%' },
       });
     }),
   ],

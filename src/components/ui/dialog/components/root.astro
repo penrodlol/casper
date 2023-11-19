@@ -1,0 +1,27 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+import { twMerge } from 'tailwind-merge';
+
+type Props = HTMLAttributes<'dialog'>;
+
+const { class: className, ...props } = Astro.props;
+---
+
+<script src="../script.ts"></script>
+
+<dialog
+  {...props}
+  data-dialog
+  class={twMerge(
+    'relative w-full max-w-lg rounded border bg text outline-none',
+    'backdrop:bg backdrop:opacity-80 backdrop:animate-in backdrop:motion-safe:fade-in',
+    'animate-in motion-safe:fade-in motion-safe:zoom-in-75',
+    className,
+  )}
+>
+  <slot />
+</dialog>
+
+<slot name="dialog-trigger" />
+
+<output></output>
