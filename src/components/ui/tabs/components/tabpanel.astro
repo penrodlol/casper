@@ -11,6 +11,7 @@ const { class: className, value, selected, ...props } = Astro.props;
   {...props}
   role="tabpanel"
   tabindex="0"
+  data-value={value}
   data-selected={(selected ?? false).toString()}
   class={twMerge(
     'block overflow-auto rounded p-6 data-[selected=false]:hidden',

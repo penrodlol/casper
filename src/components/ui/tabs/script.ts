@@ -3,19 +3,20 @@ type Tabs = NodeListOf<Tab>;
 
 document.addEventListener('astro:page-load', () => {
   (document.querySelectorAll('[data-tabs]') as NodeListOf<HTMLDivElement>)?.forEach((root) => {
+    const id = root.dataset.tabs;
     const tabs = root.querySelectorAll('[role="tab"]') as Tabs;
     const tabPanels = root.querySelectorAll('[role="tabpanel"]') as NodeListOf<HTMLDivElement>;
 
     tabs?.forEach((tab, index) => {
-      tab.setAttribute('id', `tabs-tab-${root.dataset.tabs}-${index}`);
-      tab.setAttribute('aria-controls', `tabs-tabpanel-${root.dataset.tabs}-${index}`);
+      tab.setAttribute('id', `tabs-tab-${id}-${tab.dataset.value}`);
+      tab.setAttribute('aria-controls', `tabs-tabpanel-${id}-${tab.dataset.value}`);
       tab.onclick = () => setTab(tabs, tab, false);
       tab.onkeydown = (event) => onKeyDown(tabs, index, event);
     });
 
-    tabPanels?.forEach((tabPanel, index) => {
-      tabPanel.setAttribute('id', `tabs-tabpanel-${root.dataset.tabs}-${index}`);
-      tabPanel.setAttribute('aria-labelledby', `tabs-tab-${root.dataset.tabs}-${index}`);
+    tabPanels?.forEach((tabPanel) => {
+      tabPanel.setAttribute('id', `tabs-tabpanel-${id}-${tabPanel.dataset.value}`);
+      tabPanel.setAttribute('aria-labelledby', `tabs-tab-${id}-${tabPanel.dataset.value}`);
     });
   });
 });
