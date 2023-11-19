@@ -1,8 +1,5 @@
-// @ts-ignore
-export { default as Root } from './root.astro';
-// @ts-ignore
-export { default as TabList } from './tablist.astro';
-// @ts-ignore
-export { default as Tab } from './tab.astro';
-// @ts-ignore
-export { default as TabPanel } from './tabpanel.astro';
+// @ts-nocheck
+export { default as Root } from './components/root.astro';
+export { default as Tab } from './components/tab.astro';
+export { default as TabList } from './components/tablist.astro';
+export { default as TabPanel } from './components/tabpanel.astro';

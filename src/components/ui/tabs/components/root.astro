@@ -1,0 +1,18 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+import { twMerge } from 'tailwind-merge';
+
+type Props = HTMLAttributes<'div'>;
+
+const { class: className, ...props } = Astro.props;
+---
+
+<script src="../script.ts"></script>
+
+<div
+  {...props}
+  data-tabs={crypto.randomUUID()}
+  class={twMerge('overflow-hidden rounded border bg', className)}
+>
+  <slot />
+</div>
