@@ -27,6 +27,14 @@ export default {
       },
       borderColor: { DEFAULT: 'hsl(var(--border))', primary: 'hsl(var(--primary))' },
       ringColor: { DEFAULT: 'hsl(var(--ring))' },
+      keyframes: {
+        'expand-down': { from: { height: '0' }, to: { height: 'var(--expansion-height, 0)' } },
+        'expand-up': { from: { height: 'var(--expansion-height, 0)' }, to: { height: '0' } },
+      },
+      animation: {
+        'expand-down': 'expand-down 150ms cubic-bezier(0.4, 0, 0.2, 1)',
+        'expand-up': 'expand-up 150ms cubic-bezier(0.4, 0, 0.2, 1)',
+      },
     },
   },
   future: { hoverOnlyWhenSupported: true },
@@ -45,7 +53,7 @@ export default {
           '--secondary': '0 0% 25%',
           '--secondary-foreground': '0 0% 83%',
           '--accent': '',
-          '--accent-foreground': '',
+          '--accent-foreground': '0 0% 90%',
           '--destructive': '0 74% 42%',
           '--destructive-foreground': '0 0% 83%',
           '--border': '0 0% 32%',

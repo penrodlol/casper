@@ -1,4 +1,5 @@
 ---
+import * as Accordion from '@/components/ui/accordion';
 import Button from '@/components/ui/button.astro';
 import Checkbox from '@/components/ui/checkbox.astro';
 import * as Dialog from '@/components/ui/dialog';
@@ -84,6 +85,29 @@ import { Bell, Folder, Heart, Power } from 'lucide-astro';
         </Tabs.TabPanel>
       </Tabs.Root>
     </section>
-    <section></section>
+    <section>
+      <Accordion.Root type="single">
+        <Accordion.Header for="bananas">Bananas</Accordion.Header>
+        <Accordion.Panel value="bananas">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi accusantium unde asperiores
+          odit. Dicta, nam, explicabo voluptatibus doloremque magni ad fugiat modi perspiciatis
+          similique asperiores officiis ex deserunt repellat iste.
+        </Accordion.Panel>
+
+        <Accordion.Header for="pineapples">Pineapples</Accordion.Header>
+        <Accordion.Panel value="pineapples">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex unde, nihil cumque sunt fugit
+          est eos molestias corrupti pariatur ratione. Consequatur, dolore cum! Laborum, odio ea
+          praesentium voluptatem voluptate illum!
+        </Accordion.Panel>
+
+        <Accordion.Header for="strawberries">Strawberries</Accordion.Header>
+        <Accordion.Panel value="strawberries">
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio, eum iusto voluptatibus
+          voluptates repellat culpa dolor dolore sequi incidunt blanditiis illum sed repellendus
+          perspiciatis autem vel illo odio mollitia quis?
+        </Accordion.Panel>
+      </Accordion.Root>
+    </section>
   </div>
 </Layout>
