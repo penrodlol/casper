@@ -11,16 +11,16 @@ const { class: className, value, ...props } = Astro.props;
 <div
   {...props}
   role="region"
-  data-accordion-panel={value}
-  data-accordion-expanded="false"
+  data-content={value}
+  data-expanded="false"
   class={twMerge(
     'overflow-hidden',
-    'data-[accordion-expanded="false"]:h-0',
-    'data-[accordion-expanded="false"]:animate-expand-up',
-    'data-[accordion-expanded="true"]:animate-expand-down',
+    'data-[expanded="false"]:h-0',
+    'data-[expanded="false"]:animate-expand-up',
+    'data-[expanded="true"]:animate-expand-down',
     className,
   )}
 >
-  <div class="pb-6"><slot /></div>
+  <div data-content-inner class="pb-6"><slot /></div>
 </div>
 <Separator />

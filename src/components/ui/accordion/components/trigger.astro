@@ -12,7 +12,7 @@ const { class: className, for: htmlFor, ...props } = Astro.props;
   <button
     {...props}
     type="button"
-    data-accordion-header={htmlFor}
+    data-trigger={htmlFor}
     aria-expanded="false"
     class={twMerge(
       'group flex flex-1 items-center justify-between rounded py-4',

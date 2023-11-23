@@ -1,13 +1,14 @@
 ---
 import type { HTMLAttributes } from 'astro/types';
+import type { Type } from '../script';
 
-type Props = HTMLAttributes<'div'> & { type?: 'single' | 'multiple' };
+type Props = HTMLAttributes<'div'> & { type?: Type };
 
 const { type, ...props } = Astro.props;
 ---
 
 <script src="../script.ts"></script>
 
-<div {...props} data-accordion={crypto.randomUUID()} data-accordion-type={type ?? 'multiple'}>
+<div {...props} data-accordion={crypto.randomUUID()} data-type={type ?? 'multiple'}>
   <slot />
 </div>

@@ -88,26 +88,26 @@ import { Bell, Folder, Heart, Power } from 'lucide-astro';
     </section>
     <section>
       <Accordion.Root type="single">
-        <Accordion.Header for="bananas">Bananas</Accordion.Header>
-        <Accordion.Panel value="bananas" class="text-xs">
+        <Accordion.Trigger for="bananas">Bananas</Accordion.Trigger>
+        <Accordion.Content value="bananas" class="text-xs">
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi accusantium unde asperiores
           odit. Dicta, nam, explicabo voluptatibus doloremque magni ad fugiat modi perspiciatis
           similique asperiores officiis ex deserunt repellat iste.
-        </Accordion.Panel>
+        </Accordion.Content>
 
-        <Accordion.Header for="pineapples">Pineapples</Accordion.Header>
-        <Accordion.Panel value="pineapples" class="text-xs">
+        <Accordion.Trigger for="pineapples">Pineapples</Accordion.Trigger>
+        <Accordion.Content value="pineapples" class="text-xs">
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex unde, nihil cumque sunt fugit
           est eos molestias corrupti pariatur ratione. Consequatur, dolore cum! Laborum, odio ea
           praesentium voluptatem voluptate illum!
-        </Accordion.Panel>
+        </Accordion.Content>
 
-        <Accordion.Header for="strawberries">Strawberries</Accordion.Header>
-        <Accordion.Panel value="strawberries" class="text-xs">
+        <Accordion.Trigger for="strawberries">Strawberries</Accordion.Trigger>
+        <Accordion.Content value="strawberries" class="text-xs">
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio, eum iusto voluptatibus
           voluptates repellat culpa dolor dolore sequi incidunt blanditiis illum sed repellendus
           perspiciatis autem vel illo odio mollitia quis?
-        </Accordion.Panel>
+        </Accordion.Content>
       </Accordion.Root>
     </section>
     <section>
@@ -115,7 +115,6 @@ import { Bell, Folder, Heart, Power } from 'lucide-astro';
         <Select.Trigger placeholder="Select a fruit" aria-label="Fruit" />
         <Select.Portal>
           <Select.Search placeholder="Search for fruit..." />
-
           <Select.Option value="apple">Apple</Select.Option>
           <Select.Option value="banana">Banana</Select.Option>
           <Select.Option value="orange">Orange</Select.Option>
@@ -129,3 +128,4 @@ import { Bell, Folder, Heart, Power } from 'lucide-astro';
     <section></section>
   </div>
 </Layout>
+ @/components/ui/accordion

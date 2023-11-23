@@ -1,55 +1,54 @@
-type Header = HTMLButtonElement;
-type Panel = HTMLDivElement;
+import { getChildComponents, onComponentLoad } from '@/libs/component';
 
-document.addEventListener('astro:page-load', () => {
-  (document.querySelectorAll('[data-accordion]') as NodeListOf<HTMLDivElement>)?.forEach((root) => {
-    const id = root.dataset.accordion as string;
-    const type = root.dataset.accordionType as 'single' | 'multiple';
-    const headers = Array.from(root.querySelectorAll('[data-accordion-header]')) as Array<Header>;
+export type Type = 'single' | 'multiple';
+export type Trigger = HTMLButtonElement;
+export type Content = HTMLDivElement;
 
-    headers.forEach((header) => {
-      const headerId = header.dataset.accordionHeader as string;
-      const panel = document.querySelector(`[data-accordion-panel="${headerId}"]`) as Panel;
-      if (!panel) return;
+onComponentLoad<HTMLDivElement>('[data-accordion]', (accordion) => {
+  const triggers = getChildComponents<Trigger>(accordion, '[data-trigger]');
+  const contents = getChildComponents<Content>(accordion, '[data-content]');
 
-      header.id = `accordion-header-${id}-${headerId}`;
-      panel.id = `accordion-panel-${id}-${headerId}`;
-      header.setAttribute('aria-controls', panel.id);
-      panel.setAttribute('aria-labelledby', header.id);
+  triggers.forEach((trigger) => {
+    const triggerId = trigger.dataset.trigger as string;
+    const content = contents.find((content) => content.dataset.content === triggerId);
+    if (!content) return;
 
-      header.onclick = () => {
-        toggle(header, panel);
-        if (type === 'single')
-          headers
-            .filter((_header) => _header.id !== header.id)
-            .forEach((_header) => {
-              const headerId = _header.dataset.accordionHeader as string;
-              const panel = document.querySelector(`[data-accordion-panel="${headerId}"]`) as Panel;
-              if (panel) toggle(_header, panel, false);
-            });
-      };
-
-      header.onkeydown = (event) => {
-        if (/^(ArrowDown|ArrowUp|Home|End)$/.test(event.key)) event.preventDefault();
-
-        // prettier-ignore
-        switch (event.key) {
-          case 'ArrowDown': return (headers[headers.indexOf(header) + 1] ?? headers[0])?.focus();
-          case 'ArrowUp': return (headers[headers.indexOf(header) - 1] ?? headers[headers.length - 1])?.focus();
-          case 'Home': return headers[0]?.focus();
-          case 'End': return headers[headers.length - 1]?.focus();
-          default: return;
-        }
-      };
-    });
+    content.setAttribute('id', `accordion-panel-${accordion.dataset.accordion}-${triggerId}`);
+    content.setAttribute('aria-controls', content.id);
+    content.setAttribute('aria-labelledby', trigger.id);
+    trigger.setAttribute('id', `accordion-header-${accordion.dataset.accordion}-${triggerId}`);
+    trigger.onclick = () => onTriggerClick(trigger, contents, accordion.dataset.type as Type);
+    trigger.onkeydown = (event) => onTriggerKeyDown(event, trigger, triggers);
   });
 });
 
-function toggle(header: Header, panel: Panel, override?: boolean) {
-  const state = String(override ?? header.getAttribute('aria-expanded') !== 'true');
-  const height = panel.firstElementChild?.getBoundingClientRect().height;
+const onTriggerClick = (trigger: Trigger, contents: Array<Content>, type: Type) => {
+  contents.forEach((content) => {
+    if (trigger.dataset.trigger === content.dataset.content) toggle(trigger, content);
+    else if (type === 'single') {
+      const _trigger = document.querySelector(`[data-trigger="${content.dataset.content}"]`);
+      if (_trigger) toggle(_trigger as HTMLButtonElement, content, false);
+    }
+  });
+};
 
-  header.ariaExpanded = state;
-  panel.dataset.accordionExpanded = state;
-  panel.style.setProperty('--expansion-height', `${height}px`);
-}
+const onTriggerKeyDown = (event: KeyboardEvent, trigger: Trigger, triggers: Array<Trigger>) => {
+  if (/^(ArrowDown|ArrowUp|Home|End)$/.test(event.key)) event.preventDefault();
+  // prettier-ignore
+  switch (event.key) {
+    case 'ArrowDown': return (triggers[triggers.indexOf(trigger) + 1] ?? triggers[0])?.focus();
+    case 'ArrowUp': return (triggers[triggers.indexOf(trigger) - 1] ?? triggers[triggers.length - 1])?.focus();
+    case 'Home': return triggers[0]?.focus();
+    case 'End': return triggers[triggers.length - 1]?.focus();
+    default: return;
+  }
+};
+
+const toggle = (trigger: HTMLButtonElement, content: HTMLDivElement, override?: boolean) => {
+  const state = String(override ?? trigger.getAttribute('aria-expanded') !== 'true');
+  const height = content.firstElementChild?.getBoundingClientRect().height;
+
+  trigger.setAttribute('aria-expanded', state);
+  content.setAttribute('data-expanded', state);
+  content.style.setProperty('--expansion-height', `${height}px`);
+};
