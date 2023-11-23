@@ -1,0 +1,30 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+import { Search as SearchIcon } from 'lucide-astro';
+import { twJoin, twMerge } from 'tailwind-merge';
+
+type Props = Omit<HTMLAttributes<'input'>, 'role'>;
+
+const { class: className, ...props } = Astro.props;
+---
+
+<div class={twMerge('relative h-8 w-full rounded-t border-b bg-muted text-xs', className)}>
+  <input
+    {...props}
+    data-select-search
+    role="combobox"
+    autofocus
+    autocomplete="off"
+    spellcheck="false"
+    class={twJoin(
+      'absolute inset-0 z-30 rounded bg-transparent pl-7 placeholder:text-muted/50',
+      'focus-visible:outline-none focus-visible:ring',
+    )}
+  />
+  <SearchIcon
+    data-select-search-icon
+    size={14}
+    aria-hidden
+    class="absolute left-1.5 top-1/2 z-20 -translate-y-1/2 text-muted/50"
+  />
+</div>

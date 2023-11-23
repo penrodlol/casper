@@ -1,0 +1,20 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+import { twMerge } from 'tailwind-merge';
+
+type Props = HTMLAttributes<'div'> & { open?: boolean; type?: 'single' | 'multiple' };
+
+const { class: className, open, type, ...props } = Astro.props;
+---
+
+<script src="../script.ts"></script>
+
+<div
+  {...props}
+  data-select={crypto.randomUUID()}
+  data-select-open={open ? 'true' : 'false'}
+  data-select-type={type ?? 'single'}
+  class={twMerge('group relative', className)}
+>
+  <slot />
+</div>

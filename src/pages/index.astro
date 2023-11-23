@@ -5,6 +5,7 @@ import Checkbox from '@/components/ui/checkbox.astro';
 import * as Dialog from '@/components/ui/dialog';
 import Label from '@/components/ui/label.astro';
 import Radio from '@/components/ui/radio.astro';
+import * as Select from '@/components/ui/select';
 import * as Tabs from '@/components/ui/tabs';
 import Layout from '@/layouts/index.astro';
 import { Bell, Folder, Heart, Power } from 'lucide-astro';
@@ -88,26 +89,43 @@ import { Bell, Folder, Heart, Power } from 'lucide-astro';
     <section>
       <Accordion.Root type="single">
         <Accordion.Header for="bananas">Bananas</Accordion.Header>
-        <Accordion.Panel value="bananas">
+        <Accordion.Panel value="bananas" class="text-xs">
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi accusantium unde asperiores
           odit. Dicta, nam, explicabo voluptatibus doloremque magni ad fugiat modi perspiciatis
           similique asperiores officiis ex deserunt repellat iste.
         </Accordion.Panel>
 
         <Accordion.Header for="pineapples">Pineapples</Accordion.Header>
-        <Accordion.Panel value="pineapples">
+        <Accordion.Panel value="pineapples" class="text-xs">
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex unde, nihil cumque sunt fugit
           est eos molestias corrupti pariatur ratione. Consequatur, dolore cum! Laborum, odio ea
           praesentium voluptatem voluptate illum!
         </Accordion.Panel>
 
         <Accordion.Header for="strawberries">Strawberries</Accordion.Header>
-        <Accordion.Panel value="strawberries">
+        <Accordion.Panel value="strawberries" class="text-xs">
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio, eum iusto voluptatibus
           voluptates repellat culpa dolor dolore sequi incidunt blanditiis illum sed repellendus
           perspiciatis autem vel illo odio mollitia quis?
         </Accordion.Panel>
       </Accordion.Root>
     </section>
+    <section>
+      <Select.Root class="w-[240px]">
+        <Select.Trigger placeholder="Select a fruit" aria-label="Fruit" />
+        <Select.Portal>
+          <Select.Search placeholder="Search for fruit..." />
+
+          <Select.Option value="apple">Apple</Select.Option>
+          <Select.Option value="banana">Banana</Select.Option>
+          <Select.Option value="orange">Orange</Select.Option>
+          <Select.Option value="pineapple">Pineapple</Select.Option>
+          <Select.Option value="strawberry">Strawberry</Select.Option>
+        </Select.Portal>
+      </Select.Root>
+    </section>
+    <section></section>
+    <section></section>
+    <section></section>
   </div>
 </Layout>

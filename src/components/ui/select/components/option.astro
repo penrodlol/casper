@@ -1,0 +1,27 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+import { Check } from 'lucide-astro';
+import { twMerge } from 'tailwind-merge';
+
+type Props<T> = Omit<HTMLAttributes<'li'>, 'role'> & { value: T; selected?: boolean };
+
+const { class: className, value, selected, ...props } = Astro.props;
+---
+
+<li
+  {...props}
+  role="option"
+  data-value={value}
+  aria-selected={selected ? 'true' : 'false'}
+  aria-hidden="false"
+  class={twMerge(
+    'group flex cursor-pointer items-center gap-4 px-3 py-1 text-xs',
+    'first-of-type:mt-2 last-of-type:mb-2 aria-selected:bg-muted',
+    'aria-hidden:hidden',
+    'hover:bg-muted motion-safe:transition-colors',
+    className,
+  )}
+>
+  <span class="flex-1"><slot /></span>
+  <Check size={14} aria-hidden class="hidden shrink-0 group-aria-selected:block" />
+</li>
