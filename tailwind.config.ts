@@ -46,7 +46,7 @@ export default {
         ':root': {
           '--background': '0 0% 4%',
           '--foreground': '0 0% 83%',
-          '--muted': '0 0% 9%',
+          '--muted': '0 0% 13%',
           '--muted-foreground': '0 0% 64%',
           '--primary': '0 0% 90%',
           '--primary-foreground': '0 0% 4%',

@@ -7,8 +7,9 @@ import Label from '@/components/ui/label.astro';
 import Radio from '@/components/ui/radio.astro';
 import * as Select from '@/components/ui/select';
 import * as Tabs from '@/components/ui/tabs';
+import * as Toggle from '@/components/ui/toggle';
 import Layout from '@/layouts/index.astro';
-import { Bell, Folder, Heart, Power } from 'lucide-astro';
+import { AlignCenter, AlignLeft, AlignRight, Bell, Folder, Heart, Power } from 'lucide-astro';
 ---
 
 <Layout>
@@ -110,7 +111,7 @@ import { Bell, Folder, Heart, Power } from 'lucide-astro';
         </Accordion.Content>
       </Accordion.Root>
     </section>
-    <section>
+    <section class="flex flex-col gap-16">
       <Select.Root class="w-[240px]">
         <Select.Trigger placeholder="Select a fruit" aria-label="Fruit" />
         <Select.Portal>
@@ -122,10 +123,46 @@ import { Bell, Folder, Heart, Power } from 'lucide-astro';
           <Select.Option value="strawberry">Strawberry</Select.Option>
         </Select.Portal>
       </Select.Root>
+      <!-- prettier-ignore -->
+      <div class="flex flex-col gap-8">
+        <div class="flex items-center gap-6">
+          <Toggle.Group>
+            <Toggle.Item size="sm" value="left"><AlignLeft size={14} /></Toggle.Item>
+            <Toggle.Item size="sm" value="center"><AlignCenter size={14} /></Toggle.Item>
+            <Toggle.Item size="sm" value="right"><AlignRight size={14} /></Toggle.Item>
+          </Toggle.Group>
+          <Toggle.Group>
+            <Toggle.Item value="left"><AlignLeft size={16} /></Toggle.Item>
+            <Toggle.Item value="center"><AlignCenter size={16} /></Toggle.Item>
+            <Toggle.Item value="right"><AlignRight size={16} /></Toggle.Item>
+          </Toggle.Group>
+          <Toggle.Group>
+            <Toggle.Item size="lg" value="left"><AlignLeft size={18} /></Toggle.Item>
+            <Toggle.Item size="lg" value="center"><AlignCenter size={18} /></Toggle.Item>
+            <Toggle.Item size="lg" value="right"><AlignRight size={18} /></Toggle.Item>
+          </Toggle.Group>
+        </div>
+        <div class="flex items-center gap-6">
+          <Toggle.Group>
+            <Toggle.Item color="outline" size='sm' value="left"><AlignLeft size={14} /></Toggle.Item>
+            <Toggle.Item color="outline" size='sm' value="center"><AlignCenter size={14} /></Toggle.Item>
+            <Toggle.Item color="outline" size='sm' value="right"><AlignRight size={14} /></Toggle.Item>
+          </Toggle.Group>
+          <Toggle.Group>
+            <Toggle.Item color="outline" value="left"><AlignLeft size={16} /></Toggle.Item>
+            <Toggle.Item color="outline" value="center"><AlignCenter size={16} /></Toggle.Item>
+            <Toggle.Item color="outline" value="right"><AlignRight size={16} /></Toggle.Item>
+          </Toggle.Group>
+          <Toggle.Group>
+            <Toggle.Item color="outline" size='lg' value="left"><AlignLeft size={18} /></Toggle.Item>
+            <Toggle.Item color="outline" size='lg' value="center"><AlignCenter size={18} /></Toggle.Item>
+            <Toggle.Item color="outline" size='lg' value="right"><AlignRight size={18} /></Toggle.Item>
+          </Toggle.Group>
+        </div>
+      </div>
     </section>
     <section></section>
     <section></section>
     <section></section>
   </div>
 </Layout>
- @/components/ui/accordion
