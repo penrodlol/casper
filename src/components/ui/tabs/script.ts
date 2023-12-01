@@ -1,27 +1,26 @@
+import { getChildComponents, onComponentLoad } from '@/libs/component';
+
 type Tab = HTMLButtonElement;
-type Tabs = NodeListOf<Tab>;
 
-document.addEventListener('astro:page-load', () => {
-  (document.querySelectorAll('[data-tabs]') as NodeListOf<HTMLDivElement>)?.forEach((root) => {
-    const id = root.dataset.tabs;
-    const tabs = root.querySelectorAll('[role="tab"]') as Tabs;
-    const tabPanels = root.querySelectorAll('[role="tabpanel"]') as NodeListOf<HTMLDivElement>;
+onComponentLoad<HTMLDivElement>('[data-tabs]', (component) => {
+  const id = component.dataset.tabs;
+  const tabs = getChildComponents<Tab>(component, '[role="tab"]');
+  const tabPanels = getChildComponents<HTMLDivElement>(component, '[role="tabpanel"]');
 
-    tabs?.forEach((tab, index) => {
-      tab.setAttribute('id', `tabs-tab-${id}-${tab.dataset.value}`);
-      tab.setAttribute('aria-controls', `tabs-tabpanel-${id}-${tab.dataset.value}`);
-      tab.onclick = () => setTab(tabs, tab, false);
-      tab.onkeydown = (event) => onKeyDown(tabs, index, event);
-    });
+  tabs?.forEach((tab, index) => {
+    tab.setAttribute('id', `tabs-tab-${id}-${tab.dataset.value}`);
+    tab.setAttribute('aria-controls', `tabs-tabpanel-${id}-${tab.dataset.value}`);
+    tab.onclick = () => setTab(tabs, tab, false);
+    tab.onkeydown = (event) => onKeyDown(tabs, index, event);
+  });
 
-    tabPanels?.forEach((tabPanel) => {
-      tabPanel.setAttribute('id', `tabs-tabpanel-${id}-${tabPanel.dataset.value}`);
-      tabPanel.setAttribute('aria-labelledby', `tabs-tab-${id}-${tabPanel.dataset.value}`);
-    });
+  tabPanels?.forEach((tabPanel) => {
+    tabPanel.setAttribute('id', `tabs-tabpanel-${id}-${tabPanel.dataset.value}`);
+    tabPanel.setAttribute('aria-labelledby', `tabs-tab-${id}-${tabPanel.dataset.value}`);
   });
 });
 
-function setTab(tabs: Tabs, tab: Tab, focus = true) {
+function setTab(tabs: Array<Tab>, tab: Tab, focus = true) {
   tabs.forEach((_tab) => {
     const tabPanel = document.querySelector(`#${_tab.getAttribute('aria-controls')}`);
     if (!tabPanel) return;
@@ -39,7 +38,7 @@ function setTab(tabs: Tabs, tab: Tab, focus = true) {
   });
 }
 
-function onKeyDown(tabs: Tabs, index: number, event: KeyboardEvent) {
+function onKeyDown(tabs: Array<Tab>, index: number, event: KeyboardEvent) {
   if (/^(ArrowLeft|ArrowRight|Home|End)$/.test(event.key)) event.preventDefault();
 
   // prettier-ignore

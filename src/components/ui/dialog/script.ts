@@ -1,13 +1,13 @@
+import { getChildComponents, onComponentLoad } from '@/libs/component';
+
 type OpenTrigger = HTMLButtonElement;
-type CloseTriggers = NodeListOf<HTMLButtonElement>;
+type CloseTrigger = HTMLButtonElement;
 
-document.addEventListener('astro:page-load', () => {
-  (document.querySelectorAll('[data-dialog]') as NodeListOf<HTMLDialogElement>)?.forEach((root) => {
-    const openTrigger = root.nextElementSibling as OpenTrigger;
-    const closeTriggers = root.querySelectorAll('[slot="dialog-close"]') as CloseTriggers;
+onComponentLoad<HTMLDialogElement>('[data-dialog]', (dialog) => {
+  const openTrigger = dialog.nextElementSibling as OpenTrigger;
+  const closeTriggers = getChildComponents<CloseTrigger>(dialog, '[slot="dialog-close"]');
 
-    if (openTrigger) openTrigger.onclick = () => root.showModal();
+  if (openTrigger) openTrigger.onclick = () => dialog.showModal();
 
-    closeTriggers?.forEach((closeTrigger) => (closeTrigger.onclick = () => root.close()));
-  });
+  closeTriggers?.forEach((closeTrigger) => (closeTrigger.onclick = () => dialog.close()));
 });
