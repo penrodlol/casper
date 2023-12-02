@@ -10,7 +10,7 @@ const { class: className, ...props } = Astro.props;
 <label
   {...props}
   class={twMerge(
-    'flex cursor-pointer select-none items-center gap-3',
+    'flex cursor-pointer select-none items-center gap-3 font-medium',
     'peer-disabled:cursor-not-allowed peer-disabled:opacity-50',
     '[&:has([disabled])]:cursor-not-allowed [&:has([disabled])]:opacity-50',
     className,

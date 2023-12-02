@@ -5,11 +5,11 @@ import { tv, type VariantProps } from 'tailwind-variants';
 
 const variants = tv({
   base:
-    'inline-flex items-center justify-center whitespace-nowrap rounded ' +
+    'inline-flex items-center justify-center whitespace-nowrap rounded font-medium ' +
     'motion-safe:transition-colors focus-visible:outline-none focus-visible:ring-2',
   defaultVariants: { color: 'primary', size: 'md' },
   variants: {
-    disabled: { true: 'opacity-40 cursor-not-allowed' },
+    disabled: { true: 'opacity-50 cursor-not-allowed' },
     color: {
       primary: 'bg-primary enabled:hover:bg-primary/80 text-primary',
       secondary: 'bg-secondary enabled:hover:bg-secondary/80 text-secondary',
@@ -28,7 +28,13 @@ const variants = tv({
 
 type Props = HTMLAttributes<'button'> & VariantProps<typeof variants>;
 
-const { class: className, ...props } = Astro.props;
+const { class: className, disabled, color, size, ...props } = Astro.props;
 ---
 
-<button {...props} class={twMerge(variants(props), className)}><slot /></button>
+<button
+  {...props}
+  disabled={disabled}
+  class={twMerge(variants({ color, size, disabled }), className)}
+>
+  <slot />
+</button>

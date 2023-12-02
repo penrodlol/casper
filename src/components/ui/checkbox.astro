@@ -11,7 +11,7 @@ const { class: className, ...props } = Astro.props;
   {...props}
   type="checkbox"
   class={twMerge(
-    'peer relative m-0 h-[1.1em] w-[1.1em] shrink-0 cursor-pointer appearance-none rounded border border-primary',
+    'peer relative h-4 w-4 shrink-0 cursor-pointer appearance-none rounded border border-primary',
     'before:absolute before:inset-0 before:rounded disabled:cursor-not-allowed disabled:opacity-50',
     'before:bg-[hsl(var(--primary-foreground))] checked:bg-primary motion-safe:transition-colors',
     'before:[mask-position:center] before:[mask-repeat:no-repeat] before:[mask-size:0.8em_0.8em] motion-safe:before:transition-colors',

@@ -38,8 +38,9 @@ export default {
     },
   },
   future: { hoverOnlyWhenSupported: true },
+  corePlugins: { fontSize: false },
   plugins: [
-    require('tailwindcss-fluid-type'),
+    require('tailwindcss-fluid-type')({ settings: { ratioMin: 1.25, ratioMax: 1.4 } }),
     require('tailwindcss-animate'),
     plugin(({ addBase }) => {
       addBase({

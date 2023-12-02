@@ -1,168 +1,101 @@
 ---
-import * as Accordion from '@/components/ui/accordion';
 import Button from '@/components/ui/button.astro';
 import Checkbox from '@/components/ui/checkbox.astro';
-import * as Dialog from '@/components/ui/dialog';
 import Label from '@/components/ui/label.astro';
-import Radio from '@/components/ui/radio.astro';
-import * as Select from '@/components/ui/select';
-import * as Tabs from '@/components/ui/tabs';
-import * as Toggle from '@/components/ui/toggle';
+import Separator from '@/components/ui/separator.astro';
 import Layout from '@/layouts/index.astro';
-import { AlignCenter, AlignLeft, AlignRight, Bell, Folder, Heart, Power } from 'lucide-astro';
+import { Bell, Folder, Heart, Loader, Mail, Power, Trash } from 'lucide-astro';
 ---
 
 <Layout>
-  <div class="mx-auto mt-44 grid max-w-screen-xl grid-cols-2 justify-between gap-20">
-    <section class="flex flex-col gap-6">
-      <div class="flex flex-wrap items-center gap-4">
-        <Button color="primary">Button</Button>
-        <Button color="secondary">Button</Button>
-        <Button color="outline">Button</Button>
-        <Button color="ghost">Button</Button>
-        <!-- <Button color="danger">Button</Button> -->
-      </div>
-      <div class="flex flex-wrap items-center gap-4">
-        <Button size="sm">Button</Button>
-        <Button size="md">Button</Button>
-        <Button size="lg">Button</Button>
-      </div>
-      <div class="flex flex-wrap items-center gap-4">
-        <Button color="primary" size="icon" aria-label="Heart"><Heart /></Button>
-        <Button color="secondary" size="icon" aria-label="Bell"><Bell /></Button>
-        <Button color="outline" size="icon" aria-label="Folder"><Folder /></Button>
-        <Button color="ghost" size="icon" aria-label="Power"><Power /></Button>
-        <!-- <Button color="danger" size="icon" aria-label="Trash"><Trash /></Button> -->
-      </div>
-    </section>
-    <section class="flex flex-col gap-10">
-      <Label><Checkbox /> Accept terms and conditions</Label>
-      <fieldset class="flex flex-col gap-1">
-        <Label><Radio name="radio" value="apple" /> Apple</Label>
-        <Label><Radio name="radio" value="banana" /> Banana</Label>
-        <Label><Radio name="radio" value="orange" /> Orange</Label>
-      </fieldset>
-      <div>
-        <Dialog.Root>
-          <Button slot="dialog-trigger">Edit Profile</Button>
-          <Dialog.Header>
-            <Dialog.Title>Edit Profile</Dialog.Title>
-            <Dialog.Description>
-              Make changes to your profile here. Click save when you're done.
-            </Dialog.Description>
-          </Dialog.Header>
-          <Dialog.Body>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Porro, reiciendis consectetur.
-            Suscipit earum dignissimos amet, iste illo officia at itaque asperiores quidem quod nam
-            quam reprehenderit dolores. Soluta, quasi molestias.
-          </Dialog.Body>
-          <Dialog.Footer>
-            <Button slot="dialog-close" size="sm" color="outline">Cancel</Button>
-            <Button slot="dialog-close" size="sm">Save</Button>
-          </Dialog.Footer>
-        </Dialog.Root>
-      </div>
-    </section>
-    <section>
-      <Tabs.Root>
-        <Tabs.TabList>
-          <Tabs.Tab value="Bananas" selected>Bananas</Tabs.Tab>
-          <Tabs.Tab value="Pineapples">Pineapples</Tabs.Tab>
-          <Tabs.Tab value="Strawberries">Strawberries</Tabs.Tab>
-        </Tabs.TabList>
-        <Tabs.TabPanel value="Bananas" selected>
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Animi accusantium unde
-          asperiores odit. Dicta, nam, explicabo voluptatibus doloremque magni ad fugiat modi
-          perspiciatis similique asperiores officiis ex deserunt repellat iste.
-        </Tabs.TabPanel>
-        <Tabs.TabPanel value="Pineapples">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex unde, nihil cumque sunt fugit
-          est eos molestias corrupti pariatur ratione. Consequatur, dolore cum! Laborum, odio ea
-          praesentium voluptatem voluptate illum!
-        </Tabs.TabPanel>
-        <Tabs.TabPanel value="Strawberries">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio, eum iusto voluptatibus
-          voluptates repellat culpa dolor dolore sequi incidunt blanditiis illum sed repellendus
-          perspiciatis autem vel illo odio mollitia quis?
-        </Tabs.TabPanel>
-      </Tabs.Root>
-    </section>
-    <section>
-      <Accordion.Root type="single">
-        <Accordion.Trigger for="bananas">Bananas</Accordion.Trigger>
-        <Accordion.Content value="bananas" class="text-xs">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi accusantium unde asperiores
-          odit. Dicta, nam, explicabo voluptatibus doloremque magni ad fugiat modi perspiciatis
-          similique asperiores officiis ex deserunt repellat iste.
-        </Accordion.Content>
-
-        <Accordion.Trigger for="pineapples">Pineapples</Accordion.Trigger>
-        <Accordion.Content value="pineapples" class="text-xs">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex unde, nihil cumque sunt fugit
-          est eos molestias corrupti pariatur ratione. Consequatur, dolore cum! Laborum, odio ea
-          praesentium voluptatem voluptate illum!
-        </Accordion.Content>
-
-        <Accordion.Trigger for="strawberries">Strawberries</Accordion.Trigger>
-        <Accordion.Content value="strawberries" class="text-xs">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Optio, eum iusto voluptatibus
-          voluptates repellat culpa dolor dolore sequi incidunt blanditiis illum sed repellendus
-          perspiciatis autem vel illo odio mollitia quis?
-        </Accordion.Content>
-      </Accordion.Root>
-    </section>
-    <section class="flex flex-col gap-16">
-      <Select.Root class="w-[240px]">
-        <Select.Trigger placeholder="Select a fruit" aria-label="Fruit" />
-        <Select.Portal>
-          <Select.Search placeholder="Search for fruit..." />
-          <Select.Option value="apple">Apple</Select.Option>
-          <Select.Option value="banana">Banana</Select.Option>
-          <Select.Option value="orange">Orange</Select.Option>
-          <Select.Option value="pineapple">Pineapple</Select.Option>
-          <Select.Option value="strawberry">Strawberry</Select.Option>
-        </Select.Portal>
-      </Select.Root>
-      <!-- prettier-ignore -->
-      <div class="flex flex-col gap-8">
-        <div class="flex items-center gap-6">
-          <Toggle.Group>
-            <Toggle.Item size="sm" value="left"><AlignLeft size={14} /></Toggle.Item>
-            <Toggle.Item size="sm" value="center"><AlignCenter size={14} /></Toggle.Item>
-            <Toggle.Item size="sm" value="right"><AlignRight size={14} /></Toggle.Item>
-          </Toggle.Group>
-          <Toggle.Group>
-            <Toggle.Item value="left"><AlignLeft size={16} /></Toggle.Item>
-            <Toggle.Item value="center"><AlignCenter size={16} /></Toggle.Item>
-            <Toggle.Item value="right"><AlignRight size={16} /></Toggle.Item>
-          </Toggle.Group>
-          <Toggle.Group>
-            <Toggle.Item size="lg" value="left"><AlignLeft size={18} /></Toggle.Item>
-            <Toggle.Item size="lg" value="center"><AlignCenter size={18} /></Toggle.Item>
-            <Toggle.Item size="lg" value="right"><AlignRight size={18} /></Toggle.Item>
-          </Toggle.Group>
+  <div class="mx-auto mt-24 grid max-w-screen-xl grid-cols-[auto_1fr] items-start gap-40">
+    <div class="sticky top-24 rounded border px-6 py-4">
+      <h1 class="font-semibold tracking-widest">COMPONENTS</h1>
+      <Separator class="mb-6 mt-2" />
+      <ul class="flex flex-col gap-1">
+        <Label><Checkbox /> Accordion</Label>
+        <Label><Checkbox /> Alert Dialog</Label>
+        <Label><Checkbox /> Avatar</Label>
+        <Label><Checkbox checked disabled /> Button</Label>
+        <Label><Checkbox /> Chip</Label>
+        <Label><Checkbox /> Card</Label>
+        <Label><Checkbox checked disabled /> Checkbox</Label>
+        <Label><Checkbox /> Dialog</Label>
+        <Label><Checkbox /> Dropdown Menu</Label>
+        <Label><Checkbox /> Input</Label>
+        <Label><Checkbox checked disabled /> Label</Label>
+        <Label><Checkbox /> Menubar</Label>
+        <Label><Checkbox /> Navigation Menu</Label>
+        <Label><Checkbox /> Popover</Label>
+        <Label><Checkbox /> Progress</Label>
+        <Label><Checkbox /> Radio Group</Label>
+        <Label><Checkbox /> Select</Label>
+        <Label><Checkbox checked disabled /> Separator</Label>
+        <Label><Checkbox /> Sheet</Label>
+        <Label><Checkbox /> Skeleton</Label>
+        <Label><Checkbox /> Slider</Label>
+        <Label><Checkbox /> Switch</Label>
+        <Label><Checkbox /> Tabs</Label>
+        <Label><Checkbox /> Table</Label>
+        <Label><Checkbox /> Textarea</Label>
+        <Label><Checkbox /> Toast</Label>
+        <Label><Checkbox /> Toggle Group</Label>
+        <Label><Checkbox /> Tooltip</Label>
+      </ul>
+    </div>
+    <div class="flex flex-col gap-20">
+      <section><!-- Accordion --></section>
+      <section><!-- Alert Dialog --></section>
+      <section><!-- Avatar --></section>
+      <section class="flex flex-col gap-6">
+        <div class="flex flex-wrap items-center gap-4">
+          <Button color="primary">Button</Button>
+          <Button color="secondary">Button</Button>
+          <Button color="outline">Button</Button>
+          <Button color="ghost">Button</Button>
+          <Button color="danger">Button</Button>
         </div>
-        <div class="flex items-center gap-6">
-          <Toggle.Group>
-            <Toggle.Item color="outline" size='sm' value="left"><AlignLeft size={14} /></Toggle.Item>
-            <Toggle.Item color="outline" size='sm' value="center"><AlignCenter size={14} /></Toggle.Item>
-            <Toggle.Item color="outline" size='sm' value="right"><AlignRight size={14} /></Toggle.Item>
-          </Toggle.Group>
-          <Toggle.Group>
-            <Toggle.Item color="outline" value="left"><AlignLeft size={16} /></Toggle.Item>
-            <Toggle.Item color="outline" value="center"><AlignCenter size={16} /></Toggle.Item>
-            <Toggle.Item color="outline" value="right"><AlignRight size={16} /></Toggle.Item>
-          </Toggle.Group>
-          <Toggle.Group>
-            <Toggle.Item color="outline" size='lg' value="left"><AlignLeft size={18} /></Toggle.Item>
-            <Toggle.Item color="outline" size='lg' value="center"><AlignCenter size={18} /></Toggle.Item>
-            <Toggle.Item color="outline" size='lg' value="right"><AlignRight size={18} /></Toggle.Item>
-          </Toggle.Group>
+        <div class="flex flex-wrap items-center gap-4">
+          <Button size="sm">Button</Button>
+          <Button size="md">Button</Button>
+          <Button size="lg">Button</Button>
         </div>
-      </div>
-    </section>
-    <section></section>
-    <section></section>
-    <section></section>
+        <div class="flex flex-wrap items-center gap-4">
+          <Button color="primary" size="icon" aria-label="Heart"><Heart /></Button>
+          <Button color="secondary" size="icon" aria-label="Bell"><Bell /></Button>
+          <Button color="outline" size="icon" aria-label="Folder"><Folder /></Button>
+          <Button color="ghost" size="icon" aria-label="Power"><Power /></Button>
+          <Button color="danger" size="icon" aria-label="Trash"><Trash /></Button>
+        </div>
+        <div class="flex flex-wrap items-center gap-4">
+          <Button><Mail size={16} class="mr-2" /> Login with email</Button>
+          <Button disabled><Loader size={16} class="mr-2 animate-spin" /> Loading</Button>
+        </div>
+      </section>
+      <section><!-- Chip --></section>
+      <section><!-- Card --></section>
+      <section><!-- Checkbox --></section>
+      <section><!-- Dialog --></section>
+      <section><!-- Dropdown Menu --></section>
+      <section><!-- Input --></section>
+      <section><!-- Label --></section>
+      <section><!-- Menubar --></section>
+      <section><!-- Navigation Menu --></section>
+      <section><!-- Popover --></section>
+      <section><!-- Progress --></section>
+      <section><!-- Radio Group --></section>
+      <section><!-- Select --></section>
+      <section><!-- Separator --></section>
+      <section><!-- Sheet --></section>
+      <section><!-- Skeleton --></section>
+      <section><!-- Slider --></section>
+      <section><!-- Switch --></section>
+      <section><!-- Tabs --></section>
+      <section><!-- Table --></section>
+      <section><!-- Textarea --></section>
+      <section><!-- Toast --></section>
+      <section><!-- Toggle Group --></section>
+      <section><!-- Tooltip --></section>
+    </div>
   </div>
 </Layout>
