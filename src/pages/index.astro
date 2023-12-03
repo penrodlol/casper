@@ -2,6 +2,7 @@
 import Button from '@/components/ui/button.astro';
 import Checkbox from '@/components/ui/checkbox.astro';
 import Label from '@/components/ui/label.astro';
+import Radio from '@/components/ui/radio.astro';
 import Separator from '@/components/ui/separator.astro';
 import Layout from '@/layouts/index.astro';
 import { Bell, Folder, Heart, Loader, Mail, Power, Trash } from 'lucide-astro';
@@ -83,7 +84,18 @@ import { Bell, Folder, Heart, Loader, Mail, Power, Trash } from 'lucide-astro';
       <section><!-- Navigation Menu --></section>
       <section><!-- Popover --></section>
       <section><!-- Progress --></section>
-      <section><!-- Radio Group --></section>
+      <section class="flex flex-col gap-8">
+        <fieldset class="flex gap-4">
+          <Label><Radio name="fruit-horizontal" /> Apple</Label>
+          <Label><Radio name="fruit-horizontal" /> Banana</Label>
+          <Label><Radio name="fruit-horizontal" /> Orange</Label>
+        </fieldset>
+        <fieldset class="flex flex-col gap-1">
+          <Label><Radio name="fruit-vertical" /> Apple</Label>
+          <Label><Radio name="fruit-vertical" /> Banana</Label>
+          <Label><Radio name="fruit-vertical" /> Orange</Label>
+        </fieldset>
+      </section>
       <section><!-- Select --></section>
       <section><!-- Separator --></section>
       <section><!-- Sheet --></section>

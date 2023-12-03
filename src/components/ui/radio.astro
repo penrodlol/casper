@@ -11,10 +11,10 @@ const { class: className, ...props } = Astro.props;
   {...props}
   type="radio"
   class={twMerge(
-    'peer relative h-[1.1em] w-[1.1em] shrink-0 cursor-pointer appearance-none',
+    'peer relative h-4 w-4 shrink-0 cursor-pointer appearance-none',
     'rounded-full border border-primary before:absolute before:inset-[3px]',
     'before:rounded-full checked:before:bg-primary motion-safe:before:transition-colors',
-    'focus-visible:outline-none focus-visible:ring-2',
+    'focus-visible:outline-none focus-visible:ring-2 disabled:cursor-not-allowed disabled:opacity-50',
     className,
   )}
 />
