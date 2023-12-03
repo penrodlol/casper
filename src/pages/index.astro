@@ -4,6 +4,7 @@ import Checkbox from '@/components/ui/checkbox.astro';
 import Label from '@/components/ui/label.astro';
 import Radio from '@/components/ui/radio.astro';
 import Separator from '@/components/ui/separator.astro';
+import Switch from '@/components/ui/switch.astro';
 import Layout from '@/layouts/index.astro';
 import { Bell, Folder, Heart, Loader, Mail, Power, Trash } from 'lucide-astro';
 ---
@@ -29,13 +30,13 @@ import { Bell, Folder, Heart, Loader, Mail, Power, Trash } from 'lucide-astro';
         <Label><Checkbox /> Navigation Menu</Label>
         <Label><Checkbox /> Popover</Label>
         <Label><Checkbox /> Progress</Label>
-        <Label><Checkbox /> Radio Group</Label>
+        <Label><Checkbox checked disabled /> Radio Group</Label>
         <Label><Checkbox /> Select</Label>
         <Label><Checkbox checked disabled /> Separator</Label>
         <Label><Checkbox /> Sheet</Label>
         <Label><Checkbox /> Skeleton</Label>
         <Label><Checkbox /> Slider</Label>
-        <Label><Checkbox /> Switch</Label>
+        <Label><Checkbox checked disabled /> Switch</Label>
         <Label><Checkbox /> Tabs</Label>
         <Label><Checkbox /> Table</Label>
         <Label><Checkbox /> Textarea</Label>
@@ -101,7 +102,9 @@ import { Bell, Folder, Heart, Loader, Mail, Power, Trash } from 'lucide-astro';
       <section><!-- Sheet --></section>
       <section><!-- Skeleton --></section>
       <section><!-- Slider --></section>
-      <section><!-- Switch --></section>
+      <section>
+        <Label><Switch /> Airplane mode</Label>
+      </section>
       <section><!-- Tabs --></section>
       <section><!-- Table --></section>
       <section><!-- Textarea --></section>

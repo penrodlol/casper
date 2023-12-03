@@ -7,13 +7,14 @@ type Props = Omit<HTMLAttributes<'input'>, 'type' | 'role'>;
 const { class: className, ...props } = Astro.props;
 ---
 
-<label class={twMerge('w-10 cursor-pointer rounded-full border border-primary p-0.5', className)}>
+<label class={twMerge('relative inline-flex cursor-pointer items-center', className)}>
   <input {...props} type="checkbox" role="switch" class="peer sr-only" />
   <div
     class={twJoin(
-      'flex items-center rounded-full',
-      'before:h-3.5 before:w-3.5 before:rounded-full before:bg-primary',
-      'peer-checked:before:translate-x-full motion-safe:before:transition-transform',
+      'bg-input h-5 w-9 rounded-full border border-transparent after:absolute after:content-[""]',
+      'after:start-[2px] after:top-[2px] after:h-4 after:w-4 after:rounded-full after:bg',
+      'peer-checked:bg-primary motion-safe:transition-colors motion-safe:after:transition-transform',
+      'peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full',
     )}
   >
   </div>

@@ -16,6 +16,7 @@ export default {
         muted: 'hsl(var(--muted))',
         accent: 'hsl(var(--accent))',
         destructive: 'hsl(var(--destructive))',
+        input: 'hsl(var(--input))',
       },
       textColor: {
         DEFAULT: 'hsl(var(--foreground))',
@@ -59,6 +60,7 @@ export default {
           '--destructive-foreground': '0 0% 83%',
           '--border': '0 0% 32%',
           '--ring': '0 0% 96%',
+          '--input': '0 0% 15%',
         },
         '::backdrop': { '--background': '0 0% 4%' },
       });
