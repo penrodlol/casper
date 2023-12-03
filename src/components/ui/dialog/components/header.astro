@@ -9,7 +9,7 @@ type Props = HTMLAttributes<'div'>;
 const { class: className, ...props } = Astro.props;
 ---
 
-<div {...props} class={twMerge('flex flex-col gap-1.5 border-b bg-muted p-6', className)}>
+<div {...props} class={twMerge('flex flex-col gap-0.5 border-b bg-muted p-6', className)}>
   <slot />
   <Button
     slot="dialog-close"

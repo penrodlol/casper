@@ -7,4 +7,4 @@ type Props = HTMLAttributes<'div'>;
 const { class: className, ...props } = Astro.props;
 ---
 
-<div {...props} class={twMerge('px-6 py-10', className)}><slot /></div>
+<div {...props} class={twMerge('px-6 py-8', className)}><slot /></div>

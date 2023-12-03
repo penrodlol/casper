@@ -7,4 +7,4 @@ type Props = HTMLAttributes<'p'>;
 const { class: className, ...props } = Astro.props;
 ---
 
-<p {...props} class={twMerge('text-xs text-muted', className)}><slot /></p>
+<p {...props} class={twMerge('text-muted', className)}><slot /></p>

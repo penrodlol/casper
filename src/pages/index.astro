@@ -2,6 +2,7 @@
 import Badge from '@/components/ui/badge.astro';
 import Button from '@/components/ui/button.astro';
 import Checkbox from '@/components/ui/checkbox.astro';
+import * as Dialog from '@/components/ui/dialog';
 import Input from '@/components/ui/input.astro';
 import Label from '@/components/ui/label.astro';
 import Radio from '@/components/ui/radio.astro';
@@ -24,7 +25,7 @@ import { Bell, Check, Folder, Heart, Image, Loader, Mail, Power, Trash } from 'l
         <Label><Checkbox checked disabled /> Button</Label>
         <Label><Checkbox /> Card</Label>
         <Label><Checkbox checked disabled /> Checkbox</Label>
-        <Label><Checkbox /> Dialog</Label>
+        <Label><Checkbox checked disabled /> Dialog</Label>
         <Label><Checkbox /> Dropdown Menu</Label>
         <Label><Checkbox checked disabled /> Input</Label>
         <Label><Checkbox checked disabled /> Label</Label>
@@ -90,7 +91,26 @@ import { Bell, Check, Folder, Heart, Image, Loader, Mail, Power, Trash } from 'l
       </section>
       <section><!-- Card --></section>
       <section><!-- Checkbox --></section>
-      <section><!-- Dialog --></section>
+      <section>
+        <Dialog.Root>
+          <Button slot="dialog-trigger">Edit Profile</Button>
+          <Dialog.Header>
+            <Dialog.Title>Edit Profile</Dialog.Title>
+            <Dialog.Description>
+              Make changes to your profile here. Click save when you're done.
+            </Dialog.Description>
+          </Dialog.Header>
+          <Dialog.Body>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident, modi nihil eius
+            quaerat sapiente laboriosam veritatis a quisquam non velit repudiandae. Nisi id
+            perferendis excepturi ipsa exercitationem labore veritatis at.
+          </Dialog.Body>
+          <Dialog.Footer>
+            <Button slot="dialog-close" size="sm" color="outline">Cancel</Button>
+            <Button slot="dialog-close" size="sm" value="true">Save</Button>
+          </Dialog.Footer>
+        </Dialog.Root>
+      </section>
       <section><!-- Dropdown Menu --></section>
       <section class="flex w-80 flex-col gap-6">
         <Input placeholder="Enter your name..." />
