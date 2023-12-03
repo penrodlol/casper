@@ -1,4 +1,5 @@
 ---
+import Badge from '@/components/ui/badge.astro';
 import Button from '@/components/ui/button.astro';
 import Checkbox from '@/components/ui/checkbox.astro';
 import Label from '@/components/ui/label.astro';
@@ -6,7 +7,7 @@ import Radio from '@/components/ui/radio.astro';
 import Separator from '@/components/ui/separator.astro';
 import Switch from '@/components/ui/switch.astro';
 import Layout from '@/layouts/index.astro';
-import { Bell, Folder, Heart, Loader, Mail, Power, Trash } from 'lucide-astro';
+import { Bell, Check, Folder, Heart, Loader, Mail, Power, Trash } from 'lucide-astro';
 ---
 
 <Layout>
@@ -18,8 +19,8 @@ import { Bell, Folder, Heart, Loader, Mail, Power, Trash } from 'lucide-astro';
         <Label><Checkbox /> Accordion</Label>
         <Label><Checkbox /> Alert Dialog</Label>
         <Label><Checkbox /> Avatar</Label>
+        <Label><Checkbox /> Badge</Label>
         <Label><Checkbox checked disabled /> Button</Label>
-        <Label><Checkbox /> Chip</Label>
         <Label><Checkbox /> Card</Label>
         <Label><Checkbox checked disabled /> Checkbox</Label>
         <Label><Checkbox /> Dialog</Label>
@@ -51,6 +52,18 @@ import { Bell, Folder, Heart, Loader, Mail, Power, Trash } from 'lucide-astro';
       <section><!-- Avatar --></section>
       <section class="flex flex-col gap-6">
         <div class="flex flex-wrap items-center gap-4">
+          <Badge color="primary">Badge</Badge>
+          <Badge color="secondary">Badge</Badge>
+          <Badge color="outline">Badge</Badge>
+          <Badge color="danger">Badge</Badge>
+        </div>
+        <div class="flex flex-wrap items-center gap-4">
+          <Badge color="outline"><Check size={12} class="mr-1" /> Licensed</Badge>
+          <Badge>99+</Badge>
+        </div>
+      </section>
+      <section class="flex flex-col gap-6">
+        <div class="flex flex-wrap items-center gap-4">
           <Button color="primary">Button</Button>
           <Button color="secondary">Button</Button>
           <Button color="outline">Button</Button>
@@ -74,7 +87,6 @@ import { Bell, Folder, Heart, Loader, Mail, Power, Trash } from 'lucide-astro';
           <Button disabled><Loader size={16} class="mr-2 animate-spin" /> Loading</Button>
         </div>
       </section>
-      <section><!-- Chip --></section>
       <section><!-- Card --></section>
       <section><!-- Checkbox --></section>
       <section><!-- Dialog --></section>

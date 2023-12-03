@@ -1,0 +1,26 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+import { twMerge } from 'tailwind-merge';
+import { tv, type VariantProps } from 'tailwind-variants';
+
+const variants = tv({
+  base: 'inline-flex items-center justify-center rounded-full text-xs px-2 py-0.5 font-semibold',
+  defaultVariants: { color: 'primary' },
+  variants: {
+    color: {
+      primary: 'bg-primary text-primary',
+      secondary: 'bg-secondary text-secondary',
+      outline: 'border',
+      danger: 'bg-destructive text-destructive',
+    },
+  },
+});
+
+type Props = HTMLAttributes<'div'> & VariantProps<typeof variants>;
+
+const { class: className, color, ...props } = Astro.props;
+---
+
+<div {...props} class={twMerge(variants({ color }), className)}>
+  <slot />
+</div>
