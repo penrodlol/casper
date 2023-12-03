@@ -1,0 +1,42 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+import { twJoin, twMerge } from 'tailwind-merge';
+import { tv } from 'tailwind-variants';
+
+type Props = HTMLAttributes<'input'>;
+
+const { class: className, type, autocomplete, spellcheck, ...props } = Astro.props;
+
+const slotWrapper = tv({
+  base: 'relative z-10 flex shrink-0 items-center bg-muted px-1.5 text-muted text-xs',
+});
+---
+
+<div class={twMerge('inline-flex rounded border [&:has(input[disabled])]:opacity-50', className)}>
+  {
+    Astro.slots.has('prefix') && (
+      <div data-prefix class={twJoin(slotWrapper(), 'rounded-l-[inherit] border-r')}>
+        <slot name="prefix" />
+      </div>
+    )
+  }
+  <input
+    {...props}
+    type={type ?? 'text'}
+    autocomplete={autocomplete ?? 'off'}
+    spellcheck={spellcheck ?? 'false'}
+    class={twMerge(
+      'relative z-20 flex-1 rounded-[inherit] bg-transparent px-3 py-1',
+      'placeholder:text-muted/40 disabled:cursor-not-allowed',
+      'focus-visible:outline-none focus-visible:ring-1',
+      'file:border-none file:bg-transparent file:font-medium file:text',
+    )}
+  />
+  {
+    Astro.slots.has('suffix') && (
+      <div data-suffix class={twJoin(slotWrapper(), 'rounded-r-[inherit] border-l')}>
+        <slot name="suffix" />
+      </div>
+    )
+  }
+</div>

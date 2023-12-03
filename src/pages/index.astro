@@ -2,12 +2,13 @@
 import Badge from '@/components/ui/badge.astro';
 import Button from '@/components/ui/button.astro';
 import Checkbox from '@/components/ui/checkbox.astro';
+import Input from '@/components/ui/input.astro';
 import Label from '@/components/ui/label.astro';
 import Radio from '@/components/ui/radio.astro';
 import Separator from '@/components/ui/separator.astro';
 import Switch from '@/components/ui/switch.astro';
 import Layout from '@/layouts/index.astro';
-import { Bell, Check, Folder, Heart, Loader, Mail, Power, Trash } from 'lucide-astro';
+import { Bell, Check, Folder, Heart, Image, Loader, Mail, Power, Trash } from 'lucide-astro';
 ---
 
 <Layout>
@@ -19,13 +20,13 @@ import { Bell, Check, Folder, Heart, Loader, Mail, Power, Trash } from 'lucide-a
         <Label><Checkbox /> Accordion</Label>
         <Label><Checkbox /> Alert Dialog</Label>
         <Label><Checkbox /> Avatar</Label>
-        <Label><Checkbox /> Badge</Label>
+        <Label><Checkbox checked disabled /> Badge</Label>
         <Label><Checkbox checked disabled /> Button</Label>
         <Label><Checkbox /> Card</Label>
         <Label><Checkbox checked disabled /> Checkbox</Label>
         <Label><Checkbox /> Dialog</Label>
         <Label><Checkbox /> Dropdown Menu</Label>
-        <Label><Checkbox /> Input</Label>
+        <Label><Checkbox checked disabled /> Input</Label>
         <Label><Checkbox checked disabled /> Label</Label>
         <Label><Checkbox /> Menubar</Label>
         <Label><Checkbox /> Navigation Menu</Label>
@@ -91,7 +92,12 @@ import { Bell, Check, Folder, Heart, Loader, Mail, Power, Trash } from 'lucide-a
       <section><!-- Checkbox --></section>
       <section><!-- Dialog --></section>
       <section><!-- Dropdown Menu --></section>
-      <section><!-- Input --></section>
+      <section class="flex w-80 flex-col gap-6">
+        <Input placeholder="Enter your name..." />
+        <Input disabled placeholder="Enter your name..." />
+        <Input type="file"><Image size={14} slot="prefix" /></Input>
+        <Input placeholder="Enter current weight..."><span slot="suffix">kg</span></Input>
+      </section>
       <section><!-- Label --></section>
       <section><!-- Menubar --></section>
       <section><!-- Navigation Menu --></section>
