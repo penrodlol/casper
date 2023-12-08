@@ -1,0 +1,17 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+import { twMerge } from 'tailwind-merge';
+
+type Props = HTMLAttributes<'progress'>;
+
+const { class: className, ...props } = Astro.props;
+---
+
+<progress
+  {...props}
+  class={twMerge(
+    'h-2 w-full overflow-hidden rounded-full bg-primary/20',
+    '[&::-webkit-progress-bar]:bg-transparent [&::-webkit-progress-value]:bg-primary',
+    '[&::-moz-progress-bar]:bg-primary',
+    className,
+  )}></progress>
