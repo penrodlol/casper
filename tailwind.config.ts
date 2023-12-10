@@ -28,6 +28,7 @@ export default {
       },
       borderColor: { DEFAULT: 'hsl(var(--border))', primary: 'hsl(var(--primary))' },
       ringColor: { DEFAULT: 'hsl(var(--ring))' },
+      stroke: { primary: 'hsl(var(--primary))' },
       keyframes: {
         'expand-down': { from: { height: '0' }, to: { height: 'var(--expansion-height, 0)' } },
         'expand-up': { from: { height: 'var(--expansion-height, 0)' }, to: { height: '0' } },

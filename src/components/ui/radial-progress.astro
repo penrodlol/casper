@@ -1,0 +1,25 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+import { twMerge } from 'tailwind-merge';
+
+type Props = Omit<HTMLAttributes<'div'>, 'role'> & { value: number; min?: number; max?: number };
+
+const { class: className, value, min, max, ...props } = Astro.props;
+---
+
+<div
+  {...props}
+  role="progressbar"
+  aria-valuemin={min ?? 0}
+  aria-valuemax={max ?? 100}
+  aria-valuenow={value}
+  class={twMerge('relative h-20 w-20', className)}
+>
+  <svg viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg">
+    <circle class="stroke-primary/20 fill-none stroke-2 [cx:15] [cy:15] [r:14]"></circle>
+    <circle
+      class="stroke-primary fill-none stroke-2 [cx:15] [cy:15] [r:14] [stroke-linecap:round]"
+      stroke-dasharray={`${value}, 100`}></circle>
+  </svg>
+  <div class="absolute inset-0 flex items-center justify-center">{value}%</div>
+</div>
