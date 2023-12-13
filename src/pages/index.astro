@@ -10,6 +10,7 @@ import Progress from '@/components/ui/progress.astro';
 import Radio from '@/components/ui/radio.astro';
 import Separator from '@/components/ui/separator.astro';
 import Switch from '@/components/ui/switch.astro';
+import Textarea from '@/components/ui/textarea.astro';
 import Layout from '@/layouts/index.astro';
 import { Bell, Check, Folder, Heart, Image, Loader, Mail, Power, Trash } from 'lucide-astro';
 ---
@@ -22,7 +23,7 @@ import { Bell, Check, Folder, Heart, Image, Loader, Mail, Power, Trash } from 'l
       <ul class="flex flex-col gap-1">
         <Label><Checkbox /> Accordion</Label>
         <Label><Checkbox /> Alert Dialog</Label>
-        <Label><Checkbox /> Avatar</Label>
+        <Label><Checkbox checked disabled /> Avatar</Label>
         <Label><Checkbox checked disabled /> Badge</Label>
         <Label><Checkbox checked disabled /> Button</Label>
         <Label><Checkbox /> Card</Label>
@@ -56,8 +57,8 @@ import { Bell, Check, Folder, Heart, Image, Loader, Mail, Power, Trash } from 'l
       <section><!-- Alert Dialog --></section>
       <section class="flex flex-col gap-4">
         <div class="flex items-center gap-6">
-          <Avatar src="/src/assets/astro.png" alt="CP" size="md" />
           <Avatar src="/src/assets/astro.png" alt="CP" size="sm" />
+          <Avatar src="/src/assets/astro.png" alt="CP" size="md" />
           <Avatar src="/src/assets/astro.png" alt="CP" size="lg" />
         </div>
         <div class="flex items-center gap-6">
@@ -162,7 +163,10 @@ import { Bell, Check, Folder, Heart, Image, Loader, Mail, Power, Trash } from 'l
       </section>
       <section><!-- Tabs --></section>
       <section><!-- Table --></section>
-      <section><!-- Textarea --></section>
+      <section class="flex w-80 flex-col gap-6">
+        <Textarea placeholder="Describe your favorite fruit..." />
+        <Textarea placeholder="Describe your favorite fruit..." disabled />
+      </section>
       <section><!-- Toast --></section>
       <section><!-- Toggle Group --></section>
       <section><!-- Tooltip --></section>
