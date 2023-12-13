@@ -1,4 +1,5 @@
 ---
+import Avatar from '@/components/ui/avatar.astro';
 import Badge from '@/components/ui/badge.astro';
 import Button from '@/components/ui/button.astro';
 import Checkbox from '@/components/ui/checkbox.astro';
@@ -6,7 +7,6 @@ import * as Dialog from '@/components/ui/dialog';
 import Input from '@/components/ui/input.astro';
 import Label from '@/components/ui/label.astro';
 import Progress from '@/components/ui/progress.astro';
-import RadialProgress from '@/components/ui/radial-progress.astro';
 import Radio from '@/components/ui/radio.astro';
 import Separator from '@/components/ui/separator.astro';
 import Switch from '@/components/ui/switch.astro';
@@ -54,7 +54,18 @@ import { Bell, Check, Folder, Heart, Image, Loader, Mail, Power, Trash } from 'l
     <div class="flex flex-col gap-20">
       <section><!-- Accordion --></section>
       <section><!-- Alert Dialog --></section>
-      <section><!-- Avatar --></section>
+      <section class="flex flex-col gap-4">
+        <div class="flex items-center gap-6">
+          <Avatar src="/src/assets/astro.png" alt="CP" size="md" />
+          <Avatar src="/src/assets/astro.png" alt="CP" size="sm" />
+          <Avatar src="/src/assets/astro.png" alt="CP" size="lg" />
+        </div>
+        <div class="flex items-center gap-6">
+          <Avatar alt="CP" size="sm" />
+          <Avatar alt="CP" size="md" />
+          <Avatar alt="CP" size="lg" />
+        </div>
+      </section>
       <section class="flex flex-col gap-6">
         <div class="flex flex-wrap items-center gap-4">
           <Badge color="primary">Badge</Badge>
@@ -125,13 +136,7 @@ import { Bell, Check, Folder, Heart, Image, Loader, Mail, Power, Trash } from 'l
       <section><!-- Menubar --></section>
       <section><!-- Navigation Menu --></section>
       <section><!-- Popover --></section>
-      <section class="flex gap-4">
-        <RadialProgress value={0} />
-        <RadialProgress value={20} />
-        <RadialProgress value={60} />
-        <RadialProgress value={80} />
-        <RadialProgress value={100} />
-      </section>
+      <section><!-- Radial Progress --></section>
       <section class="w-80">
         <Progress value="40" max="100" />
       </section>
