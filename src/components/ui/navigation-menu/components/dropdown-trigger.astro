@@ -1,0 +1,27 @@
+---
+import { type HTMLAttributes } from 'astro/types';
+import { ChevronDown } from 'lucide-astro';
+import { twMerge } from 'tailwind-merge';
+
+type Props = HTMLAttributes<'button'>;
+
+const { class: className, ...props } = Astro.props;
+---
+
+<button
+  {...props}
+  aria-expanded="false"
+  class={twMerge(
+    'flex items-center gap-2 rounded px-3 py-1',
+    'group-hover:bg-primary/10 motion-safe:transition-colors',
+    'group-focus-within:outline-none group-focus-within:ring-1',
+    className,
+  )}
+>
+  <slot />
+  <ChevronDown
+    size={14}
+    aria-hidden
+    class="group-focus-within:rotate-180 group-hover:rotate-180 motion-safe:transition-transform"
+  />
+</button>

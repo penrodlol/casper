@@ -6,6 +6,7 @@ import Checkbox from '@/components/ui/checkbox.astro';
 import * as Dialog from '@/components/ui/dialog';
 import Input from '@/components/ui/input.astro';
 import Label from '@/components/ui/label.astro';
+import * as NavigationMenu from '@/components/ui/navigation-menu';
 import Progress from '@/components/ui/progress.astro';
 import RadialProgress from '@/components/ui/radial-progress.astro';
 import Radio from '@/components/ui/radio.astro';
@@ -136,7 +137,30 @@ import { Bell, Check, Folder, Heart, Image, Loader, Mail, Power, Trash } from 'l
       </section>
       <section><!-- Label --></section>
       <section><!-- Menubar --></section>
-      <section><!-- Navigation Menu --></section>
+      <section>
+        <NavigationMenu.Root>
+          <NavigationMenu.Dropdown>
+            <NavigationMenu.DropdownTrigger>Getting Started</NavigationMenu.DropdownTrigger>
+            <NavigationMenu.DropdownLinks>
+              <NavigationMenu.Link href="/">Introduction</NavigationMenu.Link>
+              <NavigationMenu.Link href="/">Installation</NavigationMenu.Link>
+              <NavigationMenu.Link href="/">Typography</NavigationMenu.Link>
+            </NavigationMenu.DropdownLinks>
+          </NavigationMenu.Dropdown>
+          <NavigationMenu.Dropdown>
+            <NavigationMenu.DropdownTrigger>Components</NavigationMenu.DropdownTrigger>
+            <NavigationMenu.DropdownLinks>
+              <NavigationMenu.Link href="/">Accordion</NavigationMenu.Link>
+              <NavigationMenu.Link href="/">Alert Dialog</NavigationMenu.Link>
+              <NavigationMenu.Link href="/">Avatar</NavigationMenu.Link>
+              <NavigationMenu.Link href="/">Badge</NavigationMenu.Link>
+              <NavigationMenu.Link href="/">Button</NavigationMenu.Link>
+              <NavigationMenu.Link href="/">Card</NavigationMenu.Link>
+            </NavigationMenu.DropdownLinks>
+          </NavigationMenu.Dropdown>
+          <NavigationMenu.Link href="/">Documentation</NavigationMenu.Link>
+        </NavigationMenu.Root>
+      </section>
       <section><!-- Popover --></section>
       <section class="flex items-end gap-6">
         <RadialProgress size="sm" value={0} />

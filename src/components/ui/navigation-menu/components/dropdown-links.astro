@@ -1,0 +1,20 @@
+---
+import { type HTMLAttributes } from 'astro/types';
+import { twMerge } from 'tailwind-merge';
+
+type Props = HTMLAttributes<'ul'>;
+
+const { class: className, ...props } = Astro.props;
+---
+
+<ul
+  {...props}
+  class={twMerge(
+    'absolute -inset-x-2 top-full z-50 hidden pt-2',
+    'group-focus-within:block group-hover:block',
+    'animate-in motion-safe:fade-in-0 motion-safe:zoom-in-90',
+    className,
+  )}
+>
+  <div class="rounded border bg-muted p-1"><slot /></div>
+</ul>
