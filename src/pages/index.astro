@@ -37,7 +37,7 @@ import { Bell, Check, Folder, Heart, Image, Loader, Mail, Power, Trash } from 'l
         <Label><Checkbox /> Navigation Menu</Label>
         <Label><Checkbox /> Popover</Label>
         <Label><Checkbox checked disabled /> Progress</Label>
-        <Label><Checkbox /> Radial Progress</Label>
+        <Label><Checkbox checked disabled /> Radial Progress</Label>
         <Label><Checkbox checked disabled /> Radio Group</Label>
         <Label><Checkbox /> Select</Label>
         <Label><Checkbox checked disabled /> Separator</Label>
@@ -138,12 +138,13 @@ import { Bell, Check, Folder, Heart, Image, Loader, Mail, Power, Trash } from 'l
       <section><!-- Menubar --></section>
       <section><!-- Navigation Menu --></section>
       <section><!-- Popover --></section>
-      <section class="flex gap-8">
-        <RadialProgress value={0} />
-        <RadialProgress value={20} />
-        <RadialProgress value={60} />
-        <RadialProgress value={80} />
-        <RadialProgress value={100} />
+      <section class="flex items-end gap-6">
+        <RadialProgress size="sm" value={0} />
+        <RadialProgress size="sm" value={20} />
+        <RadialProgress size="md" value={40} />
+        <RadialProgress size="md" value={60} />
+        <RadialProgress size="lg" value={80} />
+        <RadialProgress size="lg" value={100} />
       </section>
       <section class="w-80">
         <Progress value="40" max="100" />
