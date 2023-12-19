@@ -10,7 +10,7 @@ const { class: className, ...props } = Astro.props;
 <div
   {...props}
   role="tablist"
-  class={twMerge('bg-muted [box-shadow:0_-1px_0_hsl(var(--border))_inset]', className)}
+  class={twMerge('[box-shadow:0_-1px_0_hsl(var(--border))_inset]', className)}
 >
   <slot />
 </div>

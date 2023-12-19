@@ -1,52 +1,54 @@
-import { getChildComponents, onComponentLoad } from '@/libs/component';
+import { onAstroPageLoad } from '@/libs/astro';
 
-type Tab = HTMLButtonElement;
+export type Type = 'automatic' | 'manual';
 
-onComponentLoad<HTMLDivElement>('[data-tabs]', (component) => {
+onAstroPageLoad<HTMLDivElement>('[data-tabs]', (component) => {
   const id = component.dataset.tabs;
-  const tabs = getChildComponents<Tab>(component, '[role="tab"]');
-  const tabPanels = getChildComponents<HTMLDivElement>(component, '[role="tabpanel"]');
+  const type = component.dataset.type as Type;
+  const list = component.querySelector<HTMLDivElement>('[role="tablist"]');
+  const panels = component.querySelectorAll<HTMLDivElement>('[role="tabpanel"]');
+  const tabs = component.querySelectorAll<HTMLButtonElement>('[role="tab"]');
 
-  tabs?.forEach((tab, index) => {
+  tabs?.forEach((tab) => {
     tab.setAttribute('id', `tabs-tab-${id}-${tab.dataset.value}`);
     tab.setAttribute('aria-controls', `tabs-tabpanel-${id}-${tab.dataset.value}`);
-    tab.onclick = () => setTab(tabs, tab, false);
-    tab.onkeydown = (event) => onKeyDown(tabs, index, event);
   });
 
-  tabPanels?.forEach((tabPanel) => {
-    tabPanel.setAttribute('id', `tabs-tabpanel-${id}-${tabPanel.dataset.value}`);
-    tabPanel.setAttribute('aria-labelledby', `tabs-tab-${id}-${tabPanel.dataset.value}`);
+  panels?.forEach((panel) => {
+    panel.setAttribute('id', `tabs-tabpanel-${id}-${panel.dataset.value}`);
+    panel.setAttribute('aria-labelledby', `tabs-tab-${id}-${panel.dataset.value}`);
+  });
+
+  list?.addEventListener('click', (event) => {
+    const selectedTab = (event.target as HTMLElement).closest<HTMLButtonElement>('[role="tab"]');
+    const activeTab = list.querySelector<HTMLButtonElement>('[aria-selected="true"]');
+    if (selectedTab && selectedTab !== activeTab) setTab(selectedTab, tabs);
+  });
+
+  list?.addEventListener('keydown', (event) => {
+    if (/^(ArrowLeft|ArrowRight|Home|End)$/.test(event.key)) event.preventDefault();
+
+    // prettier-ignore
+    switch (event.key) {
+      case 'ArrowLeft': return setTab((document.activeElement?.previousElementSibling ?? tabs.item(tabs.length - 1)), tabs, type);
+      case 'ArrowRight': return setTab((document.activeElement?.nextElementSibling ?? tabs.item(0)), tabs, type);
+      case 'Home': return setTab(tabs.item(0), tabs, type);
+      case 'End': return setTab(tabs.item(tabs.length - 1), tabs, type);
+      default: return;
+    }
   });
 });
 
-function setTab(tabs: Array<Tab>, tab: Tab, focus = true) {
+const setTab = (tab: Element, tabs: NodeListOf<HTMLButtonElement>, type?: Type) => {
+  if (type === 'manual') return (tab as HTMLButtonElement).focus();
+
   tabs.forEach((_tab) => {
-    const tabPanel = document.querySelector(`#${_tab.getAttribute('aria-controls')}`);
-    if (!tabPanel) return;
+    _tab.setAttribute('aria-selected', String(_tab === tab));
+    _tab.setAttribute('tabindex', String(_tab === tab ? 0 : -1));
 
-    if (tab.id === _tab.id) {
-      _tab.setAttribute('aria-selected', 'true');
-      _tab.removeAttribute('tabindex');
-      if (focus) _tab.focus();
-      tabPanel.setAttribute('data-selected', 'true');
-    } else {
-      _tab.setAttribute('aria-selected', 'false');
-      _tab.setAttribute('tabindex', '-1');
-      tabPanel.setAttribute('data-selected', 'false');
-    }
+    if (_tab === tab) _tab.focus();
+
+    const panel = document.getElementById(_tab.getAttribute('aria-controls') as string);
+    panel?.setAttribute('aria-hidden', String(_tab !== tab));
   });
-}
-
-function onKeyDown(tabs: Array<Tab>, index: number, event: KeyboardEvent) {
-  if (/^(ArrowLeft|ArrowRight|Home|End)$/.test(event.key)) event.preventDefault();
-
-  // prettier-ignore
-  switch (event.key) {
-    case 'ArrowLeft': return setTab(tabs, (tabs[index - 1] ?? tabs[tabs.length - 1]) as Tab);
-    case 'ArrowRight': return setTab(tabs, (tabs[index + 1] ?? tabs[0]) as Tab);
-    case 'Home': return setTab(tabs, tabs[0] as Tab);
-    case 'End': return setTab(tabs, tabs[tabs.length - 1] as Tab);
-    default: return;
-  }
-}
+};

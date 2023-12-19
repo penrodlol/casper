@@ -12,6 +12,7 @@ import RadialProgress from '@/components/ui/radial-progress.astro';
 import Radio from '@/components/ui/radio.astro';
 import Separator from '@/components/ui/separator.astro';
 import Switch from '@/components/ui/switch.astro';
+import * as Tabs from '@/components/ui/tabs';
 import Textarea from '@/components/ui/textarea.astro';
 import Layout from '@/layouts/index.astro';
 import { Bell, Check, Folder, Heart, Image, Loader, Mail, Power, Trash } from 'lucide-astro';
@@ -35,7 +36,7 @@ import { Bell, Check, Folder, Heart, Image, Loader, Mail, Power, Trash } from 'l
         <Label><Checkbox checked disabled /> Input</Label>
         <Label><Checkbox checked disabled /> Label</Label>
         <Label><Checkbox /> Menubar</Label>
-        <Label><Checkbox /> Navigation Menu</Label>
+        <Label><Checkbox checked disabled /> Navigation Menu</Label>
         <Label><Checkbox /> Popover</Label>
         <Label><Checkbox checked disabled /> Progress</Label>
         <Label><Checkbox checked disabled /> Radial Progress</Label>
@@ -46,9 +47,9 @@ import { Bell, Check, Folder, Heart, Image, Loader, Mail, Power, Trash } from 'l
         <Label><Checkbox /> Skeleton</Label>
         <Label><Checkbox /> Slider</Label>
         <Label><Checkbox checked disabled /> Switch</Label>
-        <Label><Checkbox /> Tabs</Label>
+        <Label><Checkbox checked disabled /> Tabs</Label>
         <Label><Checkbox /> Table</Label>
-        <Label><Checkbox /> Textarea</Label>
+        <Label><Checkbox checked disabled /> Textarea</Label>
         <Label><Checkbox /> Toast</Label>
         <Label><Checkbox /> Toggle Group</Label>
         <Label><Checkbox /> Tooltip</Label>
@@ -222,7 +223,30 @@ import { Bell, Check, Folder, Heart, Image, Loader, Mail, Power, Trash } from 'l
       <section>
         <Label><Switch /> Airplane mode</Label>
       </section>
-      <section><!-- Tabs --></section>
+      <section class="w-[500px]">
+        <Tabs.Root>
+          <Tabs.TabList>
+            <Tabs.Tab value="orange" selected>Orange</Tabs.Tab>
+            <Tabs.Tab value="apple">Apple</Tabs.Tab>
+            <Tabs.Tab value="banana">Banana</Tabs.Tab>
+          </Tabs.TabList>
+          <Tabs.TabPanel value="orange" selected>
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Illo fugit ab vitae ad est
+            sequi incidunt, quisquam laborum atque aliquam esse dolorem quaerat deserunt delectus,
+            totam sint amet aspernatur! Eos.
+          </Tabs.TabPanel>
+          <Tabs.TabPanel value="apple">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nemo doloribus atque
+            repellendus ex velit, iusto quo fugit doloremque. Beatae culpa ut rem sunt nobis
+            pariatur dolores. Iure voluptatum ullam repudiandae!
+          </Tabs.TabPanel>
+          <Tabs.TabPanel value="banana">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero deleniti necessitatibus
+            sint placeat aliquam rerum cupiditate commodi excepturi fugiat, est sed delectus eos
+            quas praesentium explicabo suscipit alias voluptate fuga.
+          </Tabs.TabPanel>
+        </Tabs.Root>
+      </section>
       <section><!-- Table --></section>
       <section class="flex w-80 flex-col gap-6">
         <Textarea placeholder="Describe your favorite fruit..." />

@@ -10,13 +10,16 @@ const { class: className, value, selected, ...props } = Astro.props;
 <button
   {...props}
   role="tab"
+  tabindex={`${selected ? 0 : -1}`}
+  aria-selected={`${selected ?? false}`}
   data-value={value}
-  aria-selected={selected}
   class={twMerge(
-    'peer relative px-3 py-2 text-xs text-muted hover:text motion-safe:transition-colors',
-    'after:absolute after:inset-x-0 after:bottom-0 after:h-px motion-safe:after:transition-colors',
-    'aria-selected:text aria-selected:after:bg-primary aria-selected:after:animate-in',
-    'focus-visible:outline-none focus-visible:ring-2',
+    'relative rounded px-3 py-1 text-muted',
+    'after:absolute after:inset-x-0 after:top-full after:h-px',
+    'aria-selected:text aria-selected:after:bg-primary',
+    'hover:text focus-visible:outline-none focus-visible:ring-1',
+    'motion-safe:transition-colors motion-safe:after:transition-colors',
+
     className,
   )}
 >

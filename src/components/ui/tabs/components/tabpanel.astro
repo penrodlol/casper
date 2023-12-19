@@ -11,11 +11,10 @@ const { class: className, value, selected, ...props } = Astro.props;
   {...props}
   role="tabpanel"
   tabindex="0"
+  aria-hidden={`${!selected}`}
   data-value={value}
-  data-selected={(selected ?? false).toString()}
   class={twMerge(
-    'block overflow-auto rounded p-6 data-[selected=false]:hidden',
-    'focus-visible:outline-none focus-visible:ring-2',
+    'mt-1 rounded py-3 focus-visible:outline-none focus-visible:ring-1 aria-hidden:hidden',
     className,
   )}
 >
