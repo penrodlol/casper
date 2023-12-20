@@ -4,6 +4,7 @@ import Badge from '@/components/ui/badge.astro';
 import Button from '@/components/ui/button.astro';
 import Checkbox from '@/components/ui/checkbox.astro';
 import * as Dialog from '@/components/ui/dialog';
+import * as Drawer from '@/components/ui/drawer';
 import Input from '@/components/ui/input.astro';
 import Label from '@/components/ui/label.astro';
 import * as NavigationMenu from '@/components/ui/navigation-menu';
@@ -15,7 +16,26 @@ import Switch from '@/components/ui/switch.astro';
 import * as Tabs from '@/components/ui/tabs';
 import Textarea from '@/components/ui/textarea.astro';
 import Layout from '@/layouts/index.astro';
-import { Bell, Check, Folder, Heart, Image, Loader, Mail, Power, Trash } from 'lucide-astro';
+import {
+  Archive,
+  BadgeAlert,
+  Bell,
+  Check,
+  Folder,
+  Heart,
+  Image,
+  Inbox,
+  Loader,
+  LogOut,
+  Mail,
+  Menu,
+  Power,
+  Send,
+  Settings,
+  Tag,
+  Trash,
+  User,
+} from 'lucide-astro';
 ---
 
 <Layout>
@@ -32,6 +52,7 @@ import { Bell, Check, Folder, Heart, Image, Loader, Mail, Power, Trash } from 'l
         <Label><Checkbox /> Card</Label>
         <Label><Checkbox checked disabled /> Checkbox</Label>
         <Label><Checkbox checked disabled /> Dialog</Label>
+        <Label><Checkbox checked disabled /> Drawer</Label>
         <Label><Checkbox /> Dropdown Menu</Label>
         <Label><Checkbox checked disabled /> Input</Label>
         <Label><Checkbox checked disabled /> Label</Label>
@@ -43,7 +64,6 @@ import { Bell, Check, Folder, Heart, Image, Loader, Mail, Power, Trash } from 'l
         <Label><Checkbox checked disabled /> Radio Group</Label>
         <Label><Checkbox /> Select</Label>
         <Label><Checkbox checked disabled /> Separator</Label>
-        <Label><Checkbox /> Sheet</Label>
         <Label><Checkbox /> Skeleton</Label>
         <Label><Checkbox /> Slider</Label>
         <Label><Checkbox checked disabled /> Switch</Label>
@@ -128,6 +148,35 @@ import { Bell, Check, Folder, Heart, Image, Loader, Mail, Power, Trash } from 'l
             <Button slot="dialog-close" size="sm" value="true">Save</Button>
           </Dialog.Footer>
         </Dialog.Root>
+      </section>
+      <section class="flex gap-8">
+        <Drawer.Root position="left">
+          <Button slot="drawer-trigger" color="outline" size="icon"><Menu /></Button>
+          <Drawer.Header class="border-b">
+            <Avatar src="/src/assets/astro.png" alt="BS" size="lg" class="mb-4" />
+            <Drawer.Title>Bob Smith</Drawer.Title>
+            <Drawer.Description>bob_smith88@gmail.com</Drawer.Description>
+          </Drawer.Header>
+          <Drawer.Section class="border-b">
+            <Drawer.Link href="/" active><Inbox size={18} class="mr-4" />Inbox</Drawer.Link>
+            <Drawer.Link href="/"><Send size={18} class="mr-4" />Outbox</Drawer.Link>
+            <Drawer.Link href="/"><Heart size={18} class="mr-4" />Favorites</Drawer.Link>
+            <Drawer.Link href="/"><Archive size={18} class="mr-4" />Archive</Drawer.Link>
+            <Drawer.Link href="/"><Trash size={18} class="mr-4" />Trash</Drawer.Link>
+            <Drawer.Link href="/"><BadgeAlert size={18} class="mr-4" />Spam</Drawer.Link>
+          </Drawer.Section>
+          <Drawer.Section>
+            <Drawer.SectionTitle>Labels</Drawer.SectionTitle>
+            <Drawer.Link href="/"><Tag size={18} class="mr-4" />Family</Drawer.Link>
+            <Drawer.Link href="/"><Tag size={18} class="mr-4" />Friends</Drawer.Link>
+            <Drawer.Link href="/"><Tag size={18} class="mr-4" />Work</Drawer.Link>
+          </Drawer.Section>
+          <Drawer.Section class="mt-auto">
+            <Drawer.Link href="/"><Settings size={18} class="mr-4" />Settings</Drawer.Link>
+            <Drawer.Link href="/"><User size={18} class="mr-4" />Account</Drawer.Link>
+            <Drawer.Link href="/"><LogOut size={18} class="mr-4" />Logout</Drawer.Link>
+          </Drawer.Section>
+        </Drawer.Root>
       </section>
       <section><!-- Dropdown Menu --></section>
       <section class="flex w-80 flex-col gap-6">
@@ -217,7 +266,6 @@ import { Bell, Check, Folder, Heart, Image, Loader, Mail, Power, Trash } from 'l
       </section>
       <section><!-- Select --></section>
       <section><!-- Separator --></section>
-      <section><!-- Sheet --></section>
       <section><!-- Skeleton --></section>
       <section><!-- Slider --></section>
       <section>

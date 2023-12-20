@@ -1,0 +1,31 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+import { twMerge } from 'tailwind-merge';
+import { tv, type VariantProps } from 'tailwind-variants';
+
+const variants = tv({
+  base:
+    'fixed z-50 m-0 bg text text-sm outline-none animate-in motion-safe:fade-in-0 duration-500 ' +
+    'backdrop:bg backdrop:opacity-80 backdrop:animate-in backdrop:motion-safe:fade-in ' +
+    '[&:modal]:flex [&:modal]:flex-col',
+  defaultVariants: { position: 'left' },
+  variants: {
+    position: {
+      top: 'bottom-auto min-w-[100vw] border-b motion-safe:slide-in-from-top-full',
+      bottom: 'top-auto min-w-[100vw] border-t motion-safe:slide-in-from-bottom-full',
+      left: 'right-auto min-h-screen border-r motion-safe:slide-in-from-left-full',
+      right: 'left-auto min-h-screen border-l motion-safe:slide-in-from-right-full',
+    },
+  },
+});
+
+type Props = HTMLAttributes<'dialog'> & VariantProps<typeof variants>;
+
+const { class: className, position, ...props } = Astro.props;
+---
+
+<script src="../script.ts"></script>
+
+<dialog {...props} data-drawer class={twMerge(variants({ position }), className)}><slot /></dialog>
+
+<slot name="drawer-trigger" />
