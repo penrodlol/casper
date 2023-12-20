@@ -12,6 +12,7 @@ import Progress from '@/components/ui/progress.astro';
 import RadialProgress from '@/components/ui/radial-progress.astro';
 import Radio from '@/components/ui/radio.astro';
 import Separator from '@/components/ui/separator.astro';
+import Skeleton from '@/components/ui/skeleton.astro';
 import Switch from '@/components/ui/switch.astro';
 import * as Tabs from '@/components/ui/tabs';
 import Textarea from '@/components/ui/textarea.astro';
@@ -64,7 +65,7 @@ import {
         <Label><Checkbox checked disabled /> Radio Group</Label>
         <Label><Checkbox /> Select</Label>
         <Label><Checkbox checked disabled /> Separator</Label>
-        <Label><Checkbox /> Skeleton</Label>
+        <Label><Checkbox checked disabled /> Skeleton</Label>
         <Label><Checkbox /> Slider</Label>
         <Label><Checkbox checked disabled /> Switch</Label>
         <Label><Checkbox checked disabled /> Tabs</Label>
@@ -266,7 +267,13 @@ import {
       </section>
       <section><!-- Select --></section>
       <section><!-- Separator --></section>
-      <section><!-- Skeleton --></section>
+      <section class="flex items-center gap-4">
+        <Skeleton class="size-12 rounded-full" />
+        <div class="flex flex-col gap-2">
+          <Skeleton class="size-4 w-64" />
+          <Skeleton class="size-4 w-64" />
+        </div>
+      </section>
       <section><!-- Slider --></section>
       <section>
         <Label><Switch /> Airplane mode</Label>

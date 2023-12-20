@@ -1,0 +1,10 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+import { twMerge } from 'tailwind-merge';
+
+type Props = HTMLAttributes<'progress'>;
+
+const { class: className, ...props } = Astro.props;
+---
+
+<div {...props} class={twMerge('rounded bg-primary/10 motion-safe:animate-pulse', className)}></div>
