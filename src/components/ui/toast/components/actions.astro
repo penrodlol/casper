@@ -1,0 +1,15 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+import { twMerge } from 'tailwind-merge';
+
+type Props = HTMLAttributes<'div'>;
+
+const { class: className, ...props } = Astro.props;
+---
+
+<div
+  {...props}
+  class={twMerge('mt-4 flex h-7 items-center justify-end gap-2 *:max-h-full', className)}
+>
+  <slot name="toast-close" />
+</div>

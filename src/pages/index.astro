@@ -16,6 +16,7 @@ import Skeleton from '@/components/ui/skeleton.astro';
 import Switch from '@/components/ui/switch.astro';
 import * as Tabs from '@/components/ui/tabs';
 import Textarea from '@/components/ui/textarea.astro';
+import * as Toast from '@/components/ui/toast';
 import Layout from '@/layouts/index.astro';
 import {
   Archive,
@@ -307,7 +308,34 @@ import {
         <Textarea placeholder="Describe your favorite fruit..." />
         <Textarea placeholder="Describe your favorite fruit..." disabled />
       </section>
-      <section><!-- Toast --></section>
+      <section class="flex gap-8">
+        <Toast.Root>
+          <Button slot="toast-trigger" color="outline">Add to calendar</Button>
+          <Toast.Title>Date Added to Calendar</Toast.Title>
+          <Toast.Description>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit.
+          </Toast.Description>
+          <Toast.Actions>
+            <Button slot="toast-close" color="ghost" size="sm">Dismiss</Button>
+            <Button slot="toast-close" color="primary" size="sm">Undo</Button>
+          </Toast.Actions>
+        </Toast.Root>
+        <Toast.Root color="success">
+          <Button slot="toast-trigger">Book Trip</Button>
+          <Toast.Title>Success</Toast.Title>
+          <Toast.Description>You have successfully booked your trip to the moon.</Toast.Description>
+        </Toast.Root>
+        <Toast.Root color="warning">
+          <Button slot="toast-trigger">Book Trip</Button>
+          <Toast.Title>Warning</Toast.Title>
+          <Toast.Description>Invalid trip location. Please try again.</Toast.Description>
+        </Toast.Root>
+        <Toast.Root color="danger">
+          <Button slot="toast-trigger">Book Trip</Button>
+          <Toast.Title>Error</Toast.Title>
+          <Toast.Description>Trip to the moon could not be booked.</Toast.Description>
+        </Toast.Root>
+      </section>
       <section><!-- Toggle Group --></section>
       <section><!-- Tooltip --></section>
     </div>

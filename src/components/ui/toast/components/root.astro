@@ -1,0 +1,60 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+import { twMerge } from 'tailwind-merge';
+import { tv, type VariantProps } from 'tailwind-variants';
+import Button from '../../button.astro';
+import { X, AlertTriangle, XCircle, CheckCircle2 } from 'lucide-astro';
+
+const variants = tv({
+  base:
+    'group fixed bg z-[100] p-4 rounded border max-w-96 w-full ' +
+    'data-[state=closed]:hidden animate-in motion-safe:fade-in-0',
+  defaultVariants: { position: 'bottom-right' },
+  variants: {
+    color: {
+      success: 'bg-[linear-gradient(to_right,hsl(var(--success)/0.3),0.1%,hsl(var(--background)))]',
+      danger: 'bg-[linear-gradient(to_right,hsl(var(--danger)/0.3),0.1%,hsl(var(--background)))]',
+      warning: 'bg-[linear-gradient(to_right,hsl(var(--warning)/0.3),0.1%,hsl(var(--background)))]',
+    },
+    position: {
+      'top-center': 'top-8 motion-safe:slide-in-from-top-full',
+      'top-left': 'top-8 left-8 motion-safe:slide-in-from-top-full',
+      'top-right': 'top-8 right-8 motion-safe:slide-in-from-top-full',
+      'bottom-center': 'bottom-8 motion-safe:slide-in-from-bottom-full',
+      'bottom-left': 'bottom-8 left-8 motion-safe:slide-in-from-bottom-full',
+      'bottom-right': 'bottom-8 right-8 motion-safe:slide-in-from-bottom-full',
+    },
+  },
+});
+
+type Props = HTMLAttributes<'div'> & VariantProps<typeof variants>;
+
+const { class: className, color, position, ...props } = Astro.props;
+---
+
+<script src="../script.ts"></script>
+
+<div
+  {...props}
+  data-toast={crypto.randomUUID()}
+  data-state="closed"
+  class={twMerge(variants({ color, position }), className)}
+>
+  <div class="peer absolute left-4 top-1/2 -translate-y-1/2">
+    {color === 'warning' && <AlertTriangle size={20} class="stroke-warning" />}
+    {color === 'danger' && <XCircle size={20} class="stroke-danger" />}
+    {color === 'success' && <CheckCircle2 size={20} class="stroke-success" />}
+  </div>
+  <div class="peer-has-[svg]:pl-10"><slot /></div>
+  <Button
+    color="ghost"
+    size="icon"
+    slot="toast-close"
+    aria-label="Close toast"
+    class="absolute right-px top-px"
+  >
+    <X />
+  </Button>
+</div>
+
+<slot name="toast-trigger" />
