@@ -11,10 +11,10 @@ const variants = tv({
   defaultVariants: { position: 'left' },
   variants: {
     position: {
-      top: 'bottom-auto min-w-[100vw] border-b motion-safe:slide-in-from-top-full',
-      bottom: 'top-auto min-w-[100vw] border-t motion-safe:slide-in-from-bottom-full',
-      left: 'right-auto min-h-screen border-r motion-safe:slide-in-from-left-full',
-      right: 'left-auto min-h-screen border-l motion-safe:slide-in-from-right-full',
+      top: 'bottom-auto inset-x-0 min-w-[100vw] border-b motion-safe:slide-in-from-top-full',
+      bottom: 'top-auto inset-x-0 min-w-[100vw] border-t motion-safe:slide-in-from-bottom-full',
+      left: 'right-auto inset-y-0 min-h-screen border-r motion-safe:slide-in-from-left-full',
+      right: 'left-auto inset-y-0 min-h-screen border-l motion-safe:slide-in-from-right-full',
     },
   },
 });
