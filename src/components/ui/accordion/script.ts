@@ -1,12 +1,12 @@
-import { getChildComponents, onComponentLoad } from '@/libs/component';
+import { onAstroPageLoad } from '@/libs/astro';
 
 export type Type = 'single' | 'multiple';
 export type Trigger = HTMLButtonElement;
 export type Content = HTMLDivElement;
 
-onComponentLoad<HTMLDivElement>('[data-accordion]', (accordion) => {
-  const triggers = getChildComponents<Trigger>(accordion, '[data-trigger]');
-  const contents = getChildComponents<Content>(accordion, '[data-content]');
+onAstroPageLoad<HTMLDivElement>('[data-accordion]', (accordion) => {
+  const triggers = Array.from(accordion.querySelectorAll<Trigger>('[data-trigger]'));
+  const contents = Array.from(accordion.querySelectorAll<Content>('[data-content]'));
 
   triggers.forEach((trigger) => {
     const triggerId = trigger.dataset.trigger as string;

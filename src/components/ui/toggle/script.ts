@@ -1,11 +1,11 @@
-import { getChildComponents, onComponentLoad } from '@/libs/component';
+import { onAstroPageLoad } from '@/libs/astro';
 
 export type Type = 'single' | 'multiple';
 type Item = HTMLButtonElement;
 
-onComponentLoad<HTMLDivElement>('[data-toggle-group]', (toggle) => {
+onAstroPageLoad<HTMLDivElement>('[data-toggle-group]', (toggle) => {
   const type = toggle.dataset.type as Type;
-  const items = getChildComponents<Item>(toggle, '[data-toggle-item]');
+  const items = Array.from(toggle.querySelectorAll<Item>('[data-toggle-item]'));
   items.forEach((item) => (item.onclick = () => setToggleItem(item, items, type)));
 });
 
