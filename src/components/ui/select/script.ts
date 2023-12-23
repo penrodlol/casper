@@ -1,55 +1,36 @@
-document.addEventListener('astro:page-load', () => {
-  (document.querySelectorAll('[data-select]') as NodeListOf<HTMLElement>).forEach((root) => {
-    const trigger = root.querySelector('[role="combobox"]') as HTMLButtonElement;
-    const triggerValue = root.querySelector('[data-trigger-value]') as HTMLSpanElement;
-    const portal = root.querySelector('[role="listbox"]') as HTMLUListElement;
-    const options = Array.from(root.querySelectorAll('[role="option"]')) as Array<HTMLLIElement>;
-    const search = root.querySelector('[data-select-search]') as HTMLInputElement;
-    if (!trigger || !triggerValue || !portal || !options) return;
+import { onAstroPageLoad } from '@/libs/astro';
 
-    const id = root.dataset.select as string;
-    const open = root.dataset.selectOpen as string;
+onAstroPageLoad<HTMLDivElement>('[data-select]', (select) => {
+  const id = select.dataset.select as string;
+  const trigger = select.querySelector('[role="combobox"]') as HTMLButtonElement;
+  const overlay = select.querySelector('[data-overlay]') as HTMLDivElement;
+  const options = select.querySelector('[role="listbox"]') as HTMLUListElement;
 
-    trigger.setAttribute('aria-expanded', open);
-    trigger.setAttribute('aria-controls', `select-portal-${id}`);
-    portal.setAttribute('id', `select-portal-${id}`);
-    portal.setAttribute('aria-activedescendant', '');
+  trigger?.setAttribute('aria-controls', id);
+  trigger?.setAttribute('aria-activedescendant', '');
+  options?.setAttribute('id', id);
+  options
+    ?.querySelectorAll('[role="option"]')
+    .forEach((option) => option.setAttribute('id', `${id}-${option.getAttribute('value')}`));
 
-    trigger.onclick = () => {
-      const state = root.getAttribute('data-select-open') === 'true';
-      root.setAttribute('data-select-open', state ? 'false' : 'true');
+  trigger.addEventListener('click', () => {
+    const isOpen = select.getAttribute('data-state') === 'open';
+    select.setAttribute('data-state', isOpen ? 'closed' : 'open');
 
-      const active = options.find((option) => option.getAttribute('aria-selected') === 'true');
-      portal.setAttribute('aria-activedescendant', !state && active ? active.id : '');
+    if (!isOpen) return trigger.setAttribute('aria-activedescendant', '');
+    const selected = options.querySelector('[aria-selected="true"]') as HTMLSpanElement;
+    if (selected) trigger.setAttribute('aria-activedescendant', selected.id);
+  });
 
-      if (state && search) {
-        search.value = '';
-        options.forEach((option) => option.setAttribute('aria-hidden', 'false'));
-      }
-    };
+  overlay.addEventListener('click', () => select.setAttribute('data-state', 'closed'));
 
-    options.forEach((option) => {
-      const optionId = `select-option-${id}-${option.dataset.value}`;
+  options.addEventListener('click', (event) => {
+    const option = (event.target as HTMLElement).closest('[role="option"]') as HTMLLIElement;
+    if (!option) return;
 
-      option.setAttribute('id', optionId);
-      option.onclick = () => {
-        root.setAttribute('data-select-open', 'false');
-        portal.setAttribute('aria-activedescendant', '');
-        trigger.setAttribute('aria-expanded', 'false');
-        triggerValue.innerText = option.innerText.trim();
-        options.forEach((_option) => {
-          const state = _option.dataset.value === option.dataset.value;
-          _option.setAttribute('aria-selected', state.toString());
-        });
-      };
-    });
-
-    search.oninput = (event) => {
-      const value = (event.target as HTMLInputElement).value.toLowerCase().trim();
-      options.forEach((option) => {
-        const state = option.innerText.toLowerCase().trim().includes(value);
-        option.setAttribute('aria-hidden', (!state).toString());
-      });
-    };
+    (trigger.firstElementChild as HTMLSpanElement).textContent = option.textContent;
+    select.setAttribute('data-state', 'closed');
+    options.querySelector('[aria-selected="true"]')?.setAttribute('aria-selected', 'false');
+    option.setAttribute('aria-selected', 'true');
   });
 });

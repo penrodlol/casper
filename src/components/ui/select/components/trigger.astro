@@ -3,7 +3,7 @@ import type { HTMLAttributes } from 'astro/types';
 import { ChevronsUpDown } from 'lucide-astro';
 import { twMerge } from 'tailwind-merge';
 
-type Props = Omit<HTMLAttributes<'button'>, 'role'> & { placeholder?: string };
+type Props = HTMLAttributes<'button'> & { placeholder?: string };
 
 const { class: className, placeholder, ...props } = Astro.props;
 ---
@@ -14,17 +14,13 @@ const { class: className, placeholder, ...props } = Astro.props;
   tabindex="0"
   aria-expanded="false"
   aria-haspopup="listbox"
-  aria-
   class={twMerge(
-    'flex w-full items-center justify-between gap-4 whitespace-nowrap rounded border',
-    'bg-transparent px-4 py-1 text-xs disabled:cursor-not-allowed disabled:opacity-50',
-    'enabled:hover:bg-muted motion-safe:transition-colors',
-    'focus-visible:outline-none focus-visible:ring',
+    'inline-flex w-full items-center justify-between gap-2 rounded border px-3 py-1',
+    'focus:ring-1 focus-visible:outline-none focus-visible:ring-1',
+    'disabled:cursor-not-allowed disabled:opacity-50',
     className,
   )}
 >
-  <span data-trigger-value class="flex-1 overflow-hidden text-ellipsis text-left">
-    {placeholder}
-  </span>
+  <span class="overflow-hidden truncate">{placeholder}</span>
   <ChevronsUpDown size={14} aria-hidden class="shrink-0 text-muted" />
 </button>

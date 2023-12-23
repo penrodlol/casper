@@ -11,6 +11,7 @@ import * as NavigationMenu from '@/components/ui/navigation-menu';
 import Progress from '@/components/ui/progress.astro';
 import RadialProgress from '@/components/ui/radial-progress.astro';
 import Radio from '@/components/ui/radio.astro';
+import * as Select from '@/components/ui/select';
 import Separator from '@/components/ui/separator.astro';
 import Skeleton from '@/components/ui/skeleton.astro';
 import Switch from '@/components/ui/switch.astro';
@@ -266,7 +267,37 @@ import {
           <Label><Radio name="fruit-vertical" /> Orange</Label>
         </fieldset>
       </section>
-      <section><!-- Select --></section>
+      <section class="flex gap-10 *:w-80">
+        <Select.Root>
+          <Select.Trigger placeholder="Choose a Fruit" />
+          <Select.Options>
+            <Select.Option value="apple">Apple</Select.Option>
+            <Select.Option value="banana">Banana</Select.Option>
+            <Select.Option value="orange">Orange</Select.Option>
+            <Select.Option value="grape">Grape</Select.Option>
+            <Select.Option value="strawberry">Strawberry</Select.Option>
+          </Select.Options>
+        </Select.Root>
+        <Select.Root>
+          <Select.Trigger placeholder="Choose an Animal" />
+          <Select.Options>
+            <Select.OptionsGroup>
+              <Select.OptionsGroupLabel>Birds</Select.OptionsGroupLabel>
+              <Select.Option value="robin">Robin</Select.Option>
+              <Select.Option value="cardinal">Cardinal</Select.Option>
+              <Select.Option value="sparrow">Sparrow</Select.Option>
+              <Select.Option value="woodpecker">Woodpecker</Select.Option>
+            </Select.OptionsGroup>
+            <Select.OptionsGroup>
+              <Select.OptionsGroupLabel>Mammals</Select.OptionsGroupLabel>
+              <Select.Option value="bear">Bear</Select.Option>
+              <Select.Option value="fox">Fox</Select.Option>
+              <Select.Option value="wolf">Wolf</Select.Option>
+              <Select.Option value="lion">Lion</Select.Option>
+            </Select.OptionsGroup>
+          </Select.Options>
+        </Select.Root>
+      </section>
       <section><!-- Separator --></section>
       <section class="flex items-center gap-4">
         <Skeleton class="size-12 rounded-full" />

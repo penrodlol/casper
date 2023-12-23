@@ -2,9 +2,9 @@
 import type { HTMLAttributes } from 'astro/types';
 import { twMerge } from 'tailwind-merge';
 
-type Props = HTMLAttributes<'div'> & { open?: boolean; type?: 'single' | 'multiple' };
+type Props = HTMLAttributes<'div'>;
 
-const { class: className, open, type, ...props } = Astro.props;
+const { class: className, ...props } = Astro.props;
 ---
 
 <script src="../script.ts"></script>
@@ -12,9 +12,9 @@ const { class: className, open, type, ...props } = Astro.props;
 <div
   {...props}
   data-select={crypto.randomUUID()}
-  data-select-open={open ? 'true' : 'false'}
-  data-select-type={type ?? 'single'}
+  data-state="closed"
   class={twMerge('group relative', className)}
 >
   <slot />
+  <div data-overlay aria-hidden class="fixed inset-0 z-40 group-data-[state=closed]:hidden"></div>
 </div>
