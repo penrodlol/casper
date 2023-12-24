@@ -1,0 +1,20 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+import { twMerge } from 'tailwind-merge';
+
+type Props = HTMLAttributes<'tfoot'>;
+
+const { class: className, ...props } = Astro.props;
+---
+
+<tfoot
+  {...props}
+  class={twMerge(
+    'bg-muted font-medium',
+    '[&_td:first-of-type]:rounded-bl',
+    '[&_td:last-of-type]:rounded-br',
+    className,
+  )}
+>
+  <slot />
+</tfoot>

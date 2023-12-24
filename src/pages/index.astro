@@ -11,16 +11,18 @@ import * as NavigationMenu from '@/components/ui/navigation-menu';
 import Progress from '@/components/ui/progress.astro';
 import RadialProgress from '@/components/ui/radial-progress.astro';
 import Radio from '@/components/ui/radio.astro';
-import * as Select from '@/components/ui/select';
 import Separator from '@/components/ui/separator.astro';
 import Skeleton from '@/components/ui/skeleton.astro';
 import Switch from '@/components/ui/switch.astro';
+import * as Table from '@/components/ui/table';
 import * as Tabs from '@/components/ui/tabs';
 import Textarea from '@/components/ui/textarea.astro';
 import * as Toast from '@/components/ui/toast';
 import Layout from '@/layouts/index.astro';
 import {
   Archive,
+  ArrowDown,
+  ArrowUp,
   BadgeAlert,
   Bell,
   Check,
@@ -267,37 +269,7 @@ import {
           <Label><Radio name="fruit-vertical" /> Orange</Label>
         </fieldset>
       </section>
-      <section class="flex gap-10 *:w-80">
-        <Select.Root>
-          <Select.Trigger placeholder="Choose a Fruit" />
-          <Select.Options>
-            <Select.Option value="apple">Apple</Select.Option>
-            <Select.Option value="banana">Banana</Select.Option>
-            <Select.Option value="orange">Orange</Select.Option>
-            <Select.Option value="grape">Grape</Select.Option>
-            <Select.Option value="strawberry">Strawberry</Select.Option>
-          </Select.Options>
-        </Select.Root>
-        <Select.Root>
-          <Select.Trigger placeholder="Choose an Animal" />
-          <Select.Options>
-            <Select.OptionsGroup>
-              <Select.OptionsGroupLabel>Birds</Select.OptionsGroupLabel>
-              <Select.Option value="robin">Robin</Select.Option>
-              <Select.Option value="cardinal">Cardinal</Select.Option>
-              <Select.Option value="sparrow">Sparrow</Select.Option>
-              <Select.Option value="woodpecker">Woodpecker</Select.Option>
-            </Select.OptionsGroup>
-            <Select.OptionsGroup>
-              <Select.OptionsGroupLabel>Mammals</Select.OptionsGroupLabel>
-              <Select.Option value="bear">Bear</Select.Option>
-              <Select.Option value="fox">Fox</Select.Option>
-              <Select.Option value="wolf">Wolf</Select.Option>
-              <Select.Option value="lion">Lion</Select.Option>
-            </Select.OptionsGroup>
-          </Select.Options>
-        </Select.Root>
-      </section>
+      <section><!-- Select --></section>
       <section><!-- Separator --></section>
       <section class="flex items-center gap-4">
         <Skeleton class="size-12 rounded-full" />
@@ -334,7 +306,70 @@ import {
           </Tabs.TabPanel>
         </Tabs.Root>
       </section>
-      <section><!-- Table --></section>
+      <section class="w-4/5">
+        <Table.Root color="zebra">
+          <Table.Caption>A list of your recent invoices.</Table.Caption>
+          <Table.Header>
+            <Table.Row>
+              <Table.Head><Checkbox /></Table.Head>
+              <Table.Head>Fruit Name</Table.Head>
+              <Table.Head>Quantity in Stock</Table.Head>
+              <Table.Head>Unit Price (per kg)</Table.Head>
+              <Table.Head class="text-right">Total Value</Table.Head>
+            </Table.Row>
+          </Table.Header>
+          <Table.Body>
+            <Table.Row>
+              <Table.Head><Checkbox /></Table.Head>
+              <Table.Cell>Apple</Table.Cell>
+              <Table.Cell class="flex items-center gap-2"><ArrowUp size={12} />100</Table.Cell>
+              <Table.Cell>$2.00</Table.Cell>
+              <Table.Cell class="text-right">$200.00</Table.Cell>
+            </Table.Row>
+            <Table.Row>
+              <Table.Head><Checkbox /></Table.Head>
+              <Table.Cell>Banana</Table.Cell>
+              <Table.Cell class="flex items-center gap-2"><ArrowUp size={12} />150</Table.Cell>
+              <Table.Cell>$1.50</Table.Cell>
+              <Table.Cell class="text-right">$225.00</Table.Cell>
+            </Table.Row>
+            <Table.Row>
+              <Table.Head><Checkbox /></Table.Head>
+              <Table.Cell>Orange</Table.Cell>
+              <Table.Cell class="flex items-center gap-2"><ArrowDown size={12} />80</Table.Cell>
+              <Table.Cell>$2.50</Table.Cell>
+              <Table.Cell class="text-right">$200.00</Table.Cell>
+            </Table.Row>
+            <Table.Row>
+              <Table.Head><Checkbox /></Table.Head>
+              <Table.Cell>Mango</Table.Cell>
+              <Table.Cell class="flex items-center gap-2"><ArrowDown size={12} />50</Table.Cell>
+              <Table.Cell>$3.00</Table.Cell>
+              <Table.Cell class="text-right">$150.00</Table.Cell>
+            </Table.Row>
+            <Table.Row>
+              <Table.Head><Checkbox /></Table.Head>
+              <Table.Cell>Strawberry</Table.Cell>
+              <Table.Cell class="flex items-center gap-2"><ArrowUp size={12} />200</Table.Cell>
+              <Table.Cell>$4.50</Table.Cell>
+              <Table.Cell class="text-right">$900.00</Table.Cell>
+            </Table.Row>
+            <Table.Row>
+              <Table.Head><Checkbox /></Table.Head>
+              <Table.Cell>Pineapple</Table.Cell>
+              <Table.Cell class="flex items-center gap-2"><ArrowDown size={12} />70</Table.Cell>
+              <Table.Cell>$2.75</Table.Cell>
+              <Table.Cell class="text-right">$192.50</Table.Cell>
+            </Table.Row>
+          </Table.Body>
+          <Table.Footer>
+            <Table.Row>
+              <Table.Cell colspan="4">Total</Table.Cell>
+              <Table.Cell class="text-right">$1,867.50</Table.Cell>
+            </Table.Row>
+          </Table.Footer>
+        </Table.Root>
+      </section>
       <section class="flex w-80 flex-col gap-6">
         <Textarea placeholder="Describe your favorite fruit..." />
         <Textarea placeholder="Describe your favorite fruit..." disabled />

@@ -1,0 +1,16 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+import { twMerge } from 'tailwind-merge';
+import { tv, type VariantProps } from 'tailwind-variants';
+
+const variants = tv({
+  base: 'w-full caption-bottom border-separate border-spacing-0 rounded',
+  variants: { color: { zebra: '[&_tbody_tr:nth-child(odd)]:bg-muted/50' } },
+});
+
+type Props = HTMLAttributes<'table'> & VariantProps<typeof variants>;
+
+const { class: className, color, ...props } = Astro.props;
+---
+
+<table {...props} class={twMerge(variants({ color }), className)}><slot /></table>

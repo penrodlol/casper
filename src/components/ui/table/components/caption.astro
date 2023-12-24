@@ -1,0 +1,10 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+import { twMerge } from 'tailwind-merge';
+
+type Props = HTMLAttributes<'caption'>;
+
+const { class: className, ...props } = Astro.props;
+---
+
+<caption {...props} class={twMerge('mt-2.5 text-muted', className)}><slot /></caption>

@@ -1,0 +1,10 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+import { twMerge } from 'tailwind-merge';
+
+type Props = HTMLAttributes<'tr'>;
+
+const { class: className, ...props } = Astro.props;
+---
+
+<tr {...props} class={twMerge('align-middle', className)}><slot /></tr>

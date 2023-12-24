@@ -1,0 +1,7 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+
+type Props = HTMLAttributes<'thead'>;
+---
+
+<thead {...Astro.props}><slot /></thead>

@@ -1,0 +1,19 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+import { twMerge } from 'tailwind-merge';
+
+type Props = HTMLAttributes<'th'>;
+
+const { class: className, ...props } = Astro.props;
+---
+
+<th
+  {...props}
+  class={twMerge(
+    'border-b p-2 text-left align-middle font-medium text-muted/80',
+    'has-[[type=checkbox]]:pr-0 [&>[type=checkbox]]:translate-y-[2px]',
+    className,
+  )}
+>
+  <slot />
+</th>
