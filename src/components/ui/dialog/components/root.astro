@@ -2,9 +2,9 @@
 import type { HTMLAttributes } from 'astro/types';
 import { twMerge } from 'tailwind-merge';
 
-type Props = HTMLAttributes<'dialog'>;
+type Props = HTMLAttributes<'dialog'> & { backdropClose?: boolean };
 
-const { class: className, ...props } = Astro.props;
+const { class: className, backdropClose, ...props } = Astro.props;
 ---
 
 <script src="../script.ts"></script>
@@ -12,6 +12,7 @@ const { class: className, ...props } = Astro.props;
 <dialog
   {...props}
   data-dialog
+  data-backdrop-close={`${backdropClose ?? true}`}
   class={twMerge(
     'fixed left-1/2 top-1/2 m-0 max-w-xl -translate-x-1/2 -translate-y-1/2 rounded border bg text outline-none',
     'backdrop:bg backdrop:opacity-80 backdrop:animate-in backdrop:motion-safe:fade-in',

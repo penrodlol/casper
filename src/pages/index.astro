@@ -144,13 +144,20 @@ import {
             </Dialog.Description>
           </Dialog.Header>
           <Dialog.Body>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident, modi nihil eius
-            quaerat sapiente laboriosam veritatis a quisquam non velit repudiandae. Nisi id
-            perferendis excepturi ipsa exercitationem labore veritatis at.
+            <form class="flex flex-col gap-4">
+              <div class="flex items-center gap-4">
+                <Label for="dialog-first-name">First Name:</Label>
+                <Input id="dialog-first-name" placeholder="Enter first name..." class="flex-1" />
+              </div>
+              <div class="flex items-center gap-4">
+                <Label for="dialog-last-name">Last Name:</Label>
+                <Input id="dialog-last-name" placeholder="Enter last name..." class="flex-1" />
+              </div>
+            </form>
           </Dialog.Body>
           <Dialog.Footer>
-            <Button slot="dialog-close" size="sm" color="outline">Cancel</Button>
-            <Button slot="dialog-close" size="sm" value="true">Save</Button>
+            <Button slot="dialog-close" color="outline">Cancel</Button>
+            <Button slot="dialog-close">Save Changes</Button>
           </Dialog.Footer>
         </Dialog.Root>
       </section>
