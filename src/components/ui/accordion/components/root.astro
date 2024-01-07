@@ -9,6 +9,4 @@ const { type, ...props } = Astro.props;
 
 <script src="../script.ts"></script>
 
-<div {...props} data-accordion={crypto.randomUUID()} data-type={type ?? 'multiple'}>
-  <slot />
-</div>
+<div {...props} data-accordion={crypto.randomUUID()} data-type={type ?? 'multiple'}><slot /></div>

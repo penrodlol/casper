@@ -1,54 +1,53 @@
 import { onAstroPageLoad } from '@/libs/astro';
 
 export type Type = 'single' | 'multiple';
-export type Trigger = HTMLButtonElement;
-export type Content = HTMLDivElement;
 
-onAstroPageLoad<HTMLDivElement>('[data-accordion]', (accordion) => {
-  const triggers = Array.from(accordion.querySelectorAll<Trigger>('[data-trigger]'));
-  const contents = Array.from(accordion.querySelectorAll<Content>('[data-content]'));
+onAstroPageLoad<HTMLDivElement>('[data-accordion]', (root) => {
+  const triggers = Array.from(root.querySelectorAll<HTMLHeadingElement>('[data-for]'));
+  const contents = Array.from(root.querySelectorAll<HTMLDivElement>('[data-value]'));
 
-  triggers.forEach((trigger) => {
-    const triggerId = trigger.dataset.trigger as string;
-    const content = contents.find((content) => content.dataset.content === triggerId);
-    if (!content) return;
+  triggers.forEach((trigger, index) => {
+    const triggerBtn = getTriggerBtn(trigger);
+    const content = contents.find((content) => trigger.dataset.for === content.dataset.value);
+    if (!triggerBtn || !content) return;
 
-    content.setAttribute('id', `accordion-panel-${accordion.dataset.accordion}-${triggerId}`);
-    content.setAttribute('aria-controls', content.id);
+    trigger.setAttribute('id', `trigger-${root.dataset.accordion}-${trigger.dataset.for}`);
+    content.setAttribute('id', `content-${root.dataset.accordion}-${trigger.dataset.for}`);
+    triggerBtn.setAttribute('aria-controls', content.id);
     content.setAttribute('aria-labelledby', trigger.id);
-    trigger.setAttribute('id', `accordion-header-${accordion.dataset.accordion}-${triggerId}`);
-    trigger.onclick = () => onTriggerClick(trigger, contents, accordion.dataset.type as Type);
-    trigger.onkeydown = (event) => onTriggerKeyDown(event, trigger, triggers);
+
+    trigger.addEventListener('click', () => {
+      const activeTriggerBtn = root.querySelector<HTMLButtonElement>('[aria-expanded="true"]');
+      const isNotActiveTriggerBtn = activeTriggerBtn !== triggerBtn;
+      if (root.dataset.type === 'single' && isNotActiveTriggerBtn) collapseAll(triggers, contents);
+      toggle(triggerBtn, content);
+    });
+
+    trigger.addEventListener('keydown', (event) => {
+      if (/^(ArrowDown|ArrowUp|Home|End)$/.test(event.key)) event.preventDefault();
+      // prettier-ignore
+      switch (event.key) {
+        case 'ArrowUp': return (getTriggerBtn(triggers[index - 1]) ?? getTriggerBtn(triggers[triggers.length - 1])).focus();
+        case 'ArrowDown':  return (getTriggerBtn(triggers[index + 1]) ?? getTriggerBtn(triggers[0])).focus();
+        case 'Home': return getTriggerBtn(triggers[0]).focus();
+        case 'End': return getTriggerBtn(triggers[triggers.length - 1]).focus();
+        default: return;
+      }
+    });
   });
 });
 
-const onTriggerClick = (trigger: Trigger, contents: Array<Content>, type: Type) => {
-  contents.forEach((content) => {
-    if (trigger.dataset.trigger === content.dataset.content) toggle(trigger, content);
-    else if (type === 'single') {
-      const _trigger = document.querySelector(`[data-trigger="${content.dataset.content}"]`);
-      if (_trigger) toggle(_trigger as HTMLButtonElement, content, false);
-    }
-  });
-};
+function getTriggerBtn(trigger?: HTMLHeadingElement) {
+  return trigger?.firstElementChild as HTMLButtonElement;
+}
 
-const onTriggerKeyDown = (event: KeyboardEvent, trigger: Trigger, triggers: Array<Trigger>) => {
-  if (/^(ArrowDown|ArrowUp|Home|End)$/.test(event.key)) event.preventDefault();
-  // prettier-ignore
-  switch (event.key) {
-    case 'ArrowDown': return (triggers[triggers.indexOf(trigger) + 1] ?? triggers[0])?.focus();
-    case 'ArrowUp': return (triggers[triggers.indexOf(trigger) - 1] ?? triggers[triggers.length - 1])?.focus();
-    case 'Home': return triggers[0]?.focus();
-    case 'End': return triggers[triggers.length - 1]?.focus();
-    default: return;
-  }
-};
+function toggle(triggerBtn: HTMLButtonElement, content: HTMLDivElement) {
+  const expanded = triggerBtn.getAttribute('aria-expanded') === 'true';
+  triggerBtn.setAttribute('aria-expanded', String(!expanded));
+  content.setAttribute('aria-hidden', String(expanded));
+}
 
-const toggle = (trigger: HTMLButtonElement, content: HTMLDivElement, override?: boolean) => {
-  const state = String(override ?? trigger.getAttribute('aria-expanded') !== 'true');
-  const height = content.firstElementChild?.getBoundingClientRect().height;
-
-  trigger.setAttribute('aria-expanded', state);
-  content.setAttribute('data-expanded', state);
-  content.style.setProperty('--expansion-height', `${height}px`);
-};
+function collapseAll(triggers: Array<HTMLHeadingElement>, contents: Array<HTMLDivElement>) {
+  triggers.forEach((trigger) => trigger.firstElementChild?.setAttribute('aria-expanded', 'false'));
+  contents.forEach((content) => content.setAttribute('aria-hidden', 'true'));
+}

@@ -1,4 +1,5 @@
 ---
+import * as Accordion from '@/components/ui/accordion';
 import Avatar from '@/components/ui/avatar.astro';
 import Badge from '@/components/ui/badge.astro';
 import Button from '@/components/ui/button.astro';
@@ -81,7 +82,34 @@ import {
       </ul>
     </div>
     <div class="flex flex-col gap-20">
-      <section><!-- Accordion --></section>
+      <section class="w-[60ch]">
+        <Accordion.Root type="single">
+          <Accordion.Trigger for="1">How does the free trial work?</Accordion.Trigger>
+          <Accordion.Content value="1">
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Officiis modi temporibus
+            repellendus corrupti delectus ex molestias facere cumque in consectetur? Dolorem quam
+            nam explicabo minima, voluptas tempore enim. Magni, molestiae.
+          </Accordion.Content>
+          <Accordion.Trigger for="2">How does adding and removing users work?</Accordion.Trigger>
+          <Accordion.Content value="2">
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Reiciendis expedita omnis
+            repellat, similique aspernatur enim ipsa id adipisci porro quae et unde ut laborum sit,
+            perferendis odit earum debitis assumenda.
+          </Accordion.Content>
+          <Accordion.Trigger for="3">Can I cancel my account?</Accordion.Trigger>
+          <Accordion.Content value="3">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum dignissimos cupiditate quia
+            odit distinctio unde perferendis. Vel nam maxime id, pariatur excepturi aliquam at
+            repudiandae unde iste? Totam, minus consectetur?
+          </Accordion.Content>
+          <Accordion.Trigger for="4">What are my payment options?</Accordion.Trigger>
+          <Accordion.Content value="4">
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptates debitis itaque
+            possimus fuga ipsum mollitia molestias sunt, officia aut ad consequuntur, excepturi,
+            assumenda sint reiciendis laboriosam cupiditate minima? Repellendus, eveniet.
+          </Accordion.Content>
+        </Accordion.Root>
+      </section>
       <section><!-- Alert Dialog --></section>
       <section class="flex flex-col gap-4">
         <div class="flex items-center gap-6">

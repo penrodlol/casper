@@ -3,21 +3,19 @@ import type { HTMLAttributes } from 'astro/types';
 import { ChevronDown } from 'lucide-astro';
 import { twMerge } from 'tailwind-merge';
 
-type Props = HTMLAttributes<'button'> & { for: string };
+type Props = HTMLAttributes<'button'> & { for: string; expanded?: boolean };
 
-const { class: className, for: htmlFor, ...props } = Astro.props;
+const { class: className, for: htmlFor, expanded, ...props } = Astro.props;
 ---
 
-<h3 class="flex">
+<h3 data-for={htmlFor}>
   <button
     {...props}
-    type="button"
-    data-trigger={htmlFor}
-    aria-expanded="false"
+    aria-expanded={expanded ? 'true' : 'false'}
     class={twMerge(
-      'group flex flex-1 items-center justify-between rounded py-4',
-      'disabled:cursor-not-allowed disabled:opacity-40',
-      'focus-visible:outline-none focus-visible:ring-2',
+      'group flex w-full cursor-pointer select-none list-none items-center justify-between rounded p-3 text-left',
+      'hover:bg-muted motion-safe:transition-colors',
+      'focus-visible:outline-none focus-visible:ring-1',
       className,
     )}
   >
@@ -25,7 +23,7 @@ const { class: className, for: htmlFor, ...props } = Astro.props;
     <ChevronDown
       size={16}
       aria-hidden
-      class="group-aria-expanded:rotate-180 motion-safe:transition-transform"
+      class="shrink-0 group-aria-expanded:rotate-180 motion-safe:transition-transform"
     />
   </button>
 </h3>

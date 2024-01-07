@@ -38,14 +38,6 @@ export default {
         danger: 'hsl(var(--danger))',
         success: 'hsl(var(--success))',
       },
-      keyframes: {
-        'expand-down': { from: { height: '0' }, to: { height: 'var(--expansion-height, 0)' } },
-        'expand-up': { from: { height: 'var(--expansion-height, 0)' }, to: { height: '0' } },
-      },
-      animation: {
-        'expand-down': 'expand-down 150ms cubic-bezier(0.4, 0, 0.2, 1)',
-        'expand-up': 'expand-up 150ms cubic-bezier(0.4, 0, 0.2, 1)',
-      },
     },
   },
   future: { hoverOnlyWhenSupported: true },
