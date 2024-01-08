@@ -7,6 +7,4 @@ type Props = HTMLAttributes<'div'>;
 const { class: className, ...props } = Astro.props;
 ---
 
-<div {...props} data-popover-content class={twMerge('overflow-hidden p-4', className)}>
-  <slot />
-</div>
+<div {...props} class={twMerge('overflow-hidden p-4', className)}><slot /></div>
