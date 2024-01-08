@@ -1,0 +1,23 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+import { X } from 'lucide-astro';
+import { twMerge } from 'tailwind-merge';
+import Button from '../../button.astro';
+
+type Props = HTMLAttributes<'div'>;
+
+const { class: className, ...props } = Astro.props;
+---
+
+<div {...props} class={twMerge('relative flex flex-col border-b p-4', className)}>
+  <slot />
+  <Button
+    slot="popover-close"
+    size="icon"
+    color="ghost"
+    aria-label="Close"
+    class="absolute right-0.5 top-0.5"
+  >
+    <X />
+  </Button>
+</div>

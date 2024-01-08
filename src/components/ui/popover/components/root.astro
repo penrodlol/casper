@@ -1,0 +1,29 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+import { twMerge } from 'tailwind-merge';
+
+type Props = HTMLAttributes<'div'> & { offset?: number };
+
+const { class: className, offset, ...props } = Astro.props;
+const id = crypto.randomUUID();
+---
+
+<script src="../script.ts"></script>
+
+<dialog
+  {...props}
+  data-popover={id}
+  data-offset={offset ?? 10}
+  class={twMerge(
+    'fixed left-[--left] top-[--top] m-0 w-80 rounded border bg text',
+    'outline-none backdrop:bg-transparent',
+    'animate-in motion-safe:fade-in-0 motion-safe:zoom-in-90',
+    className,
+  )}
+>
+  <slot />
+</dialog>
+
+<slot name="popover-trigger" />
+
+<output></output>
