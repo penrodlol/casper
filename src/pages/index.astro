@@ -1,5 +1,6 @@
 ---
 import * as Accordion from '@/components/ui/accordion';
+import * as AlertDialog from '@/components/ui/alert-dialog';
 import Avatar from '@/components/ui/avatar.astro';
 import Badge from '@/components/ui/badge.astro';
 import Button from '@/components/ui/button.astro';
@@ -58,7 +59,7 @@ import {
       <Separator class="mb-6 mt-2" />
       <ul class="flex flex-col gap-1">
         <Label><Checkbox checked disabled /> Accordion</Label>
-        <Label><Checkbox /> Alert Dialog</Label>
+        <Label><Checkbox checked disabled /> Alert Dialog</Label>
         <Label><Checkbox checked disabled /> Avatar</Label>
         <Label><Checkbox checked disabled /> Badge</Label>
         <Label><Checkbox checked disabled /> Button</Label>
@@ -117,7 +118,20 @@ import {
           </Accordion.Content>
         </Accordion.Root>
       </section>
-      <section><!-- Alert Dialog --></section>
+      <section>
+        <AlertDialog.Root>
+          <Button slot="alert-dialog-trigger">Delete account</Button>
+          <AlertDialog.Title>Are you absolutely sure?</AlertDialog.Title>
+          <AlertDialog.Description>
+            This action cannot be undone. This will permanently delete your account and remove your
+            data from our servers.
+          </AlertDialog.Description>
+          <AlertDialog.Footer>
+            <Button slot="alert-dialog-close" color="outline">Cancel</Button>
+            <Button slot="alert-dialog-close">Yes, delete account</Button>
+          </AlertDialog.Footer>
+        </AlertDialog.Root>
+      </section>
       <section class="flex flex-col gap-4">
         <div class="flex items-center gap-6">
           <Avatar src="/src/assets/astro.png" alt="CP" size="sm" />
