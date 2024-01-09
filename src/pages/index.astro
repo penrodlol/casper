@@ -20,6 +20,7 @@ import * as Table from '@/components/ui/table';
 import * as Tabs from '@/components/ui/tabs';
 import Textarea from '@/components/ui/textarea.astro';
 import * as Toast from '@/components/ui/toast';
+import Tooltip from '@/components/ui/tooltip.astro';
 import Layout from '@/layouts/index.astro';
 import {
   Archive,
@@ -28,10 +29,12 @@ import {
   BadgeAlert,
   Bell,
   Check,
+  Facebook,
   Folder,
   Heart,
   Image,
   Inbox,
+  Instagram,
   Loader,
   LogOut,
   Mail,
@@ -42,12 +45,14 @@ import {
   Settings2,
   Tag,
   Trash,
+  Twitter,
   User,
+  Youtube,
 } from 'lucide-astro';
 ---
 
 <Layout>
-  <div class="mx-auto mt-24 grid max-w-screen-xl grid-cols-[auto_1fr] items-start gap-40">
+  <div class="mx-auto my-24 grid max-w-screen-xl grid-cols-[auto_1fr] items-start gap-40">
     <div class="sticky top-24 rounded border px-6 py-4">
       <h1 class="font-semibold tracking-widest">COMPONENTS</h1>
       <Separator class="mb-6 mt-2" />
@@ -462,7 +467,20 @@ import {
         </Toast.Root>
       </section>
       <section><!-- Toggle Group --></section>
-      <section><!-- Tooltip --></section>
+      <section class="flex items-center gap-6">
+        <Tooltip position="top" value="Follow on Twitter">
+          <Button size="icon" color="outline"><Twitter /></Button>
+        </Tooltip>
+        <Tooltip position="bottom" value="Follow on Instagram">
+          <Button size="icon" color="outline"><Instagram /></Button>
+        </Tooltip>
+        <Tooltip position="left" value="Follow on Facebook">
+          <Button size="icon" color="outline"><Facebook /></Button>
+        </Tooltip>
+        <Tooltip position="right" value="Subscribe to Youtube">
+          <Button size="icon" color="outline"><Youtube /></Button>
+        </Tooltip>
+      </section>
     </div>
   </div>
 </Layout>

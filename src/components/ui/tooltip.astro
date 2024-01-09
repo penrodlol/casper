@@ -1,0 +1,53 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+import { twMerge } from 'tailwind-merge';
+import { tv, type VariantProps } from 'tailwind-variants';
+
+const variants = tv({
+  base:
+    'absolute z-50 w-max bg border rounded px-2 py-1 hidden group-hover:block has-[+button:focus-visible]:block ' +
+    'animate-in motion-safe:fade-in-0 motion-safe:zoom-in-90',
+  defaultVariants: { position: 'top' },
+  variants: {
+    position: {
+      top:
+        'bottom-[calc(100%+var(--offset))] left-1/2 -translate-x-1/2 motion-safe:slide-in-from-left-1/2 ' +
+        'after:absolute after:content-[""] after:inset-x-0 after:top-full after:h-[calc(var(--offset)+1px)]',
+      bottom:
+        'top-[calc(100%+var(--offset))] left-1/2 -translate-x-1/2 motion-safe:slide-in-from-left-1/2 ' +
+        'after:absolute after:content-[""] after:inset-x-0 after:bottom-full after:h-[calc(var(--offset)+1px)]',
+      left:
+        'right-[calc(100%+var(--offset))] top-1/2 -translate-y-1/2 motion-safe:slide-in-from-top-1/2 ' +
+        'after:absolute after:content-[""] after:inset-y-0 after:left-full after:w-[calc(var(--offset)+1px)]',
+      right:
+        'left-[calc(100%+var(--offset))] top-1/2 -translate-y-1/2 motion-safe:slide-in-from-top-1/2 ' +
+        'after:absolute after:content-[""] after:inset-y-0 after:right-full after:w-[calc(var(--offset)+1px)]',
+    },
+  },
+});
+
+type Props = HTMLAttributes<'div'> & {
+  value: string;
+  offset?: number;
+} & VariantProps<typeof variants>;
+
+const { class: className, value, offset, position, ...props } = Astro.props;
+---
+
+<div
+  class="group relative"
+  style={{ '--offset': `${offset ?? 10}px` }}
+  onmouseenter="this.lastElementChild.setAttribute('aria-describedby', this.firstElementChild.id)"
+  onmouseleave="this.lastElementChild.removeAttribute('aria-describedby')"
+>
+  <div
+    {...props}
+    role="tooltip"
+    id={crypto.randomUUID()}
+    class={twMerge(variants({ position }), className)}
+  >
+    {value}
+  </div>
+
+  <slot />
+</div>
