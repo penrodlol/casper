@@ -1,0 +1,27 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+import { ChevronRight } from 'lucide-astro';
+import { twMerge } from 'tailwind-merge';
+
+type Props = HTMLAttributes<'a'>;
+
+const { class: className, ...props } = Astro.props;
+const current = Astro.url.pathname === props.href;
+---
+
+<li class="group flex shrink-0 items-center">
+  <ChevronRight size={14} aria-hidden class="mx-2 shrink-0 text-muted group-first:hidden" />
+  <a
+    {...props}
+    aria-current={current ? 'page' : undefined}
+    class={twMerge(
+      'cursor-pointer rounded py-1 hover:text motion-safe:transition-colors',
+      'disabled:cursor-not-allowed disabled:opacity-50',
+      'focus-visible:outline-none focus-visible:ring-1',
+      current ? 'text' : 'text-muted',
+      className,
+    )}
+  >
+    <slot />
+  </a>
+</li>

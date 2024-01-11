@@ -3,6 +3,7 @@ import * as Accordion from '@/components/ui/accordion';
 import * as AlertDialog from '@/components/ui/alert-dialog';
 import Avatar from '@/components/ui/avatar.astro';
 import Badge from '@/components/ui/badge.astro';
+import * as Breadcrumbs from '@/components/ui/breadcrumbs';
 import Button from '@/components/ui/button.astro';
 import Checkbox from '@/components/ui/checkbox.astro';
 import * as Dialog from '@/components/ui/dialog';
@@ -33,6 +34,7 @@ import {
   Facebook,
   Folder,
   Heart,
+  Home,
   Image,
   Inbox,
   Instagram,
@@ -62,16 +64,20 @@ import {
         <Label><Checkbox checked disabled /> Alert Dialog</Label>
         <Label><Checkbox checked disabled /> Avatar</Label>
         <Label><Checkbox checked disabled /> Badge</Label>
+        <Label><Checkbox checked disabled /> Breadcrumbs</Label>
         <Label><Checkbox checked disabled /> Button</Label>
-        <Label><Checkbox /> Card</Label>
+        <Label><Checkbox /> Carousel</Label>
         <Label><Checkbox checked disabled /> Checkbox</Label>
+        <Label><Checkbox /> Collapsible</Label>
         <Label><Checkbox checked disabled /> Dialog</Label>
         <Label><Checkbox checked disabled /> Drawer</Label>
         <Label><Checkbox /> Dropdown Menu</Label>
+        <Label><Checkbox /> Fieldset</Label>
         <Label><Checkbox checked disabled /> Input</Label>
         <Label><Checkbox checked disabled /> Label</Label>
         <Label><Checkbox /> Menubar</Label>
         <Label><Checkbox checked disabled /> Navigation Menu</Label>
+        <Label><Checkbox /> Pagination</Label>
         <Label><Checkbox checked disabled /> Popover</Label>
         <Label><Checkbox checked disabled /> Progress</Label>
         <Label><Checkbox checked disabled /> Radial Progress</Label>
@@ -156,6 +162,14 @@ import {
           <Badge>99+</Badge>
         </div>
       </section>
+      <section>
+        <Breadcrumbs.Root>
+          <Breadcrumbs.Item href="/-"><Home size={16} /></Breadcrumbs.Item>
+          <Breadcrumbs.Item href="/-">Products</Breadcrumbs.Item>
+          <Breadcrumbs.Item href="/-">Shoes</Breadcrumbs.Item>
+          <Breadcrumbs.Item href="/">Running Shoes</Breadcrumbs.Item>
+        </Breadcrumbs.Root>
+      </section>
       <section class="flex flex-col gap-6">
         <div class="flex flex-wrap items-center gap-4">
           <Button color="primary">Button</Button>
@@ -181,8 +195,8 @@ import {
           <Button disabled><Loader size={16} class="mr-2 animate-spin" /> Loading</Button>
         </div>
       </section>
-      <section><!-- Card --></section>
-      <section><!-- Checkbox --></section>
+      <section><!-- Carousel --></section>
+      <section><!-- Collapsible --></section>
       <section>
         <Dialog.Root>
           <Button slot="dialog-trigger">Edit Profile</Button>
@@ -240,13 +254,13 @@ import {
         </Drawer.Root>
       </section>
       <section><!-- Dropdown Menu --></section>
+      <section><!-- Fieldset --></section>
       <section class="flex w-80 flex-col gap-6">
         <Input placeholder="Enter your name..." />
         <Input disabled placeholder="Enter your name..." />
         <Input type="file"><Image size={14} slot="prefix" /></Input>
         <Input placeholder="Enter current weight..."><span slot="suffix">kg</span></Input>
       </section>
-      <section><!-- Label --></section>
       <section><!-- Menubar --></section>
       <section>
         <NavigationMenu.Root>
@@ -301,6 +315,7 @@ import {
           <NavigationMenu.Link href="/">Documentation</NavigationMenu.Link>
         </NavigationMenu.Root>
       </section>
+      <section><!-- Pagination --></section>
       <section>
         <Popover.Root>
           <Button size="icon" slot="popover-trigger"><Settings2 size={14} /></Button>
