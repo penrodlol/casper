@@ -1,0 +1,27 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+import { ChevronRight } from 'lucide-astro';
+import { twMerge } from 'tailwind-merge';
+
+type Props = HTMLAttributes<'a'> & { disabled?: boolean };
+
+const { class: className, disabled, ...props } = Astro.props;
+---
+
+<li>
+  <a
+    {...props}
+    aria-disabled={disabled}
+    aria-label="Next page"
+    class={twMerge(
+      'ml-2.5 flex items-center justify-center gap-1 rounded',
+      'aria-disabled:cursor-not-allowed aria-disabled:opacity-50',
+      'hover:bg-primary/20 aria-disabled:hover:bg-transparent',
+      'motion-safe:transition-colors',
+      className,
+    )}
+  >
+    <span>Next</span>
+    <ChevronRight size={14} class="text-muted" aria-hidden />
+  </a>
+</li>

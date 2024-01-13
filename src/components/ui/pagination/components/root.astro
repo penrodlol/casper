@@ -1,0 +1,21 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+import { twMerge } from 'tailwind-merge';
+import { tv, type VariantProps } from 'tailwind-variants';
+
+const variants = tv({
+  base: 'flex list-none items-center gap-1',
+  variants: {
+    type: {
+      default: '[&_a]:px-3 [&_a]:py-1',
+      icons: '[&_a]:h-8 [&_a]:w-8 [&_a_span]:hidden',
+    },
+  },
+});
+
+type Props = HTMLAttributes<'nav'> & VariantProps<typeof variants>;
+
+const { class: className, type, ...props } = Astro.props;
+---
+
+<nav {...props}><ol class={twMerge(variants({ type }), className)}><slot /></ol></nav>

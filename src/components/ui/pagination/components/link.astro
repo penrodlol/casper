@@ -1,0 +1,24 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+import { twMerge } from 'tailwind-merge';
+
+type Props = HTMLAttributes<'a'>;
+
+const { class: className, ...props } = Astro.props;
+const current = Astro.url.pathname === props.href;
+---
+
+<li>
+  <a
+    {...props}
+    aria-current={current ? 'page' : undefined}
+    aria-label={`Page ${await Astro.slots.render('default')}`}
+    class={twMerge(
+      'flex rounded px-3 py-1 hover:bg-primary/20 motion-safe:transition-colors',
+      current && 'bg-primary/20',
+      className,
+    )}
+  >
+    <slot />
+  </a>
+</li>

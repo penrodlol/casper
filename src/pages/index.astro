@@ -12,6 +12,7 @@ import * as Drawer from '@/components/ui/drawer';
 import Input from '@/components/ui/input.astro';
 import Label from '@/components/ui/label.astro';
 import * as NavigationMenu from '@/components/ui/navigation-menu';
+import * as Pagination from '@/components/ui/pagination';
 import * as Popover from '@/components/ui/popover';
 import Progress from '@/components/ui/progress.astro';
 import RadialProgress from '@/components/ui/radial-progress.astro';
@@ -78,7 +79,7 @@ import {
         <Label><Checkbox checked disabled /> Label</Label>
         <Label><Checkbox /> Menubar</Label>
         <Label><Checkbox checked disabled /> Navigation Menu</Label>
-        <Label><Checkbox /> Pagination</Label>
+        <Label><Checkbox checked disabled /> Pagination</Label>
         <Label><Checkbox checked disabled /> Popover</Label>
         <Label><Checkbox checked disabled /> Progress</Label>
         <Label><Checkbox checked disabled /> Radial Progress</Label>
@@ -345,7 +346,30 @@ import {
           <NavigationMenu.Link href="/">Documentation</NavigationMenu.Link>
         </NavigationMenu.Root>
       </section>
-      <section><!-- Pagination --></section>
+      <section class="flex flex-col gap-10">
+        <Pagination.Root type="default">
+          <Pagination.Previous href="#" />
+          <Pagination.Link href="#">1</Pagination.Link>
+          <Pagination.Link href="#">2</Pagination.Link>
+          <Pagination.Link href="/">3</Pagination.Link>
+          <Pagination.Link href="#">4</Pagination.Link>
+          <Pagination.Ellipsis />
+          <Pagination.Link href="#">65</Pagination.Link>
+          <Pagination.Link href="#">66</Pagination.Link>
+          <Pagination.Next href="#" />
+        </Pagination.Root>
+        <Pagination.Root type="icons">
+          <Pagination.Start href="#" />
+          <Pagination.Previous href="#" />
+          <Pagination.Link href="/">1</Pagination.Link>
+          <Pagination.Link href="#">2</Pagination.Link>
+          <Pagination.Link href="#">3</Pagination.Link>
+          <Pagination.Link href="#">4</Pagination.Link>
+          <Pagination.Ellipsis />
+          <Pagination.Next href="#" />
+          <Pagination.End href="#" />
+        </Pagination.Root>
+      </section>
       <section>
         <Popover.Root>
           <Button size="icon" slot="popover-trigger"><Settings2 size={14} /></Button>
