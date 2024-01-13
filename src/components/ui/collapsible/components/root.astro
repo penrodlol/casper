@@ -1,0 +1,27 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+import { twMerge } from 'tailwind-merge';
+import { tv, type VariantProps } from 'tailwind-variants';
+
+const variants = tv({
+  base: 'group flex',
+  defaultVariants: { direction: 'bottom' },
+  variants: { direction: { top: 'flex-col-reverse', bottom: 'flex-col' } },
+});
+
+type Props = HTMLAttributes<'div'> & { open?: boolean } & VariantProps<typeof variants>;
+
+const { class: className, open, direction, ...props } = Astro.props;
+---
+
+<script src="../script.ts"></script>
+
+<div
+  {...props}
+  data-collapsible
+  data-state={open ? 'open' : 'closed'}
+  class={twMerge(variants({ direction }), className)}
+>
+  <slot name="collapsible-trigger" />
+  <slot />
+</div>

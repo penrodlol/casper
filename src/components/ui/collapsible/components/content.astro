@@ -1,0 +1,21 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+import { twMerge } from 'tailwind-merge';
+
+type Props = HTMLAttributes<'div'>;
+
+const { class: className, ...props } = Astro.props;
+---
+
+<div
+  {...props}
+  id={crypto.randomUUID()}
+  data-collapsible-content
+  class={twMerge(
+    'grid grid-rows-[1fr] group-data-[state=closed]:grid-rows-[0fr]',
+    'animate-in motion-safe:transition-[grid-template-rows_200ms] motion-safe:fade-in-0',
+    className,
+  )}
+>
+  <div class="overflow-hidden"><slot /></div>
+</div>

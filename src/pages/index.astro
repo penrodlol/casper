@@ -6,6 +6,7 @@ import Badge from '@/components/ui/badge.astro';
 import * as Breadcrumbs from '@/components/ui/breadcrumbs';
 import Button from '@/components/ui/button.astro';
 import Checkbox from '@/components/ui/checkbox.astro';
+import * as Collapsible from '@/components/ui/collapsible';
 import * as Dialog from '@/components/ui/dialog';
 import * as Drawer from '@/components/ui/drawer';
 import Input from '@/components/ui/input.astro';
@@ -196,7 +197,36 @@ import {
         </div>
       </section>
       <section><!-- Carousel --></section>
-      <section><!-- Collapsible --></section>
+      <section class="flex w-[500px] flex-col gap-10">
+        <div class="flex gap-10">
+          <Collapsible.Root direction="bottom">
+            <Button slot="collapsible-trigger" color="ghost" class="gap-3">
+              <Separator class="shrink" />Show Details<Separator class="shrink" />
+            </Button>
+            <Collapsible.Content>
+              <div class="mt-4 text-pretty">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam officia alias
+                voluptatibus repudiandae error itaque asperiores voluptas! Ducimus, provident!
+                Perspiciatis ducimus sequi asperiores sapiente unde illum nulla non blanditiis
+                magnam!
+              </div>
+            </Collapsible.Content>
+          </Collapsible.Root>
+          <Collapsible.Root direction="top">
+            <Button slot="collapsible-trigger" color="ghost" class="gap-3">
+              <Separator class="shrink" />Show Details<Separator class="shrink" />
+            </Button>
+            <Collapsible.Content>
+              <div class="mb-4 text-pretty">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam officia alias
+                voluptatibus repudiandae error itaque asperiores voluptas! Ducimus, provident!
+                Perspiciatis ducimus sequi asperiores sapiente unde illum nulla non blanditiis
+                magnam!
+              </div>
+            </Collapsible.Content>
+          </Collapsible.Root>
+        </div>
+      </section>
       <section>
         <Dialog.Root>
           <Button slot="dialog-trigger">Edit Profile</Button>
