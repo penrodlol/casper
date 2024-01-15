@@ -5,6 +5,7 @@ import Avatar from '@/components/ui/avatar.astro';
 import Badge from '@/components/ui/badge.astro';
 import * as Breadcrumbs from '@/components/ui/breadcrumbs';
 import Button from '@/components/ui/button.astro';
+import * as Carousel from '@/components/ui/carousel';
 import Checkbox from '@/components/ui/checkbox.astro';
 import * as Collapsible from '@/components/ui/collapsible';
 import * as Dialog from '@/components/ui/dialog';
@@ -68,7 +69,7 @@ import {
         <Label><Checkbox checked disabled /> Badge</Label>
         <Label><Checkbox checked disabled /> Breadcrumbs</Label>
         <Label><Checkbox checked disabled /> Button</Label>
-        <Label><Checkbox /> Carousel</Label>
+        <Label><Checkbox checked disabled /> Carousel</Label>
         <Label><Checkbox checked disabled /> Checkbox</Label>
         <Label><Checkbox /> Collapsible</Label>
         <Label><Checkbox checked disabled /> Dialog</Label>
@@ -197,7 +198,30 @@ import {
           <Button disabled><Loader size={16} class="mr-2 animate-spin" /> Loading</Button>
         </div>
       </section>
-      <section><!-- Carousel --></section>
+      <section class="flex max-w-max flex-col items-center gap-16">
+        <Carousel.Root orientation="horizontal">
+          <Carousel.Previous />
+          <Carousel.Slides class="h-32 w-96 text-lg">
+            <Carousel.Slide class="flex items-center justify-center bg-muted">1</Carousel.Slide>
+            <Carousel.Slide class="flex items-center justify-center bg-muted">2</Carousel.Slide>
+            <Carousel.Slide class="flex items-center justify-center bg-muted">3</Carousel.Slide>
+            <Carousel.Slide class="flex items-center justify-center bg-muted">4</Carousel.Slide>
+            <Carousel.Slide class="flex items-center justify-center bg-muted">5</Carousel.Slide>
+          </Carousel.Slides>
+          <Carousel.Next />
+        </Carousel.Root>
+        <Carousel.Root orientation="vertical" loop>
+          <Carousel.Previous />
+          <Carousel.Slides class="h-48 w-96 text-lg">
+            <Carousel.Slide class="flex items-center justify-center bg-muted">1</Carousel.Slide>
+            <Carousel.Slide class="flex items-center justify-center bg-muted">2</Carousel.Slide>
+            <Carousel.Slide class="flex items-center justify-center bg-muted">3</Carousel.Slide>
+            <Carousel.Slide class="flex items-center justify-center bg-muted">4</Carousel.Slide>
+            <Carousel.Slide class="flex items-center justify-center bg-muted">5</Carousel.Slide>
+          </Carousel.Slides>
+          <Carousel.Next />
+        </Carousel.Root>
+      </section>
       <section class="flex w-[500px] flex-col gap-10">
         <div class="flex gap-10">
           <Collapsible.Root direction="bottom">

@@ -1,0 +1,21 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+import { ChevronDown, ChevronRight } from 'lucide-astro';
+import { twMerge } from 'tailwind-merge';
+import { tv, type VariantProps } from 'tailwind-variants';
+import { variants as buttonVariants } from '../../button.astro';
+
+const variants = tv({
+  extend: buttonVariants,
+  defaultVariants: { size: 'icon', color: 'outline' },
+});
+
+type Props = HTMLAttributes<'button'> & VariantProps<typeof variants>;
+
+const { class: className, size, color, ...props } = Astro.props;
+---
+
+<button {...props} aria-label="Next" class={twMerge(variants({ size, color }), className)}>
+  <ChevronRight class="group-data-[orientation=vertical]:hidden" />
+  <ChevronDown class="group-data-[orientation=horizontal]:hidden" />
+</button>

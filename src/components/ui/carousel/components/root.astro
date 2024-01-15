@@ -1,0 +1,32 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+import { twMerge } from 'tailwind-merge';
+
+type Props = HTMLAttributes<'section'> & {
+  orientation?: 'horizontal' | 'vertical';
+  loop?: boolean;
+  autoPlay?: boolean;
+  autoPlayInterval?: number;
+};
+
+const { class: className, orientation, loop, autoPlay, autoPlayInterval, ...props } = Astro.props;
+---
+
+<script src="../script.ts"></script>
+
+<section
+  {...props}
+  data-carousel
+  data-orientation={orientation ?? 'horizontal'}
+  data-loop={loop ? 'true' : 'false'}
+  data-autoplay={autoPlay ? 'true' : 'false'}
+  data-autoplay-interval={autoPlay ? autoPlayInterval ?? 4000 : undefined}
+  aria-roledescription="carousel"
+  class={twMerge(
+    'group inline-flex max-w-max items-center gap-4 *:shrink-0',
+    orientation === 'vertical' && 'flex-col',
+    className,
+  )}
+>
+  <slot />
+</section>

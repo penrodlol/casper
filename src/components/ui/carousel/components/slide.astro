@@ -1,0 +1,31 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+import { twJoin, twMerge } from 'tailwind-merge';
+
+type Props = HTMLAttributes<'li'> & { defaultActive?: boolean };
+
+const { class: className, defaultActive, ...props } = Astro.props;
+---
+
+<li
+  {...props}
+  role="group"
+  data-state={defaultActive ? 'active' : 'inactive'}
+  aria-roledescription="slide"
+  class={twJoin(
+    'absolute flex items-center justify-center',
+    'group-data-[orientation=horizontal]:inset-y-0 group-data-[orientation=horizontal]:w-full',
+    'group-data-[orientation=vertical]:inset-x-0 group-data-[orientation=vertical]:h-full',
+  )}
+>
+  <div
+    class={twMerge(
+      'rounded border [&_img]:size-full [&_img]:rounded [&_img]:object-cover',
+      'group-data-[orientation=horizontal]:h-full group-data-[orientation=horizontal]:w-[calc(100%-1rem)]',
+      'group-data-[orientation=vertical]:h-[calc(100%-1rem)] group-data-[orientation=vertical]:w-full',
+      className,
+    )}
+  >
+    <slot />
+  </div>
+</li>
