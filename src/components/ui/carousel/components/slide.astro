@@ -2,12 +2,12 @@
 import type { HTMLAttributes } from 'astro/types';
 import { twJoin, twMerge } from 'tailwind-merge';
 
-type Props = HTMLAttributes<'li'> & { defaultActive?: boolean };
+type Props = HTMLAttributes<'div'> & { defaultActive?: boolean };
 
 const { class: className, defaultActive, ...props } = Astro.props;
 ---
 
-<li
+<div
   {...props}
   role="group"
   data-state={defaultActive ? 'active' : 'inactive'}
@@ -28,4 +28,4 @@ const { class: className, defaultActive, ...props } = Astro.props;
   >
     <slot />
   </div>
-</li>
+</div>

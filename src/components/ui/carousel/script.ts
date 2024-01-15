@@ -1,12 +1,10 @@
 import { onAstroPageLoad } from '@/libs/astro';
 
 export type Orientation = 'horizontal' | 'vertical';
-type SlidesWrapper = HTMLUListElement;
-type Slide = HTMLLIElement;
 
 onAstroPageLoad<HTMLDivElement>('[data-carousel]', (carousel) => {
-  const slidesWrapper = carousel.querySelector<SlidesWrapper>('ul');
-  const slides = slidesWrapper?.querySelectorAll<Slide>('li');
+  const slidesWrapper = carousel.querySelector<HTMLDivElement>('div[data-accordion-slides]');
+  const slides = slidesWrapper?.querySelectorAll<HTMLDivElement>('div[aria-roledescription=slide]');
   const prevTrigger = carousel.querySelector<HTMLButtonElement>('button[aria-label="Previous"]');
   const nextTrigger = carousel.querySelector<HTMLButtonElement>('button[aria-label="Next"]');
   if (!slidesWrapper || !slides || !prevTrigger || !nextTrigger) return;
@@ -62,21 +60,26 @@ onAstroPageLoad<HTMLDivElement>('[data-carousel]', (carousel) => {
   }
 });
 
-function getCurrentSlide(wrapper: SlidesWrapper) {
-  return wrapper.querySelector('[data-state="active"]') as Slide;
+function getCurrentSlide(wrapper: HTMLDivElement) {
+  return wrapper.querySelector('[data-state="active"]') as HTMLDivElement;
 }
 
-function getNextSlide(wrapper: SlidesWrapper, current: Slide, loop: boolean) {
-  if (!loop) return current.nextElementSibling as Slide | undefined;
-  return (current?.nextElementSibling ?? wrapper.firstElementChild) as Slide;
+function getNextSlide(wrapper: HTMLDivElement, current: HTMLDivElement, loop: boolean) {
+  if (!loop) return current.nextElementSibling as HTMLDivElement | undefined;
+  return (current?.nextElementSibling ?? wrapper.firstElementChild) as HTMLDivElement;
 }
 
-function getPrevSlide(wrapper: SlidesWrapper, current: Slide, loop: boolean) {
-  if (!loop) return current.previousElementSibling as Slide | undefined;
-  return (current.previousElementSibling ?? wrapper.lastElementChild) as Slide;
+function getPrevSlide(wrapper: HTMLDivElement, current: HTMLDivElement, loop: boolean) {
+  if (!loop) return current.previousElementSibling as HTMLDivElement | undefined;
+  return (current.previousElementSibling ?? wrapper.lastElementChild) as HTMLDivElement;
 }
 
-function setSlide(wrapper: SlidesWrapper, current: Slide, target: Slide, orientation: Orientation) {
+function setSlide(
+  wrapper: HTMLDivElement,
+  current: HTMLDivElement,
+  target: HTMLDivElement,
+  orientation: Orientation,
+) {
   const position = orientation === 'horizontal' ? target.style.left : target.style.top;
   const axis = orientation === 'horizontal' ? 'X' : 'Y';
   current.setAttribute('data-state', 'inactive');

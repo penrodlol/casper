@@ -2,15 +2,16 @@
 import type { HTMLAttributes } from 'astro/types';
 import { twMerge } from 'tailwind-merge';
 
-type Props = HTMLAttributes<'ul'>;
+type Props = HTMLAttributes<'div'>;
 
 const { class: className, ...props } = Astro.props;
 ---
 
 <div class="size-max overflow-hidden">
-  <ul
+  <div
     {...props}
     id={crypto.randomUUID()}
+    data-accordion-slides
     class={twMerge(
       'relative size-full list-none motion-safe:animate-in',
       'motion-safe:transition-transform motion-safe:duration-300',
@@ -18,5 +19,5 @@ const { class: className, ...props } = Astro.props;
     )}
   >
     <slot />
-  </ul>
+  </div>
 </div>
