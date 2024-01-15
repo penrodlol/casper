@@ -2,7 +2,7 @@ import { onAstroPageLoad } from '@/libs/astro';
 
 export type Orientation = 'horizontal' | 'vertical';
 
-onAstroPageLoad<HTMLDivElement>('[data-carousel]', (carousel) => {
+onAstroPageLoad<HTMLElement>('[data-carousel]', (carousel) => {
   const slidesWrapper = carousel.querySelector<HTMLDivElement>('div[data-accordion-slides]');
   const slides = slidesWrapper?.querySelectorAll<HTMLDivElement>('div[aria-roledescription=slide]');
   const prevTrigger = carousel.querySelector<HTMLButtonElement>('button[aria-label="Previous"]');
