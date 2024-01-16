@@ -25,14 +25,19 @@ import * as Table from '@/components/ui/table';
 import * as Tabs from '@/components/ui/tabs';
 import Textarea from '@/components/ui/textarea.astro';
 import * as Toast from '@/components/ui/toast';
+import Toggle from '@/components/ui/toggle.astro';
 import Tooltip from '@/components/ui/tooltip.astro';
 import Layout from '@/layouts/index.astro';
 import {
+  AlignCenter,
+  AlignLeft,
+  AlignRight,
   Archive,
   ArrowDown,
   ArrowUp,
   BadgeAlert,
   Bell,
+  Bold,
   Check,
   Facebook,
   Folder,
@@ -41,6 +46,7 @@ import {
   Image,
   Inbox,
   Instagram,
+  Italic,
   Loader,
   LogOut,
   Mail,
@@ -52,6 +58,7 @@ import {
   Tag,
   Trash,
   Twitter,
+  Underline,
   User,
   Youtube,
 } from 'lucide-astro';
@@ -95,7 +102,7 @@ import {
         <Label><Checkbox checked disabled /> Table</Label>
         <Label><Checkbox checked disabled /> Textarea</Label>
         <Label><Checkbox /> Toast</Label>
-        <Label><Checkbox /> Toggle Group</Label>
+        <Label><Checkbox checked disabled /> Toggle</Label>
         <Label><Checkbox /> Tooltip</Label>
       </ul>
     </div>
@@ -575,7 +582,59 @@ import {
           <Toast.Description>Trip to the moon could not be booked.</Toast.Description>
         </Toast.Root>
       </section>
-      <section><!-- Toggle Group --></section>
+      <section class="flex flex-col gap-6">
+        <div class="flex items-center gap-12">
+          <fieldset class="inline-flex items-center gap-0.5">
+            <Toggle name="bold" size="sm"><Bold /></Toggle>
+            <Toggle name="italic" size="sm"><Italic /></Toggle>
+            <Toggle name="underline" size="sm"><Underline /></Toggle>
+          </fieldset>
+          <fieldset class="inline-flex items-center gap-0.5">
+            <Toggle name="bold" size="md"><Bold /></Toggle>
+            <Toggle name="italic" size="md"><Italic /></Toggle>
+            <Toggle name="underline" size="md"><Underline /></Toggle>
+          </fieldset>
+          <fieldset class="inline-flex items-center gap-0.5">
+            <Toggle name="bold" size="lg"><Bold /></Toggle>
+            <Toggle name="italic" size="lg"><Italic /></Toggle>
+            <Toggle name="underline" size="lg"><Underline /></Toggle>
+          </fieldset>
+        </div>
+        <div class="flex items-center gap-12">
+          <fieldset class="inline-flex items-center gap-0.5">
+            <Toggle name="bold" size="sm" color="outline"><Bold /></Toggle>
+            <Toggle name="italic" size="sm" color="outline"><Italic /></Toggle>
+            <Toggle name="underline" size="sm" color="outline"><Underline /></Toggle>
+          </fieldset>
+          <fieldset class="inline-flex items-center gap-0.5">
+            <Toggle name="bold" size="md" color="outline"><Bold /></Toggle>
+            <Toggle name="italic" size="md" color="outline"><Italic /></Toggle>
+            <Toggle name="underline" size="md" color="outline"><Underline /></Toggle>
+          </fieldset>
+          <fieldset class="inline-flex items-center gap-0.5">
+            <Toggle name="bold" size="lg" color="outline"><Bold /></Toggle>
+            <Toggle name="italic" size="lg" color="outline"><Italic /></Toggle>
+            <Toggle name="underline" size="lg" color="outline"><Underline /></Toggle>
+          </fieldset>
+        </div>
+        <div class="flex items-center gap-12">
+          <fieldset class="inline-flex items-center gap-0.5">
+            <Toggle name="bold"><Bold /> Bold</Toggle>
+            <Toggle name="italic"><Italic /> Italic</Toggle>
+            <Toggle name="underline"><Underline /> Underline</Toggle>
+          </fieldset>
+          <fieldset class="inline-flex items-center gap-0.5">
+            <Toggle name="bold" color="outline"><Bold /> Bold</Toggle>
+            <Toggle name="italic" color="outline"><Italic /> Italic</Toggle>
+            <Toggle name="underline" color="outline"><Underline /> Underline</Toggle>
+          </fieldset>
+        </div>
+        <fieldset class="inline-flex items-center gap-0.5">
+          <Toggle name="align" value="left" type="radio"><AlignLeft /></Toggle>
+          <Toggle name="align" value="center" type="radio"><AlignCenter /></Toggle>
+          <Toggle name="align" value="right" type="radio"><AlignRight /></Toggle>
+        </fieldset>
+      </section>
       <section class="flex items-center gap-6">
         <Tooltip position="top" value="Follow on Twitter">
           <Button size="icon" color="outline"><Twitter /></Button>

@@ -1,0 +1,36 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+import { twMerge } from 'tailwind-merge';
+import { tv, type VariantProps } from 'tailwind-variants';
+
+const variants = tv({
+  base:
+    'relative inline-flex items-center justify-center rounded gap-2 ' +
+    'motion-safe:transition-colors has-[input:checked]:bg-primary/20 ' +
+    'has-[input:focus-visible]:ring-1 has-[input:disabled]:opacity-50 ' +
+    'hover:has-[input:not([disabled])]:bg-primary/20',
+  defaultVariants: { color: 'ghost', size: 'md' },
+  variants: {
+    color: { ghost: 'bg-transparent', outline: 'border' },
+    size: {
+      sm: 'h-6 px-1.5 [&_svg]:size-3',
+      md: 'h-7 px-2 [&_svg]:size-3.5',
+      lg: 'h-9 px-3 [&_svg]:size-4',
+    },
+  },
+});
+
+type Props = Omit<HTMLAttributes<'input'>, 'type'> &
+  VariantProps<typeof variants> & { type?: 'checkbox' | 'radio' };
+
+const { class: className, type, color, size, ...props } = Astro.props;
+---
+
+<div class={twMerge(variants({ color, size }), className)}>
+  <input
+    {...props}
+    type={type ?? 'checkbox'}
+    class="absolute inset-0 cursor-pointer appearance-none outline-none disabled:cursor-not-allowed"
+  />
+  <slot />
+</div>
