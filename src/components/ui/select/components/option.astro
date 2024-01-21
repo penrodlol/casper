@@ -3,9 +3,9 @@ import type { HTMLAttributes } from 'astro/types';
 import { Check } from 'lucide-astro';
 import { twMerge } from 'tailwind-merge';
 
-type Props = HTMLAttributes<'div'> & { value: string; selected?: boolean };
+type Props = HTMLAttributes<'div'> & { value: string; selected?: boolean; disabled?: boolean };
 
-const { class: className, value, selected, ...props } = Astro.props;
+const { class: className, value, selected, disabled, ...props } = Astro.props;
 ---
 
 <div
@@ -14,10 +14,12 @@ const { class: className, value, selected, ...props } = Astro.props;
   data-value={value}
   data-focused={selected ? 'true' : 'false'}
   aria-selected={selected ? 'true' : 'false'}
+  aria-disabled={disabled ? 'true' : 'false'}
   class={twMerge(
     'group flex size-full cursor-pointer items-center justify-between gap-2',
     'rounded px-2 py-1 data-[focused=true]:bg-primary/10',
-    'hover:bg-primary/10 motion-safe:transition-colors',
+    'aria-[disabled=false]:hover:bg-primary/10 motion-safe:transition-colors',
+    'aria-disabled:cursor-not-allowed aria-disabled:opacity-60',
     className,
   )}
 >

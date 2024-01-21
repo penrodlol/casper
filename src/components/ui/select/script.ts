@@ -14,18 +14,22 @@ type Targets = {
   options: Options;
 };
 
-const navigationKeys = /^Arrow(Up|Down)$|^Home$|^End$|^Page(Up|Down)$/;
-const actionKeys = /^Escape$|^Enter$|^ $/;
-
 onAstroPageLoad<Select>('[data-select]', (select) => {
   const id = select.dataset.select as string;
   const trigger = select.querySelector<Trigger>('[role="combobox"]');
   const overlay = select.querySelector<Overlay>('[data-overlay]');
   const optionsWrapper = select.querySelector<OptionsWrapper>('[role="listbox"]');
-  const options = select.querySelectorAll<Option>('[role="option"]');
+  const options = select.querySelectorAll<Option>('[role="option"]:not([aria-disabled="true"])');
   if (!trigger || !overlay || !optionsWrapper || !options?.length) return;
 
   const targets: Targets = { select, trigger, overlay, optionsWrapper, options };
+
+  let searchQuery = '';
+  let searchDebouncer!: number;
+  const searchCollection = Array.from(options).map((option) => ({
+    text: option.textContent?.toLowerCase().trim(),
+    element: option,
+  }));
 
   trigger.setAttribute('aria-controls', id);
   trigger.setAttribute('aria-activedescendant', '');
@@ -44,7 +48,18 @@ onAstroPageLoad<Select>('[data-select]', (select) => {
 
   trigger.addEventListener('click', () => setOpen(targets));
   trigger.addEventListener('keydown', (event) => {
-    if (isSearchKey(event)) return onSearch(event, targets);
+    if (isSearchKey(event)) {
+      if (typeof searchDebouncer === 'number') window.clearTimeout(searchDebouncer);
+      searchDebouncer = window.setTimeout(() => (searchQuery = ''), 500);
+      searchQuery += event.key.toLowerCase().trim();
+
+      setOpen(targets, true);
+
+      const option = searchCollection.find((option) => option.text?.startsWith(searchQuery));
+      if (option) focusOption(optionsWrapper, option.element);
+
+      return;
+    }
 
     // prettier-ignore
     switch (event.key) {
@@ -113,6 +128,8 @@ function focusOption(optionsWrapper: OptionsWrapper, option: Option) {
 function isSearchKey(event: KeyboardEvent) {
   const notEmpty = event.key.length;
   const notModifier = !event.altKey && !event.ctrlKey && !event.metaKey;
+  const navigationKeys = /^Arrow(Up|Down)$|^Home$|^End$|^Page(Up|Down)$/;
+  const actionKeys = /^Escape$|^Enter$|^ $/;
   return notEmpty && notModifier && !navigationKeys.test(event.key) && !actionKeys.test(event.key);
 }
 
@@ -180,10 +197,6 @@ function onEnterOrSpace(event: KeyboardEvent, targets: Targets) {
   const focused = getFocusedOption(targets.select);
   if (focused) setOption(targets.trigger, targets.optionsWrapper, focused);
   setOpen(targets, false);
-}
-
-function onSearch(_event: KeyboardEvent, _targets: Targets) {
-  // TODO: Implement search
 }
 
 // --------------------------------------------------------------------- //
