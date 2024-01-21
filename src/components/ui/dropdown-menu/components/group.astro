@@ -1,0 +1,14 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+import { twMerge } from 'tailwind-merge';
+import Separator from '../../separator.astro';
+
+type Props = HTMLAttributes<'div'>;
+
+const { class: className, ...props } = Astro.props;
+---
+
+<div {...props} role="group" class={twMerge('group', className)}>
+  <slot />
+  <Separator class="-mx-96 my-1 w-auto" />
+</div>

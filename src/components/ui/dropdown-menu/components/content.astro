@@ -1,0 +1,23 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+import { twMerge } from 'tailwind-merge';
+
+type Props = HTMLAttributes<'div'>;
+
+const { class: className, ...props } = Astro.props;
+---
+
+<div
+  {...props}
+  role="menu"
+  tabindex="-1"
+  id={crypto.randomUUID()}
+  class={twMerge(
+    'absolute left-1/2 top-[calc(100%+0.5rem)] z-50 w-56 -translate-x-1/2 rounded border bg',
+    'overflow-y-auto overflow-x-hidden p-1 group-data-[open=false]:hidden',
+    'animate-in motion-safe:fade-in-0 motion-safe:zoom-in-95 motion-safe:slide-in-from-left-1/2',
+    className,
+  )}
+>
+  <slot />
+</div>

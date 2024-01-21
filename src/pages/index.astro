@@ -10,6 +10,7 @@ import Checkbox from '@/components/ui/checkbox.astro';
 import * as Collapsible from '@/components/ui/collapsible';
 import * as Dialog from '@/components/ui/dialog';
 import * as Drawer from '@/components/ui/drawer';
+import * as DropdownMenu from '@/components/ui/dropdown-menu';
 import Input from '@/components/ui/input.astro';
 import Label from '@/components/ui/label.astro';
 import * as NavigationMenu from '@/components/ui/navigation-menu';
@@ -318,7 +319,31 @@ import {
           </Drawer.Section>
         </Drawer.Root>
       </section>
-      <section><!-- Dropdown Menu --></section>
+      <section>
+        <DropdownMenu.Root>
+          <Button slot="dropdown-menu-trigger" color="outline">Account</Button>
+          <DropdownMenu.Content>
+            <DropdownMenu.Label>My Account</DropdownMenu.Label>
+            <DropdownMenu.Group>
+              <DropdownMenu.Item>Profile<DropdownMenu.Shortcut value="⇧⌘P" /></DropdownMenu.Item>
+              <DropdownMenu.Item>Billing <DropdownMenu.Shortcut value="⌘B" /></DropdownMenu.Item>
+              <DropdownMenu.Item>Settings <DropdownMenu.Shortcut value="⌘S" /></DropdownMenu.Item>
+              <DropdownMenu.Item>Shortcuts <DropdownMenu.Shortcut value="⌘K" /></DropdownMenu.Item>
+            </DropdownMenu.Group>
+            <DropdownMenu.Group>
+              <DropdownMenu.Item>Team</DropdownMenu.Item>
+              <DropdownMenu.Item>Invite Users</DropdownMenu.Item>
+              <DropdownMenu.Item>New Team <DropdownMenu.Shortcut value="⌘+T" /></DropdownMenu.Item>
+            </DropdownMenu.Group>
+            <DropdownMenu.Group>
+              <DropdownMenu.Item>GitHub</DropdownMenu.Item>
+              <DropdownMenu.Item>Support</DropdownMenu.Item>
+              <DropdownMenu.Item disabled>API</DropdownMenu.Item>
+            </DropdownMenu.Group>
+            <DropdownMenu.Item>Log out<DropdownMenu.Shortcut value="⇧⌘Q" /></DropdownMenu.Item>
+          </DropdownMenu.Content>
+        </DropdownMenu.Root>
+      </section>
       <section><!-- Fieldset --></section>
       <section class="flex w-80 flex-col gap-6">
         <Input placeholder="Enter your name..." />

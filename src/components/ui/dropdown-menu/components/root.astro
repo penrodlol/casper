@@ -1,0 +1,22 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+import { twMerge } from 'tailwind-merge';
+
+type Props = HTMLAttributes<'div'> & { offset?: number };
+
+const { class: className, offset, ...props } = Astro.props;
+---
+
+<script src="../script.ts"></script>
+
+<div
+  {...props}
+  data-dropdown-menu
+  data-open="false"
+  data-offset={offset ?? 10}
+  class={twMerge('group relative w-max', className)}
+>
+  <slot name="dropdown-menu-trigger" />
+  <slot />
+  <div data-overlay aria-hidden class="fixed inset-0 z-40 group-data-[open=false]:hidden"></div>
+</div>

@@ -1,0 +1,23 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+import { twMerge } from 'tailwind-merge';
+
+type Props = HTMLAttributes<'div'> & { disabled?: boolean };
+
+const { class: className, disabled, ...props } = Astro.props;
+---
+
+<div
+  {...props}
+  role="menuitem"
+  id={crypto.randomUUID()}
+  aria-disabled={disabled ? 'true' : 'false'}
+  class={twMerge(
+    'flex cursor-pointer items-center justify-between gap-2 rounded px-2 py-1',
+    'aria-[disabled=false]:hover:bg-primary/10 motion-safe:transition-colors',
+    'aria-disabled:cursor-not-allowed aria-disabled:opacity-50',
+    className,
+  )}
+>
+  <slot />
+</div>
