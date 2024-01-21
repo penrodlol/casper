@@ -2,12 +2,12 @@
 import type { HTMLAttributes } from 'astro/types';
 import { twMerge } from 'tailwind-merge';
 
-type Props = HTMLAttributes<'ul'>;
+type Props = HTMLAttributes<'div'>;
 
 const { class: className, ...props } = Astro.props;
 ---
 
-<ul
+<div
   {...props}
   class={twMerge(
     'border-b border-b-[hsl(var(--border)/0.5)] py-2 [&_li]:px-4',
@@ -16,4 +16,4 @@ const { class: className, ...props } = Astro.props;
   )}
 >
   <slot />
-</ul>
+</div>

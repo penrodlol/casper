@@ -12,9 +12,9 @@ const { class: className, ...props } = Astro.props;
 <div
   {...props}
   data-select={crypto.randomUUID()}
-  data-state="closed"
+  data-open="false"
   class={twMerge('group relative', className)}
 >
   <slot />
-  <div data-overlay aria-hidden class="fixed inset-0 z-40 group-data-[state=closed]:hidden"></div>
+  <div data-overlay aria-hidden class="fixed inset-0 z-40 group-data-[open=false]:hidden"></div>
 </div>

@@ -7,4 +7,4 @@ type Props = HTMLAttributes<'span'>;
 const { class: className, ...props } = Astro.props;
 ---
 
-<p {...props} class={twMerge('px-2 text-muted/80', className)}><slot /></p>
+<span {...props} class={twMerge('select-none px-2 text-muted/80', className)}><slot /></span>

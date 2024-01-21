@@ -2,21 +2,21 @@
 import type { HTMLAttributes } from 'astro/types';
 import { twMerge } from 'tailwind-merge';
 
-type Props = HTMLAttributes<'ul'>;
+type Props = HTMLAttributes<'div'>;
 
 const { class: className, ...props } = Astro.props;
 ---
 
-<ul
+<div
   {...props}
   role="listbox"
   tabindex="-1"
   class={twMerge(
     'absolute inset-x-0 top-[calc(100%+0.5rem)] z-50 rounded border bg',
-    'max-h-96 overflow-y-auto p-2 group-data-[state=closed]:hidden',
+    'max-h-96 overflow-y-auto p-2 group-data-[open=false]:hidden',
     'animate-in motion-safe:fade-in-0 motion-safe:zoom-in-95',
     className,
   )}
 >
   <slot />
-</ul>
+</div>
