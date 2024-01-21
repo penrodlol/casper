@@ -56,7 +56,7 @@ onAstroPageLoad<Select>('[data-select]', (select) => {
       setOpen(targets, true);
 
       const option = searchCollection.find((option) => option.text?.startsWith(searchQuery));
-      if (option) focusOption(optionsWrapper, option.element);
+      if (option) focusOption(trigger, optionsWrapper, option.element);
 
       return;
     }
@@ -103,9 +103,9 @@ function setOpen({ select, trigger, optionsWrapper, options }: Targets, override
   if (!next) return trigger.setAttribute('aria-activedescendant', '');
 
   const active = getActiveOption(select);
-  if (!active) return focusOption(optionsWrapper, options.item(0));
+  if (!active) return focusOption(trigger, optionsWrapper, options.item(0));
   trigger.setAttribute('aria-activedescendant', active.id);
-  focusOption(optionsWrapper, active);
+  focusOption(trigger, optionsWrapper, active);
 }
 
 function setOption(trigger: Trigger, optionsWrapper: OptionsWrapper, option: Option) {
@@ -117,8 +117,9 @@ function setOption(trigger: Trigger, optionsWrapper: OptionsWrapper, option: Opt
   option.scrollIntoView({ block: 'nearest' });
 }
 
-function focusOption(optionsWrapper: OptionsWrapper, option: Option) {
+function focusOption(trigger: Trigger, optionsWrapper: OptionsWrapper, option: Option) {
   removeFocusedOption(optionsWrapper);
+  trigger.setAttribute('aria-activedescendant', option.id);
   option.setAttribute('data-focused', 'true');
   option.scrollIntoView({ block: 'nearest' });
 }
@@ -141,7 +142,7 @@ function onArrowUp(event: KeyboardEvent, targets: Targets) {
 
   const focused = getFocusedOption(targets.select)?.dataset.index;
   const previous = focused && targets.options.item(Number(focused) - 1);
-  if (previous) focusOption(targets.optionsWrapper, previous);
+  if (previous) focusOption(targets.trigger, targets.optionsWrapper, previous);
 }
 
 function onArrowDown(event: KeyboardEvent, targets: Targets) {
@@ -152,37 +153,41 @@ function onArrowDown(event: KeyboardEvent, targets: Targets) {
 
   const nextIndex = Number(getFocusedOption(targets.select)?.dataset.index ?? -1) + 1;
   const next = targets.options.item(nextIndex);
-  if (next) focusOption(targets.optionsWrapper, next);
+  if (next) focusOption(targets.trigger, targets.optionsWrapper, next);
 }
 
 function onHome(event: KeyboardEvent, targets: Targets) {
   event.preventDefault();
   setOpen(targets, true);
-  focusOption(targets.optionsWrapper, targets.options.item(0));
+  focusOption(targets.trigger, targets.optionsWrapper, targets.options.item(0));
 }
 
 function onEnd(event: KeyboardEvent, targets: Targets) {
   event.preventDefault();
   setOpen(targets, true);
-  focusOption(targets.optionsWrapper, targets.options.item(targets.options.length - 1));
+  focusOption(
+    targets.trigger,
+    targets.optionsWrapper,
+    targets.options.item(targets.options.length - 1),
+  );
 }
 
-function onPageUp(event: KeyboardEvent, { select, optionsWrapper, options }: Targets) {
+function onPageUp(event: KeyboardEvent, { select, trigger, optionsWrapper, options }: Targets) {
   if (select.dataset.open === 'false') return;
 
   event.preventDefault();
 
   const focused = getFocusedOption(select)?.dataset.index;
   const previous = focused && (options.item(Number(focused) - 10) ?? options.item(0));
-  if (previous) focusOption(optionsWrapper, previous);
+  if (previous) focusOption(trigger, optionsWrapper, previous);
 }
 
-function onPageDown(event: KeyboardEvent, { select, optionsWrapper, options }: Targets) {
+function onPageDown(event: KeyboardEvent, { select, trigger, optionsWrapper, options }: Targets) {
   if (select.dataset.open === 'false') return;
 
   event.preventDefault();
   const next = options.item(Number(getFocusedOption(select)?.dataset.index ?? 0) + 10);
-  focusOption(optionsWrapper, next ?? options.item(options.length - 1));
+  focusOption(trigger, optionsWrapper, next ?? options.item(options.length - 1));
 }
 
 function onEscape(targets: Targets) {
