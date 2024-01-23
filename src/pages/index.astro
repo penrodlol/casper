@@ -22,6 +22,7 @@ import Radio from '@/components/ui/radio.astro';
 import * as Select from '@/components/ui/select';
 import Separator from '@/components/ui/separator.astro';
 import Skeleton from '@/components/ui/skeleton.astro';
+import Slider from '@/components/ui/slider.astro';
 import Switch from '@/components/ui/switch.astro';
 import * as Table from '@/components/ui/table';
 import * as Tabs from '@/components/ui/tabs';
@@ -62,6 +63,8 @@ import {
   Twitter,
   Underline,
   User,
+  Volume,
+  Volume2,
   Youtube,
 } from 'lucide-astro';
 ---
@@ -98,7 +101,7 @@ import {
         <Label><Checkbox checked disabled /> Select</Label>
         <Label><Checkbox checked disabled /> Separator</Label>
         <Label><Checkbox checked disabled /> Skeleton</Label>
-        <Label><Checkbox /> Slider</Label>
+        <Label><Checkbox checked disabled /> Slider</Label>
         <Label><Checkbox checked disabled /> Switch</Label>
         <Label><Checkbox checked disabled /> Tabs</Label>
         <Label><Checkbox checked disabled /> Table</Label>
@@ -512,7 +515,15 @@ import {
           <Skeleton class="size-4 w-64" />
         </div>
       </section>
-      <section><!-- Slider --></section>
+      <section class="flex w-96 flex-col gap-10">
+        <Slider min="0" max="100" value="40" hint="always" />
+        <Slider min="0" max="100" value="80" hint="never" />
+        <div class="flex items-center gap-4">
+          <Volume size={20} class="stroke-primary/50" />
+          <Slider min="0" max="100" value="60" hint="hover" class="flex-1" />
+          <Volume2 size={20} class="stroke-primary/50" />
+        </div>
+      </section>
       <section>
         <Label><Switch /> Airplane mode</Label>
       </section>

@@ -1,0 +1,63 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+import { twJoin, twMerge } from 'tailwind-merge';
+import { tv, type VariantProps } from 'tailwind-variants';
+
+const variants = tv({
+  base: 'relative flex items-center rounded has-[input:focus-visible]:ring-1',
+  defaultVariants: { hint: 'hover' },
+  variants: {
+    hint: {
+      always: '[&_[data-hint]]:flex',
+      hover: '[&_[data-hint]]:hidden [&:hover_[data-hint]]:flex',
+      never: '[&_[data-hint]]:hidden',
+    },
+  },
+});
+
+type Props = Omit<HTMLAttributes<'input'>, 'type'> & VariantProps<typeof variants>;
+
+const { class: className, value, hint, ...props } = Astro.props;
+---
+
+<div class={twMerge(variants({ hint }), className)} style={{ '--value': `${value ?? 0}` }}>
+  <div
+    data-hint
+    aria-hidden
+    class={twMerge(
+      'absolute z-20 h-6 w-max -translate-x-1/2 items-center justify-center rounded border bg px-1 text-xs',
+      'bottom-[calc(100%+0.5rem)] [counter-reset:val_var(--value)] after:content-[counter(val)"%"]',
+      'left-[calc(var(--value)*1%)] motion-safe:transition-[left] motion-safe:duration-75',
+    )}
+  >
+  </div>
+  <input
+    {...props}
+    type="range"
+    value={value}
+    class="z-20 h-4 w-full touch-none select-none opacity-0 hover:cursor-grab active:cursor-grabbing"
+    oninput="this.parentElement.style.setProperty('--value', this.value)"
+  />
+  <div
+    data-track
+    aria-hidden
+    class={twJoin(
+      'before:absolute before:inset-y-1 before:left-0 before:w-[calc(var(--value)*1%-0.75rem)]',
+      'before:rounded before:bg-primary before:content-[""] motion-safe:before:transition-[width]',
+      'motion-safe:before:duration-75',
+
+      'after:absolute after:inset-y-1 after:right-0 after:w-[calc((100-var(--value))*1%-0.75rem)]',
+      'after:rounded after:bg-primary/20 after:content-[""] motion-safe:after:transition-[width]',
+      'motion-safe:after:duration-75',
+    )}
+  >
+    <div
+      data-thumb
+      class={twJoin(
+        'absolute top-1/2 z-10 size-4 -translate-x-1/2 -translate-y-1/2 rounded-full border bg',
+        'left-[calc(var(--value)*1%)] motion-safe:transition-[left] motion-safe:duration-75',
+      )}
+    >
+    </div>
+  </div>
+</div>
