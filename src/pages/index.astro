@@ -321,26 +321,24 @@ import {
       </section>
       <section>
         <DropdownMenu.Root>
-          <Button slot="dropdown-menu-trigger" color="outline">Account</Button>
+          <Button slot="dropdown-menu-trigger" size="icon"><Settings /></Button>
           <DropdownMenu.Content>
-            <DropdownMenu.Label>My Account</DropdownMenu.Label>
+            <DropdownMenu.Label>Settings</DropdownMenu.Label>
             <DropdownMenu.Group>
-              <DropdownMenu.Item>Profile<DropdownMenu.Shortcut value="⇧⌘P" /></DropdownMenu.Item>
-              <DropdownMenu.Item>Billing <DropdownMenu.Shortcut value="⌘B" /></DropdownMenu.Item>
-              <DropdownMenu.Item>Settings <DropdownMenu.Shortcut value="⌘S" /></DropdownMenu.Item>
-              <DropdownMenu.Item>Shortcuts <DropdownMenu.Shortcut value="⌘K" /></DropdownMenu.Item>
+              <DropdownMenu.Item>New Tab<DropdownMenu.Shortcut value="⌘+T" /></DropdownMenu.Item>
+              <DropdownMenu.Item>New Window<DropdownMenu.Shortcut value="⌘+N" /></DropdownMenu.Item>
+              <DropdownMenu.Item>More Tools</DropdownMenu.Item>
             </DropdownMenu.Group>
             <DropdownMenu.Group>
-              <DropdownMenu.Item>Team</DropdownMenu.Item>
-              <DropdownMenu.Item>Invite Users</DropdownMenu.Item>
-              <DropdownMenu.Item>New Team <DropdownMenu.Shortcut value="⌘+T" /></DropdownMenu.Item>
+              <DropdownMenu.ItemCheckbox checked>Bookmarks</DropdownMenu.ItemCheckbox>
+              <DropdownMenu.ItemCheckbox>Show Full URLs</DropdownMenu.ItemCheckbox>
             </DropdownMenu.Group>
             <DropdownMenu.Group>
-              <DropdownMenu.Item>GitHub</DropdownMenu.Item>
-              <DropdownMenu.Item>Support</DropdownMenu.Item>
-              <DropdownMenu.Item disabled>API</DropdownMenu.Item>
+              <DropdownMenu.GroupLabel>People</DropdownMenu.GroupLabel>
+              <DropdownMenu.ItemRadio checked>Bob Smith</DropdownMenu.ItemRadio>
+              <DropdownMenu.ItemRadio>John Doe</DropdownMenu.ItemRadio>
+              <DropdownMenu.ItemRadio>Joe Bloggs</DropdownMenu.ItemRadio>
             </DropdownMenu.Group>
-            <DropdownMenu.Item>Log out<DropdownMenu.Shortcut value="⇧⌘Q" /></DropdownMenu.Item>
           </DropdownMenu.Content>
         </DropdownMenu.Root>
       </section>

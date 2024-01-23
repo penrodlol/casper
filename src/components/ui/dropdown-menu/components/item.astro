@@ -9,8 +9,8 @@ const { class: className, disabled, ...props } = Astro.props;
 
 <div
   {...props}
-  role="menuitem"
   id={crypto.randomUUID()}
+  role="menuitem"
   data-focused="false"
   aria-disabled={disabled ? 'true' : 'false'}
   class={twMerge(

@@ -2,11 +2,9 @@
 import type { HTMLAttributes } from 'astro/types';
 import { twMerge } from 'tailwind-merge';
 
-type Props = HTMLAttributes<'div'>;
+type Props = HTMLAttributes<'span'>;
 
 const { class: className, ...props } = Astro.props;
 ---
 
-<div {...props} role="group" class={twMerge('border-b py-1 last-of-type:border-b-0', className)}>
-  <slot />
-</div>
+<div {...props} class={twMerge('select-none px-2 py-1 text-muted/80', className)}><slot /></div>

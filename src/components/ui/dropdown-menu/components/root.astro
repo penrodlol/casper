@@ -14,7 +14,7 @@ const { class: className, offset, ...props } = Astro.props;
   data-dropdown-menu
   data-open="false"
   data-offset={offset ?? 10}
-  class={twMerge('group relative w-max', className)}
+  class={twMerge('group relative w-max text-xs', className)}
 >
   <slot name="dropdown-menu-trigger" />
   <slot />

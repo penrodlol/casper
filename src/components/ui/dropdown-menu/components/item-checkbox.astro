@@ -1,0 +1,31 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+import { Check } from 'lucide-astro';
+import { twMerge } from 'tailwind-merge';
+
+type Props = HTMLAttributes<'div'> & { checked?: boolean; disabled?: boolean };
+
+const { class: className, checked, disabled, ...props } = Astro.props;
+---
+
+<div
+  {...props}
+  id={crypto.randomUUID()}
+  role="menuitemcheckbox"
+  data-focused="false"
+  aria-checked={checked ? 'true' : 'false'}
+  aria-disabled={disabled ? 'true' : 'false'}
+  class={twMerge(
+    'group flex cursor-pointer items-center justify-between gap-2 rounded px-2 py-1',
+    'aria-[disabled=false]:hover:bg-primary/10 data-[focused=true]:bg-primary/10',
+    'aria-disabled:cursor-not-allowed aria-disabled:opacity-50 motion-safe:transition-colors',
+    className,
+  )}
+>
+  <slot />
+  <Check
+    size={14}
+    aria-hidden
+    class="hidden shrink-0 animate-in group-aria-checked:block motion-safe:fade-in-0 motion-safe:zoom-in-90"
+  />
+</div>

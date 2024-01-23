@@ -8,11 +8,13 @@ type Item = HTMLDivElement;
 type Items = NodeListOf<Item>;
 type Targets = { menu: DropdownMenu; trigger: Trigger; content: Content; items: Items };
 
+const selector = '[role="menuitem"],[role="menuitemcheckbox"],[role="menuitemradio"]';
+
 onAstroPageLoad<DropdownMenu>('[data-dropdown-menu]', (menu) => {
   const overlay = menu.querySelector<Overlay>('[data-overlay]');
   const trigger = menu.querySelector<Trigger>('[slot="dropdown-menu-trigger"]');
   const content = menu.querySelector<Content>('[role="menu"]');
-  const items = menu.querySelectorAll<Item>('[role="menuitem"]:not([aria-disabled="true"])');
+  const items = menu.querySelectorAll<Item>(selector);
   if (!overlay || !trigger || !content || !items) return;
 
   const targets: Targets = { menu, trigger, content, items };
@@ -30,13 +32,6 @@ onAstroPageLoad<DropdownMenu>('[data-dropdown-menu]', (menu) => {
   items.forEach((item, index) => item.setAttribute('data-index', `${index}`));
 
   overlay.addEventListener('click', () => setOpen(targets, false));
-
-  menu.addEventListener('click', (event) => getClosestItem(event) && setOpen(targets, false));
-  menu.addEventListener('mouseover', (event) => {
-    const item = getClosestItem(event);
-    if (item) focusItem(targets, item);
-  });
-
   trigger.addEventListener('click', () => setOpen(targets));
   trigger.addEventListener('keydown', (event) => {
     // prettier-ignore
@@ -45,6 +40,17 @@ onAstroPageLoad<DropdownMenu>('[data-dropdown-menu]', (menu) => {
       case 'Down': case 'ArrowDown': return onTriggerArrowDown(event, targets);
       default: return;
     }
+  });
+
+  content.addEventListener('click', (event) => {
+    setOpen(targets, false);
+    const item = getClosestItem(event);
+    if (item) setChecked(item);
+  });
+
+  content.addEventListener('mouseover', (event) => {
+    const item = getClosestItem(event);
+    if (item) focusItem(targets, item);
   });
 
   content.addEventListener('keydown', (event) => {
@@ -82,9 +88,7 @@ function getFocusedItem({ content }: Targets) {
 }
 
 function getClosestItem(event: MouseEvent) {
-  return (event.target as HTMLElement).closest<Item>(
-    '[role="menuitem"]:not([aria-disabled="true"])',
-  );
+  return (event.target as HTMLElement).closest<Item>(selector);
 }
 
 function isSearchKey(event: KeyboardEvent) {
@@ -102,6 +106,20 @@ function setOpen(targets: Targets, override?: boolean) {
 
   if (next) removeFocusedItem(targets), targets.content.focus();
   else targets.content.setAttribute('aria-activedescendant', '');
+}
+
+function setChecked(item: Item) {
+  // prettier-ignore
+  switch (item.role) {
+    case 'menuitemcheckbox':
+        return item.setAttribute('aria-checked', `${item.ariaChecked !== 'true'}`);
+    case 'menuitemradio': {
+      const checked = item.parentElement?.querySelector(`${selector}[aria-checked=true]`);
+      checked?.setAttribute('aria-checked', 'false');
+      return item.setAttribute('aria-checked', 'true');
+    }
+    default: return;
+  }
 }
 
 function focusItem(targets: Targets, item: Item) {
@@ -149,6 +167,8 @@ function onContentEnd(event: KeyboardEvent, targets: Targets) {
 
 function onContentEnterOrSpace(event: KeyboardEvent, targets: Targets) {
   event.preventDefault();
+  const focused = getFocusedItem(targets);
+  if (focused) setChecked(focused);
   setOpen(targets);
   if (targets.menu.dataset.open === 'false') targets.trigger.focus();
 }
