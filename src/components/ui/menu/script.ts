@@ -1,20 +1,22 @@
 import { onAstroPageLoad } from '@/libs/astro';
 
-type DropdownMenu = HTMLDivElement;
+type Menu = HTMLDivElement;
 type Overlay = HTMLDivElement;
 type Trigger = HTMLButtonElement;
 type Content = HTMLDivElement;
 type Item = HTMLDivElement;
 type Items = NodeListOf<Item>;
-type Targets = { menu: DropdownMenu; trigger: Trigger; content: Content; items: Items };
+type Targets = { menu: Menu; trigger: Trigger; content: Content; items: Items };
 
-const selector = '[role="menuitem"],[role="menuitemcheckbox"],[role="menuitemradio"]';
+const itemsSelector =
+  '[role="menuitem"]:not([data-menubar-trigger]),[role="menuitemcheckbox"],[role="menuitemradio"]';
+const triggersSelector = '[slot="menu-trigger"],[data-menubar-trigger]';
 
-onAstroPageLoad<DropdownMenu>('[data-dropdown-menu]', (menu) => {
+onAstroPageLoad<Menu>('[data-menu]', (menu) => {
   const overlay = menu.querySelector<Overlay>('[data-overlay]');
-  const trigger = menu.querySelector<Trigger>('[slot="dropdown-menu-trigger"]');
+  const trigger = menu.querySelector<Trigger>(triggersSelector);
   const content = menu.querySelector<Content>('[role="menu"]');
-  const items = menu.querySelectorAll<Item>(selector);
+  const items = menu.querySelectorAll<Item>(itemsSelector);
   if (!overlay || !trigger || !content || !items) return;
 
   const targets: Targets = { menu, trigger, content, items };
@@ -88,7 +90,7 @@ function getFocusedItem({ content }: Targets) {
 }
 
 function getClosestItem(event: MouseEvent) {
-  return (event.target as HTMLElement).closest<Item>(selector);
+  return (event.target as HTMLElement).closest<Item>(itemsSelector);
 }
 
 function isSearchKey(event: KeyboardEvent) {
@@ -114,7 +116,7 @@ function setChecked(item: Item) {
     case 'menuitemcheckbox':
         return item.setAttribute('aria-checked', `${item.ariaChecked !== 'true'}`);
     case 'menuitemradio': {
-      const checked = item.parentElement?.querySelector(`${selector}[aria-checked=true]`);
+      const checked = item.parentElement?.querySelector(`${itemsSelector}[aria-checked=true]`);
       checked?.setAttribute('aria-checked', 'false');
       return item.setAttribute('aria-checked', 'true');
     }

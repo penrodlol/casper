@@ -1,0 +1,21 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+import { twMerge } from 'tailwind-merge';
+
+type Props = HTMLAttributes<'div'>;
+
+const { class: className, ...props } = Astro.props;
+---
+
+<script src="../script.ts"></script>
+
+<div
+  {...props}
+  role="menubar"
+  data-menubar
+  data-open="false"
+  aria-orientation="horizontal"
+  class={twMerge('inline-flex rounded border', className)}
+>
+  <slot />
+</div>

@@ -1,0 +1,21 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+import { twMerge } from 'tailwind-merge';
+
+type Props = HTMLAttributes<'span'>;
+
+const { class: className, ...props } = Astro.props;
+---
+
+<button
+  {...props}
+  data-menubar-trigger
+  role="menuitem"
+  class={twMerge(
+    'relative z-40 select-none px-3 py-1 text-sm group-data-[open=true]:bg-primary/10',
+    'focus-visible:bg-primary/10 focus-visible:outline-none',
+    className,
+  )}
+>
+  <slot />
+</button>

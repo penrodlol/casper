@@ -11,12 +11,13 @@ const { class: className, offset, ...props } = Astro.props;
 
 <div
   {...props}
-  data-dropdown-menu
+  role="none"
+  data-menu
   data-open="false"
   data-offset={offset ?? 10}
   class={twMerge('group relative w-max text-xs', className)}
 >
-  <slot name="dropdown-menu-trigger" />
+  <slot name="menu-trigger" />
   <slot />
-  <div data-overlay aria-hidden class="fixed inset-0 z-40 group-data-[open=false]:hidden"></div>
+  <div data-overlay aria-hidden class="fixed inset-0 z-30 group-data-[open=false]:hidden"></div>
 </div>

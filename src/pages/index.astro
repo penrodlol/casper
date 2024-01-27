@@ -10,9 +10,10 @@ import Checkbox from '@/components/ui/checkbox.astro';
 import * as Collapsible from '@/components/ui/collapsible';
 import * as Dialog from '@/components/ui/dialog';
 import * as Drawer from '@/components/ui/drawer';
-import * as DropdownMenu from '@/components/ui/dropdown-menu';
 import Input from '@/components/ui/input.astro';
 import Label from '@/components/ui/label.astro';
+import * as Menu from '@/components/ui/menu';
+import * as Menubar from '@/components/ui/menubar';
 import * as NavigationMenu from '@/components/ui/navigation-menu';
 import * as Pagination from '@/components/ui/pagination';
 import * as Popover from '@/components/ui/popover';
@@ -53,7 +54,7 @@ import {
   Loader,
   LogOut,
   Mail,
-  Menu,
+  Menu as MenuIcon,
   Power,
   Send,
   Settings,
@@ -87,11 +88,11 @@ import {
         <Label><Checkbox /> Date Picker</Label>
         <Label><Checkbox checked disabled /> Dialog</Label>
         <Label><Checkbox checked disabled /> Drawer</Label>
-        <Label><Checkbox /> Dropdown Menu</Label>
         <Label><Checkbox /> Fieldset</Label>
         <Label><Checkbox checked disabled /> Input</Label>
         <Label><Checkbox checked disabled /> Label</Label>
-        <Label><Checkbox /> Menubar</Label>
+        <Label><Checkbox checked disabled /> Menu</Label>
+        <Label><Checkbox checked disabled /> Menubar</Label>
         <Label><Checkbox checked disabled /> Navigation Menu</Label>
         <Label><Checkbox checked disabled /> Pagination</Label>
         <Label><Checkbox checked disabled /> Popover</Label>
@@ -295,7 +296,7 @@ import {
       </section>
       <section class="flex gap-8">
         <Drawer.Root position="left">
-          <Button slot="drawer-trigger" color="outline" size="icon"><Menu /></Button>
+          <Button slot="drawer-trigger" color="outline" size="icon"><MenuIcon /></Button>
           <Drawer.Header class="border-b">
             <Avatar src="/src/assets/astro.png" alt="BS" size="lg" class="mb-4" />
             <Drawer.Title>Bob Smith</Drawer.Title>
@@ -323,27 +324,27 @@ import {
         </Drawer.Root>
       </section>
       <section>
-        <DropdownMenu.Root>
-          <Button slot="dropdown-menu-trigger" size="icon"><Settings /></Button>
-          <DropdownMenu.Content>
-            <DropdownMenu.Label>Settings</DropdownMenu.Label>
-            <DropdownMenu.Group>
-              <DropdownMenu.Item>New Tab<DropdownMenu.Shortcut value="⌘+T" /></DropdownMenu.Item>
-              <DropdownMenu.Item>New Window<DropdownMenu.Shortcut value="⌘+N" /></DropdownMenu.Item>
-              <DropdownMenu.Item>More Tools</DropdownMenu.Item>
-            </DropdownMenu.Group>
-            <DropdownMenu.Group>
-              <DropdownMenu.ItemCheckbox checked>Bookmarks</DropdownMenu.ItemCheckbox>
-              <DropdownMenu.ItemCheckbox>Show Full URLs</DropdownMenu.ItemCheckbox>
-            </DropdownMenu.Group>
-            <DropdownMenu.Group>
-              <DropdownMenu.GroupLabel>People</DropdownMenu.GroupLabel>
-              <DropdownMenu.ItemRadio checked>Bob Smith</DropdownMenu.ItemRadio>
-              <DropdownMenu.ItemRadio>John Doe</DropdownMenu.ItemRadio>
-              <DropdownMenu.ItemRadio>Joe Bloggs</DropdownMenu.ItemRadio>
-            </DropdownMenu.Group>
-          </DropdownMenu.Content>
-        </DropdownMenu.Root>
+        <Menu.Root>
+          <Button slot="menu-trigger" size="icon"><Settings /></Button>
+          <Menu.Content>
+            <Menu.Label>Settings</Menu.Label>
+            <Menu.Group>
+              <Menu.Item>New Tab<Menu.Shortcut value="⌘+T" /></Menu.Item>
+              <Menu.Item>New Window<Menu.Shortcut value="⌘+N" /></Menu.Item>
+              <Menu.Item>More Tools</Menu.Item>
+            </Menu.Group>
+            <Menu.Group>
+              <Menu.ItemCheckbox checked>Bookmarks</Menu.ItemCheckbox>
+              <Menu.ItemCheckbox>Show Full URLs</Menu.ItemCheckbox>
+            </Menu.Group>
+            <Menu.Group>
+              <Menu.GroupLabel>People</Menu.GroupLabel>
+              <Menu.ItemRadio checked>Bob Smith</Menu.ItemRadio>
+              <Menu.ItemRadio>John Doe</Menu.ItemRadio>
+              <Menu.ItemRadio>Joe Bloggs</Menu.ItemRadio>
+            </Menu.Group>
+          </Menu.Content>
+        </Menu.Root>
       </section>
       <section><!-- Fieldset --></section>
       <section class="flex w-80 flex-col gap-6">
@@ -352,7 +353,74 @@ import {
         <Input type="file"><Image size={14} slot="prefix" /></Input>
         <Input placeholder="Enter current weight..."><span slot="suffix">kg</span></Input>
       </section>
-      <section><!-- Menubar --></section>
+      <section>
+        <Menubar.Root>
+          <Menubar.Item>
+            <Menubar.Trigger>Font</Menubar.Trigger>
+            <Menubar.Content>
+              <Menubar.MenuGroup>
+                <Menubar.MenuItem>New Tab<Menubar.Shortcut value="⌘+T" /></Menubar.MenuItem>
+                <Menubar.MenuItem>New Window<Menubar.Shortcut value="⌘+N" /></Menubar.MenuItem>
+                <Menubar.MenuItem disabled>New Incognito</Menubar.MenuItem>
+              </Menubar.MenuGroup>
+              <Menubar.MenuGroup><Menubar.MenuItem>Share</Menubar.MenuItem></Menubar.MenuGroup>
+              <Menubar.MenuGroup>
+                <Menubar.MenuItem>Print<Menubar.Shortcut value="⌘+P" /></Menubar.MenuItem>
+              </Menubar.MenuGroup>
+            </Menubar.Content>
+          </Menubar.Item>
+          <Menubar.Item>
+            <Menubar.Trigger>Edit</Menubar.Trigger>
+            <Menubar.Content>
+              <Menubar.MenuGroup>
+                <Menubar.MenuItem>Undo<Menubar.Shortcut value="⌘+Z" /></Menubar.MenuItem>
+                <Menubar.MenuItem>Redo<Menubar.Shortcut value="⇧+⌘+Z" /></Menubar.MenuItem>
+              </Menubar.MenuGroup>
+              <Menubar.MenuGroup><Menubar.MenuItem>Find</Menubar.MenuItem></Menubar.MenuGroup>
+              <Menubar.MenuGroup>
+                <Menubar.MenuItem>Cut</Menubar.MenuItem>
+                <Menubar.MenuItem>Copy</Menubar.MenuItem>
+                <Menubar.MenuItem>Paste</Menubar.MenuItem>
+              </Menubar.MenuGroup>
+            </Menubar.Content>
+          </Menubar.Item>
+          <Menubar.Item>
+            <Menubar.Trigger>View</Menubar.Trigger>
+            <Menubar.Content>
+              <Menubar.MenuGroup>
+                <Menubar.MenuItemCheckbox>Always Show Bookmarks Bar</Menubar.MenuItemCheckbox>
+                <Menubar.MenuItemCheckbox checked>Always Show Full URLs</Menubar.MenuItemCheckbox>
+              </Menubar.MenuGroup>
+              <Menubar.MenuGroup>
+                <Menubar.MenuItem>Reload<Menubar.Shortcut value="⌘+R" /></Menubar.MenuItem>
+                <Menubar.MenuItem>Force Reload<Menubar.Shortcut value="⇧+⌘+R" /></Menubar.MenuItem>
+              </Menubar.MenuGroup>
+              <Menubar.MenuGroup>
+                <Menubar.MenuItem>Toggle Fullscreen</Menubar.MenuItem>
+              </Menubar.MenuGroup>
+              <Menubar.MenuGroup>
+                <Menubar.MenuItem>Force Hide Sidebar</Menubar.MenuItem>
+              </Menubar.MenuGroup>
+            </Menubar.Content>
+          </Menubar.Item>
+          <Menubar.Item>
+            <Menubar.Trigger>Profiles</Menubar.Trigger>
+            <Menubar.Content>
+              <Menubar.MenuGroup>
+                <Menubar.MenuItemRadio>Andy</Menubar.MenuItemRadio>
+                <Menubar.MenuItemRadio checked>Benoit</Menubar.MenuItemRadio>
+                <Menubar.MenuItemRadio>Luis</Menubar.MenuItemRadio>
+              </Menubar.MenuGroup>
+              <Menubar.MenuGroup>
+                <Menubar.MenuItem>Edit...</Menubar.MenuItem>
+              </Menubar.MenuGroup>
+              <Menubar.MenuGroup>
+                <Menubar.MenuItem>Add Profile...</Menubar.MenuItem>
+              </Menubar.MenuGroup>
+            </Menubar.Content>
+          </Menubar.Item>
+        </Menubar.Root>
+      </section>
       <section>
         <NavigationMenu.Root>
           <NavigationMenu.Dropdown>
@@ -717,3 +785,4 @@ import {
     </div>
   </div>
 </Layout>
+@/components/ui/menubar
