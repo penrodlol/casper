@@ -27,17 +27,22 @@ const variants = tv({
   },
 });
 
-type Props = HTMLAttributes<'div'> & VariantProps<typeof variants>;
+type Props = HTMLAttributes<'div'> & VariantProps<typeof variants> & { duration?: number };
 
-const { class: className, color, position, ...props } = Astro.props;
+const { class: className, color, position, duration, ...props } = Astro.props;
 ---
 
 <script src="../script.ts"></script>
 
 <div
   {...props}
+  role="status"
+  aria-live="off"
+  aria-atomic="true"
+  tabindex="0"
   data-toast={crypto.randomUUID()}
   data-state="closed"
+  data-duration={duration ?? 8000}
   class={twMerge(variants({ color, position }), className)}
 >
   <div class="peer absolute left-4 top-1/2 -translate-y-1/2">
