@@ -1,0 +1,12 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+import { twMerge } from 'tailwind-merge';
+
+type Props = HTMLAttributes<'div'> & { name: string };
+
+const { class: className, name, ...props } = Astro.props;
+---
+
+<div {...props} data-field data-name={name} class={twMerge('flex flex-col gap-2', className)}>
+  <slot />
+</div>

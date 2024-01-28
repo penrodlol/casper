@@ -1,0 +1,14 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+import { twMerge } from 'tailwind-merge';
+
+type Props = HTMLAttributes<'form'>;
+
+const { class: className, ...props } = Astro.props;
+---
+
+<script src="../script.ts"></script>
+
+<form {...props} data-form={crypto.randomUUID()} class={twMerge('flex flex-col gap-8', className)}>
+  <slot />
+</form>

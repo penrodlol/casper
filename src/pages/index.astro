@@ -10,6 +10,7 @@ import Checkbox from '@/components/ui/checkbox.astro';
 import * as Collapsible from '@/components/ui/collapsible';
 import * as Dialog from '@/components/ui/dialog';
 import * as Drawer from '@/components/ui/drawer';
+import * as Form from '@/components/ui/form';
 import Input from '@/components/ui/input.astro';
 import Label from '@/components/ui/label.astro';
 import * as Menu from '@/components/ui/menu';
@@ -88,7 +89,7 @@ import {
         <Label><Checkbox /> Date Picker</Label>
         <Label><Checkbox checked disabled /> Dialog</Label>
         <Label><Checkbox checked disabled /> Drawer</Label>
-        <Label><Checkbox /> Fieldset</Label>
+        <Label><Checkbox checked disabled /> Form</Label>
         <Label><Checkbox checked disabled /> Input</Label>
         <Label><Checkbox checked disabled /> Label</Label>
         <Label><Checkbox checked disabled /> Menu</Label>
@@ -109,7 +110,7 @@ import {
         <Label><Checkbox checked disabled /> Textarea</Label>
         <Label><Checkbox /> Toast</Label>
         <Label><Checkbox checked disabled /> Toggle</Label>
-        <Label><Checkbox /> Tooltip</Label>
+        <Label><Checkbox checked disabled /> Tooltip</Label>
       </ul>
     </div>
     <div class="flex flex-col gap-20">
@@ -346,7 +347,38 @@ import {
           </Menu.Content>
         </Menu.Root>
       </section>
-      <section><!-- Fieldset --></section>
+      <section class="w-[600px] rounded border px-10 py-6">
+        <Form.Root>
+          <Form.Fieldset>
+            <div>
+              <Form.Legend>Shipping Details</Form.Legend>
+              <p class="text-muted">Enter shipping information below.</p>
+            </div>
+            <Form.Field name="streetAddress">
+              <Form.Label>Street Address</Form.Label>
+              <Input />
+            </Form.Field>
+            <Form.Field name="country">
+              <Form.Label>Country</Form.Label>
+              <Select.Root>
+                <Select.Trigger />
+                <Select.Options>
+                  <Select.Option value="canada">Canada</Select.Option>
+                  <Select.Option value="mexico">Mexico</Select.Option>
+                  <Select.Option value="unitedStates">United States</Select.Option>
+                </Select.Options>
+              </Select.Root>
+              <Form.Description>We currently only ship to Americas.</Form.Description>
+            </Form.Field>
+            <Form.Field name="notes">
+              <Form.Label>Notes</Form.Label>
+              <Textarea rows="4" />
+              <Form.Description> Please enter any additional info. </Form.Description>
+            </Form.Field>
+          </Form.Fieldset>
+          <Button type="submit">Submit Details</Button>
+        </Form.Root>
+      </section>
       <section class="flex w-80 flex-col gap-6">
         <Input placeholder="Enter your name..." />
         <Input disabled placeholder="Enter your name..." />
@@ -785,4 +817,4 @@ import {
     </div>
   </div>
 </Layout>
-@/components/ui/menubar
+@/components/ui/menubar @/components/ui/form

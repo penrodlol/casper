@@ -1,0 +1,10 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+import { twMerge } from 'tailwind-merge';
+
+type Props = HTMLAttributes<'fieldset'>;
+
+const { class: className, ...props } = Astro.props;
+---
+
+<fieldset {...props} class={twMerge('space-y-8', className)}><slot /></fieldset>
