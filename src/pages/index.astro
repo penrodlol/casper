@@ -8,6 +8,7 @@ import Button from '@/components/ui/button.astro';
 import * as Carousel from '@/components/ui/carousel';
 import Checkbox from '@/components/ui/checkbox.astro';
 import * as Collapsible from '@/components/ui/collapsible';
+import Datepicker from '@/components/ui/datepicker.astro';
 import * as Dialog from '@/components/ui/dialog';
 import * as Drawer from '@/components/ui/drawer';
 import * as Form from '@/components/ui/form';
@@ -86,7 +87,7 @@ import {
         <Label><Checkbox checked disabled /> Carousel</Label>
         <Label><Checkbox checked disabled /> Checkbox</Label>
         <Label><Checkbox checked disabled /> Collapsible</Label>
-        <Label><Checkbox /> Date Picker</Label>
+        <Label><Checkbox checked disabled /> Date Picker</Label>
         <Label><Checkbox checked disabled /> Dialog</Label>
         <Label><Checkbox checked disabled /> Drawer</Label>
         <Label><Checkbox checked disabled /> Form</Label>
@@ -267,7 +268,10 @@ import {
           </Collapsible.Root>
         </div>
       </section>
-      <section><!-- Date Picker --></section>
+      <section class="flex w-[500px] gap-10">
+        <Datepicker type="date" value="2018-07-22" placeholder="Pick a date" />
+        <Datepicker type="datetime-local" placeholder="Pick a date/time" />
+      </section>
       <section>
         <Dialog.Root>
           <Button slot="dialog-trigger">Edit Profile</Button>
@@ -817,4 +821,3 @@ import {
     </div>
   </div>
 </Layout>
-@/components/ui/menubar @/components/ui/form
