@@ -23,10 +23,14 @@ const { class: className, value, size, ...props } = Astro.props;
   class={twMerge(variants({ size }), className)}
 >
   <svg class="h-full w-full" viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg">
-    <circle class="fill-none stroke-primary/20 stroke-2 [cx:15] [cy:15] [r:14]"></circle>
+    <circle class="fill-none stroke-primary/20 stroke-2" cx="15" cy="15" r="14"></circle>
     <circle
-      class="origin-center -rotate-90 fill-none stroke-primary stroke-2 [cx:15] [cy:15] [r:14] [stroke-linecap:round]"
-      stroke-dasharray={`${2 * Math.PI * 14 * (value / 100)} ${2 * Math.PI * 14}`}></circle>
+      cx="15"
+      cy="15"
+      r="14"
+      stroke-linecap="round"
+      stroke-dasharray={`${2 * Math.PI * 14 * (value / 100)} ${2 * Math.PI * 14}`}
+      class="origin-center -rotate-90 fill-none stroke-primary stroke-2"></circle>
   </svg>
   <div class="absolute inset-0 flex items-center justify-center">{value}%</div>
 </div>
