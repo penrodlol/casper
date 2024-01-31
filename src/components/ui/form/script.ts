@@ -2,7 +2,7 @@ import { onAstroPageLoad } from '@/libs/astro';
 
 const controls = 'input,textarea,select,button[role="combobox"]';
 
-onAstroPageLoad<HTMLDivElement>('[data-form]', (form) => {
+onAstroPageLoad<HTMLFormElement>('[data-form]', (form) => {
   form.querySelectorAll<HTMLFieldSetElement>('fieldset').forEach((fieldset) => {
     const legend = fieldset.querySelector<HTMLLegendElement>('legend');
     if (legend) fieldset.setAttribute('aria-labelledby', legend.id);
@@ -11,7 +11,7 @@ onAstroPageLoad<HTMLDivElement>('[data-form]', (form) => {
   form.querySelectorAll<HTMLDivElement>('[data-field]').forEach((field) => {
     const label = field.querySelector<HTMLLabelElement>('label');
     const control = field.querySelector<HTMLElement>(controls);
-    const description = field.querySelector<HTMLDivElement>('[data-description]');
+    const description = field.querySelector<HTMLParagraphElement>('[data-description]');
     if (!label || !control) return;
 
     label.setAttribute('for', `${form.dataset.form}-${field.dataset.name}`);

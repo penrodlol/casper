@@ -7,6 +7,14 @@ type Props = HTMLAttributes<'div'> & { name: string };
 const { class: className, name, ...props } = Astro.props;
 ---
 
-<div {...props} data-field data-name={name} class={twMerge('flex flex-col gap-2', className)}>
+<div
+  {...props}
+  data-field
+  data-name={name}
+  class={twMerge(
+    'flex flex-col gap-2 [&:has(:user-invalid)_label]:text-[hsl(var(--danger))]',
+    className,
+  )}
+>
   <slot />
 </div>
