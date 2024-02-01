@@ -17,6 +17,7 @@ import Label from '@/components/ui/label.astro';
 import * as Menu from '@/components/ui/menu';
 import * as Menubar from '@/components/ui/menubar';
 import * as NavigationMenu from '@/components/ui/navigation-menu';
+import Note from '@/components/ui/note.astro';
 import * as Pagination from '@/components/ui/pagination';
 import * as Popover from '@/components/ui/popover';
 import Progress from '@/components/ui/progress.astro';
@@ -86,29 +87,38 @@ import {
         <Label><Checkbox checked disabled /> Button</Label>
         <Label><Checkbox checked disabled /> Carousel</Label>
         <Label><Checkbox checked disabled /> Checkbox</Label>
+        <Label><Checkbox /> Chip</Label>
+        <Label><Checkbox /> Code</Label>
         <Label><Checkbox checked disabled /> Collapsible</Label>
         <Label><Checkbox checked disabled /> Date Picker</Label>
         <Label><Checkbox checked disabled /> Dialog</Label>
         <Label><Checkbox checked disabled /> Drawer</Label>
         <Label><Checkbox checked disabled /> Form</Label>
         <Label><Checkbox checked disabled /> Input</Label>
+        <Label><Checkbox /> Input Number</Label>
+        <Label><Checkbox /> Input Password</Label>
+        <Label><Checkbox /> Input Pin</Label>
         <Label><Checkbox checked disabled /> Label</Label>
         <Label><Checkbox checked disabled /> Menu</Label>
         <Label><Checkbox checked disabled /> Menubar</Label>
         <Label><Checkbox checked disabled /> Navigation Menu</Label>
+        <Label><Checkbox checked disabled /> Note</Label>
         <Label><Checkbox checked disabled /> Pagination</Label>
         <Label><Checkbox checked disabled /> Popover</Label>
         <Label><Checkbox checked disabled /> Progress</Label>
         <Label><Checkbox checked disabled /> Radial Progress</Label>
         <Label><Checkbox checked disabled /> Radio Group</Label>
+        <Label><Checkbox /> Rating</Label>
         <Label><Checkbox checked disabled /> Select</Label>
         <Label><Checkbox checked disabled /> Separator</Label>
         <Label><Checkbox checked disabled /> Skeleton</Label>
+        <Label><Checkbox /> Shortcut</Label>
         <Label><Checkbox checked disabled /> Slider</Label>
         <Label><Checkbox checked disabled /> Switch</Label>
         <Label><Checkbox checked disabled /> Tabs</Label>
         <Label><Checkbox checked disabled /> Table</Label>
         <Label><Checkbox checked disabled /> Textarea</Label>
+        <Label><Checkbox /> Theme</Label>
         <Label><Checkbox checked disabled /> Toast</Label>
         <Label><Checkbox checked disabled /> Toggle</Label>
         <Label><Checkbox checked disabled /> Tooltip</Label>
@@ -238,6 +248,8 @@ import {
           <Carousel.Next />
         </Carousel.Root>
       </section>
+      <section><!-- Chip --></section>
+      <section><!-- Code --></section>
       <section class="flex w-[500px] flex-col gap-10">
         <div class="flex gap-10">
           <Collapsible.Root direction="bottom">
@@ -389,6 +401,9 @@ import {
         <Input type="file"><Image size={14} slot="prefix" /></Input>
         <Input placeholder="Enter current weight..."><span slot="suffix">kg</span></Input>
       </section>
+      <section><!-- Input Number --></section>
+      <section><!-- Input Password --></section>
+      <section><!-- Input Pin --></section>
       <section>
         <Menubar.Root>
           <Menubar.Item>
@@ -510,6 +525,14 @@ import {
           <NavigationMenu.Link href="/">Documentation</NavigationMenu.Link>
         </NavigationMenu.Root>
       </section>
+      <section class="flex w-[70ch] flex-col gap-10">
+        <Note> Lorem ipsum dolor sit amet consectetur adipisicing elit.</Note>
+        <Note>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste laboriosam dolore nobis,
+          quia veniam velit soluta? Beatae perspiciatis impedit consequatur ullam commodi. Repellat
+          nulla ipsum dignissimos omnis eos est. Quaerat.
+        </Note>
+      </section>
       <section class="flex flex-col gap-10">
         <Pagination.Root type="default">
           <Pagination.Previous href="#" />
@@ -580,6 +603,7 @@ import {
           <Label><Radio name="fruit-vertical" /> Orange</Label>
         </fieldset>
       </section>
+      <section><!-- Rating --></section>
       <section class="w-52">
         <Select.Root>
           <Select.Trigger placeholder="Choose a food" />
@@ -619,6 +643,7 @@ import {
           <Skeleton class="size-4 w-64" />
         </div>
       </section>
+      <section><!-- Shortcut --></section>
       <section class="flex w-96 flex-col gap-10">
         <Slider min="0" max="100" value="40" hint="always" />
         <Slider min="0" max="100" value="80" hint="never" />
@@ -723,6 +748,7 @@ import {
         <Textarea placeholder="Describe your favorite fruit..." />
         <Textarea placeholder="Describe your favorite fruit..." disabled />
       </section>
+      <section><!-- Theme --></section>
       <section class="flex gap-8">
         <Toast.Root>
           <Button slot="toast-trigger" color="outline">Add to calendar</Button>
