@@ -12,6 +12,6 @@ const { class: className, ...props } = Astro.props;
   {...props}
   class={twMerge('flex items-start gap-3 rounded bg-muted/60 px-6 py-3 text-muted', className)}
 >
-  <Info size={18} aria-hidden class="mt-1 shrink-0 opacity-80" />
+  <Info size={18} aria-hidden class="mt-0.5 shrink-0 opacity-80" />
   <slot />
 </blockquote>
